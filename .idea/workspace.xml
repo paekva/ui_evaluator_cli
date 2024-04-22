@@ -4,17 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/SpringShellMain.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/commands/TmpCommand.kt" afterDir="false" />
+    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="Init console app for ui evaluator">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/metrics/ComplexityMetric.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/metrics/implementations/InputSwitchCountMetric.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/metrics/implementations/NavigationGraphComplexityMetric.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/metrics/implementations/NumberOfAssertsMetric.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/metrics/implementations/NumberOfCodeLinesMetric.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/metrics/implementations/NumberOfElementsMetric.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/metrics/implementations/NumberOfInteractionOptionsMetric.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/metrics/implementations/NumberOfInteractionsMetric.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/metrics/implementations/NumberOfScrollsMetric.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/metrics/implementations/NumberOfWaitsMetric.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/metrics/implementations/TestExecutionTimeMetric.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/metrics/implementations/WeightedInteractionCountMetric.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/metrics/models/ActionType.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/metrics/models/InterfaceAction.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/metrics/models/MetricDescription.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/metrics/models/MetricLevel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/metrics/models/MetricResult.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/metrics/models/TestData.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/commands/TmpCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/commands/TmpCommand.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +68,11 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/metrics" />
+    </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.tuc.masters.metrics.models" />
       <recent name="com.tuc.masters" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
@@ -104,11 +118,24 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1713793355282</updated>
-      <workItem from="1713793356281" duration="1043000" />
+      <workItem from="1713793356281" duration="2437000" />
     </task>
+    <task id="LOCAL-00001" summary="Init console app for ui evaluator">
+      <option name="closed" value="true" />
+      <created>1713794422384</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1713794422384</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Init console app for ui evaluator" />
+    <option name="LAST_COMMIT_MESSAGE" value="Init console app for ui evaluator" />
   </component>
 </project>
