@@ -1,4 +1,4 @@
-package com.tuc.masters.metrics.implementations
+package com.tuc.masters.implementations
 
 import com.tuc.masters.metrics.ComplexityMetric
 import com.tuc.masters.metrics.models.*

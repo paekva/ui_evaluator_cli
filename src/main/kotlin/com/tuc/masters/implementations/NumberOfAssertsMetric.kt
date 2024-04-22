@@ -1,20 +1,21 @@
-package com.tuc.masters.metrics.implementations
+package com.tuc.masters.implementations
 
 import com.tuc.masters.metrics.ComplexityMetric
 import com.tuc.masters.metrics.models.*
 import org.springframework.stereotype.Component
 
+
 @Component
-class NumberOfCodeLinesMetric : ComplexityMetric {
+class NumberOfAssertsMetric : ComplexityMetric {
     override var metricsDescription: MetricDescription
         get() = MetricDescription(
-            "Number of line in test's code",
-            "Calculate number of code lines",
+            "Number of asserts in code",
+            "Calculate number of assert statements",
             listOf(MetricLevel.GROUP, MetricLevel.SINGLE_TEST),
         )
         set(value) {}
 
     override fun calculateSingleTestMetric(actions: List<InterfaceAction>): Double {
-        return actions.count().toDouble()
+        return actions.count { it.type == ActionType.ASSERT }.toDouble()
     }
 }
