@@ -1,7 +1,10 @@
-package com.tuc.masters.implementations
+package com.tuc.masters.implementations.metrics
 
-import com.tuc.masters.metrics.ComplexityMetric
-import com.tuc.masters.metrics.models.*
+import com.tuc.masters.core.ComplexityMetric
+import com.tuc.masters.core.models.ActionType
+import com.tuc.masters.core.models.InterfaceAction
+import com.tuc.masters.core.models.MetricDescription
+import com.tuc.masters.core.models.MetricLevel
 import org.springframework.stereotype.Component
 
 
@@ -16,8 +19,8 @@ class TestExecutionTimeMetric : ComplexityMetric {
         set(value) {}
 
     override fun calculateSingleTestMetric(actions: List<InterfaceAction>): Double {
-        val start = actions.firstOrNull { it.type == ActionType.START }?.args?.get(0)?.toDouble() ?: 0.0
-        val stop = actions.firstOrNull { it.type == ActionType.STOP }?.args?.get(0)?.toDouble() ?: 0.0
+        val start = actions.firstOrNull { it.type == ActionType.START }?.timestamp?.toDouble() ?: 0.0
+        val stop = actions.firstOrNull { it.type == ActionType.STOP }?.timestamp?.toDouble() ?: 0.0
 
         return stop - start
     }

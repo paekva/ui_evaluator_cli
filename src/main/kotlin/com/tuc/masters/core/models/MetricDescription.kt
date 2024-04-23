@@ -1,4 +1,4 @@
-package com.tuc.masters.metrics.models
+package com.tuc.masters.core.models
 
 //TODO: add toString implementation as requirement
 data class MetricDescription (

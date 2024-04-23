@@ -1,6 +1,6 @@
-package com.tuc.masters.metrics
+package com.tuc.masters.core
 
-import com.tuc.masters.metrics.models.*
+import com.tuc.masters.core.models.*
 
 interface ComplexityMetric {
     var metricsDescription: MetricDescription
@@ -10,7 +10,7 @@ interface ComplexityMetric {
     fun calculateGroupTestMetric(results: List<MetricResult>): Double {
         return results.sumOf { it.value } / results.count()
     }
-    fun getSingleTestMetric(testData: TestData): MetricResult{
+    fun getSingleTestMetric(testData: TestData): MetricResult {
         return MetricResult(
             this.metricsDescription,
             calculateSingleTestMetric(testData.actions),

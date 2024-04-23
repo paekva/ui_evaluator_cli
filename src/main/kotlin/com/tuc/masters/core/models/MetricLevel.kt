@@ -1,4 +1,4 @@
-package com.tuc.masters.metrics.models
+package com.tuc.masters.core.models
 
 enum class MetricLevel {
     SINGLE_TEST, GROUP

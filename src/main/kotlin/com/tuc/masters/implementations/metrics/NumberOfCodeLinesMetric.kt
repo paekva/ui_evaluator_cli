@@ -1,7 +1,9 @@
-package com.tuc.masters.implementations
+package com.tuc.masters.implementations.metrics
 
-import com.tuc.masters.metrics.ComplexityMetric
-import com.tuc.masters.metrics.models.*
+import com.tuc.masters.core.ComplexityMetric
+import com.tuc.masters.core.models.InterfaceAction
+import com.tuc.masters.core.models.MetricDescription
+import com.tuc.masters.core.models.MetricLevel
 import org.springframework.stereotype.Component
 
 @Component
