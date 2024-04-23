@@ -28,30 +28,34 @@ class SeleniumChromeLogParser: LogParser {
             val r2 = Regex("\\[[0-9|.]+\\]")
             val timestamp = r2.find(it.first)?.value?.drop(1)?.dropLast(1)
             val type = getActionType(it.second)
-            val args = if (type != ActionType.OTHER) getArguments(it.second) else mapOf()
+//            val args = if (type != ActionType.OTHER) getArguments(it.second) else mapOf()
             interactions.add(InterfaceAction(
                 wholeLine = "${it.first} ${it.second}",
                 type = type,
                 timestamp = timestamp,
-                args = args
+                args = mapOf()
             ))
         }
 
-        return mutableListOf()
+        return interactions
 
     }
 
     private fun getArguments(value: String): Map<String, String> {
         val args = mutableMapOf<String, String>()
-        val r1 = Regex("\\{(.|\n)*\\}")
-        val argsString = r1.find(value)?.value ?: ""
+        val r1 = Regex("\\{(?<args>(.|\n)*)\\}")
+        val argsString = r1.find(value)?.groups?.get(1)?.value ?: ""
 
-        val r2 = Regex("\n\\s\\s\\s\"(?<key>[a-z]+)\": (?<value>(.|\n)+)")
-        r2.findAll(argsString).map {
-            val g = it.groups
-            val key = g[1]?.value ?: ""
-            args[key] = g[2]?.value ?: ""
-        }.toList()
+        val tmp = argsString.split("\n   \"").drop(1)
+        tmp.forEach{
+            // TODO(me): doesn't work for multiple args
+            val r2 = Regex("(?<key>[a-z]+)\": (?<value>(.|\n|\\s)+)\n")
+            val matches = r2.find(it)
+            val g = matches?.groups
+            val key = g?.get(1)?.value ?: ""
+            args[key] = g?.get(2)?.value ?: ""
+            println("${key}: ${args[key]}")
+        }
 
         return args
     }
