@@ -4,12 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="Refactoring the structure and adding log parser interface and first implementation">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorController.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorService.kt" afterDir="false" />
+    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="Add separate controller and service for the business logic">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/ArtifactType.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/UIEvaluatorCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/UIEvaluatorCommand.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/SeleniumChromeLogParser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/SeleniumChromeLogParser.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/SpringShellMain.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/SpringShellMain.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/MetricDescription.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/MetricDescription.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/InputSwitchCountMetric.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/InputSwitchCountMetric.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NavigationGraphComplexityMetric.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NavigationGraphComplexityMetric.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfAssertsMetric.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfAssertsMetric.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfCodeLinesMetric.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfCodeLinesMetric.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfElementsMetric.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfElementsMetric.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfInteractionOptionsMetric.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfInteractionOptionsMetric.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfInteractionsMetric.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfInteractionsMetric.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfScrollsMetric.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfScrollsMetric.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfWaitsMetric.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfWaitsMetric.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/TestExecutionTimeMetric.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/TestExecutionTimeMetric.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/WeightedInteractionCountMetric.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/WeightedInteractionCountMetric.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +133,7 @@
       <updated>1713793355282</updated>
       <workItem from="1713793356281" duration="9677000" />
       <workItem from="1713863120988" duration="7684000" />
-      <workItem from="1713876888621" duration="3727000" />
+      <workItem from="1713876888621" duration="4648000" />
     </task>
     <task id="LOCAL-00001" summary="Init console app for ui evaluator">
       <option name="closed" value="true" />
@@ -187,7 +199,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713876956031</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Add separate controller and service for the business logic">
+      <option name="closed" value="true" />
+      <created>1713881439115</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1713881439115</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,7 +231,8 @@
     <MESSAGE value="Add" />
     <MESSAGE value="Refactoring the structure" />
     <MESSAGE value="Refactoring the structure and adding log parser interface and first implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring the structure and adding log parser interface and first implementation" />
+    <MESSAGE value="Add separate controller and service for the business logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add separate controller and service for the business logic" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

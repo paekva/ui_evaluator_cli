@@ -1,6 +1,7 @@
 package com.tuc.masters.core
 
 import com.tuc.masters.core.models.ActionType
+import com.tuc.masters.core.models.ArtifactType
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import java.io.File
@@ -30,6 +31,15 @@ class UIEvaluatorController(
         // TODO
 
         // calculate
+        val logMetrics = metrics.filter { it.metricsDescription.artifactTypes.contains(ArtifactType.LOG_FILE) }
+        val result = service.calculateMetrics(parsedData, logMetrics)
+
         // visualise
+        result.entries.forEach {
+            println("\n\nfor test ${it.key.testName}")
+            it.value.forEach { m ->
+                println("${m.metric.name}: ${m.value}")
+            }
+        }
     }
 }

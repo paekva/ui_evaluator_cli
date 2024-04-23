@@ -1,6 +1,7 @@
 package com.tuc.masters.implementations.metrics
 
 import com.tuc.masters.core.ComplexityMetric
+import com.tuc.masters.core.models.ArtifactType
 import com.tuc.masters.core.models.InterfaceAction
 import com.tuc.masters.core.models.MetricDescription
 import com.tuc.masters.core.models.MetricLevel
@@ -15,6 +16,7 @@ class NavigationGraphComplexityMetric: ComplexityMetric {
             "Navigation graph complexity",
             "Calculate complexity of navigation graph",
             listOf(MetricLevel.GROUP, MetricLevel.SINGLE_TEST),
+            listOf(ArtifactType.LOG_FILE),
         )
         set(value) {}
 

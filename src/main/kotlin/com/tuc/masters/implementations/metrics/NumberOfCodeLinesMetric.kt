@@ -1,6 +1,7 @@
 package com.tuc.masters.implementations.metrics
 
 import com.tuc.masters.core.ComplexityMetric
+import com.tuc.masters.core.models.ArtifactType
 import com.tuc.masters.core.models.InterfaceAction
 import com.tuc.masters.core.models.MetricDescription
 import com.tuc.masters.core.models.MetricLevel
@@ -13,6 +14,7 @@ class NumberOfCodeLinesMetric : ComplexityMetric {
             "Number of line in test's code",
             "Calculate number of code lines",
             listOf(MetricLevel.GROUP, MetricLevel.SINGLE_TEST),
+            listOf(ArtifactType.TEST_SOURCE_CODE),
         )
         set(value) {}
 

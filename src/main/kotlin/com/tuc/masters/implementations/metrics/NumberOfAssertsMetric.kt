@@ -1,10 +1,7 @@
 package com.tuc.masters.implementations.metrics
 
 import com.tuc.masters.core.ComplexityMetric
-import com.tuc.masters.core.models.ActionType
-import com.tuc.masters.core.models.InterfaceAction
-import com.tuc.masters.core.models.MetricDescription
-import com.tuc.masters.core.models.MetricLevel
+import com.tuc.masters.core.models.*
 import org.springframework.stereotype.Component
 
 
@@ -15,6 +12,7 @@ class NumberOfAssertsMetric : ComplexityMetric {
             "Number of asserts in code",
             "Calculate number of assert statements",
             listOf(MetricLevel.GROUP, MetricLevel.SINGLE_TEST),
+            listOf(ArtifactType.TEST_SOURCE_CODE),
         )
         set(value) {}
 

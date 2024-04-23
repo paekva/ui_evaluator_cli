@@ -4,11 +4,10 @@ import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 
 // TODO:
-//  1. Implement parser for logs (make sure to check it works for both PHP and Java logs)
 //  2. Implement parser for test source code
-//  3. Create controller module that handles workflow
 //  4. Implement workflow for a single test and a single metric (+ add visualisation module)
 //  5. Try to write Evaluation draft
+//  6. Data from test and from logs should be unified, because some metrics are calculated based on one thing and some on another
 @SpringBootApplication
 open class SpringShellMain {
   companion object {

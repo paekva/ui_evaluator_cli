@@ -1,6 +1,7 @@
 package com.tuc.masters.core
 
 import com.tuc.masters.core.models.ActionType
+import com.tuc.masters.core.models.MetricResult
 import com.tuc.masters.core.models.TestData
 import org.springframework.stereotype.Component
 import java.io.File
@@ -31,5 +32,13 @@ class UIEvaluatorService {
         }
 
         return testData
+    }
+
+    fun calculateMetrics(parsedData: List<TestData>, metrics: List<ComplexityMetric>): Map<TestData, List<MetricResult>> {
+        val results = mutableMapOf<TestData, List<MetricResult>>()
+        parsedData.forEach{data ->
+            results[data] = metrics.map { metric -> metric.getSingleTestMetric(data) }.toList()
+        }
+        return results
     }
 }
