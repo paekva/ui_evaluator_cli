@@ -1,18 +1,10 @@
 package com.tuc.masters.core
 
 import com.tuc.masters.core.models.InterfaceAction
+import com.tuc.masters.core.models.TestData
 import java.io.File
 
-interface ArtifactsParser {
-    fun parseFile(file: File): List<InterfaceAction>
-}
-
-interface LogParser: ArtifactsParser {
+interface LogParser {
     val supportedBrowsers: List<String>
-}
-
-interface TestParser: ArtifactsParser {
-    var supportedLanguages: List<String>
-    // UI testing frameworks
-    val supportedFrameworks: List<String>
+    fun parseFile(file: File): List<InterfaceAction>
 }

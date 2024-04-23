@@ -12,13 +12,16 @@ class UIEvaluatorService {
     fun extractConfig(file: File):String {
         return "./files"
     }
-
-    fun getAvailableLogs(dir: File): List<File> {
+    fun getFilesByExtension(dir: File, extension: String): List<File> {
         val files = dir.listFiles()
-        return files.filter { it.isFile && it.extension.contains("log") }
+        return files?.filter { it.isFile && it.extension.contains(extension) } ?: listOf()
     }
 
     fun findLogParser(config: File, parsers: List<LogParser>): LogParser {
+        return parsers[0]
+    }
+
+    fun findTestParser(config: File, parsers: List<TestParser>): TestParser {
         return parsers[0]
     }
 
@@ -26,9 +29,17 @@ class UIEvaluatorService {
         val testData = mutableListOf<TestData>()
         files.forEach { log ->
             val result = parser.parseFile(log)
-            val tmp1 = result.filter { it.type == ActionType.CLICK }
-            println("done for ${log.path} ${tmp1.count()}")
             testData.add(TestData(log.name, result))
+        }
+
+        return testData
+    }
+    fun parseTests(files: List<File>, parser: TestParser): List<TestData> {
+        val testData = mutableListOf<TestData>()
+
+        files.forEach { test ->
+            val result = parser.parseFile(test)
+            testData.addAll(result)
         }
 
         return testData
