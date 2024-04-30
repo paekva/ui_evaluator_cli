@@ -1,6 +1,7 @@
 package com.tuc.masters.core
 
 import com.tuc.masters.core.models.ArtifactType
+import com.tuc.masters.core.models.EvaluatorConfig
 import com.tuc.masters.core.models.MetricResult
 import com.tuc.masters.core.models.TestData
 import org.springframework.beans.factory.annotation.Autowired
@@ -15,25 +16,42 @@ class UIEvaluatorController(
     @Autowired private val metrics: List<ComplexityMetric>,
 ) {
 
-    fun evaluate(path: String) {
-        // TODO: implement proper config class to be parsed from file and used
-        val configFile = File("")
-        val testDataPath = service.extractConfig(configFile)
+    private fun getTestFiles(path: String, matchFileName: Regex, excludeNames: List<String>): List<File>? {
+        val repoDir = File(path)
+        return repoDir.listFiles()?.filter { matchFileName.matches(it.name) && !excludeNames.contains(it.name) }
+    }
+    private fun getLogFiles(path: String, matchFileName: Regex, excludeNames: List<String>): List<File>? {
+        val repoDir = File(path)
+        return repoDir.listFiles()?.filter { matchFileName.matches(it.name) && !excludeNames.contains(it.name) }
+    }
 
-        // getting artifacts
-        val dir = File("${path}/${testDataPath}")
-        // TODO: add white or black listing for files
-        //  also mapping module!
-        val logs = service.getFilesByExtension(dir, "log") // TODO: should be taken from the config
-        val tests = service.getFilesByExtension(dir, "java") // TODO: should be taken from the config
+    fun evaluate(configPath: String) {
+        val configFile = File(configPath)
+        val config = service.parseConfig(configFile)
 
+        val tests = getTestFiles(
+            config.path + config.testsPath,
+            Regex("[a-zA-Z0-9]*" + config.testFilePostfix + "." + config.testExtension + "$"),
+            config.exclude ?: listOf(),
+        ) ?: listOf()
+
+        val logs = getLogFiles(
+            config.path + config.logsPath,
+            Regex("[a-zA-Z0-9]*\\." + config.logExtension + "$"),
+            listOf()
+            ) ?: listOf()
+
+        evaluateTestList(config, logs, tests)
+    }
+
+    private fun evaluateTestList(configFile: EvaluatorConfig, logs: List<File>, tests: List<File>){
         // parse logs
         val logParser = service.findLogParser(configFile, logParsers)
-        val parsedLogsData = service.parseLogs(logs, logParser)
+        val parsedLogsData = service.parseLogs(logs, configFile, logParser)
 
         // parse tests
         val testParser = service.findTestParser(configFile, testParsers)
-        val parsedTestData = service.parseTests(tests, testParser)
+        val parsedTestData = service.parseTests(tests, configFile, testParser)
 
         // calculate
         val logMetrics = metrics.filter { it.metricsDescription.artifactTypes.contains(ArtifactType.LOG_FILE) }
@@ -42,13 +60,16 @@ class UIEvaluatorController(
         val testMetrics = metrics.filter { it.metricsDescription.artifactTypes.contains(ArtifactType.TEST_SOURCE_CODE) }
         val result2 = service.calculateMetrics(parsedTestData, testMetrics)
 
-        val result = mutableMapOf<TestData, List<MetricResult>>()
-        result2.forEach{
-            result[it.key] = (result1[it.key] ?: listOf()) + it.value
+        // visualise
+        result1.entries.forEach {
+            println("\n\nfor test ${it.key.testName}")
+            it.value.forEach { m ->
+                println("${m.metric.name}: ${m.value}")
+            }
         }
 
         // visualise
-        result1.entries.forEach {
+        result2.entries.forEach {
             println("\n\nfor test ${it.key.testName}")
             it.value.forEach { m ->
                 println("${m.metric.name}: ${m.value}")

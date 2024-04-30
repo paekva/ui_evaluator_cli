@@ -24,7 +24,7 @@ class UIEvaluatorCommand(
     }
 
     @ShellMethod(value = "Evaluates application based on provided UI tests and config")
-    fun evaluate(@ShellOption(defaultValue = "./") path: String) {
+    fun evaluate(@ShellOption(defaultValue = "./config.yaml") path: String) {
         controller.evaluate(path)
     }
 }

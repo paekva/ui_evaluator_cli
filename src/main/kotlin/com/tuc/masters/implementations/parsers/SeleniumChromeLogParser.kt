@@ -2,6 +2,7 @@ package com.tuc.masters.implementations.parsers
 
 import com.tuc.masters.core.LogParser
 import com.tuc.masters.core.models.ActionType
+import com.tuc.masters.core.models.EvaluatorConfig
 import com.tuc.masters.core.models.InterfaceAction
 import org.springframework.stereotype.Component
 import java.io.File
@@ -11,7 +12,7 @@ import java.io.File
 class SeleniumChromeLogParser: LogParser {
     override val supportedBrowsers: List<String>
         get() = listOf("GoogleChrome")
-    override fun parseFile(file: File): List<InterfaceAction> {
+    override fun parseFile(file: File, config: EvaluatorConfig): List<InterfaceAction> {
         val interactions = mutableListOf<InterfaceAction>()
 
         val content = file.readText().trim()

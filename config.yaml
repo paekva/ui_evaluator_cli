@@ -1,0 +1,7 @@
+path: '/Users/paekva/projects/new_repos_master/0_main/folder_152/OpenOLAT'
+testsPath: "/src/test/java/org/olat/selenium"
+testFilePostfix: "Test"
+testExtension: "java"
+testAnnotation: "@Test"
+exclude:
+  - "LoginTest.java"
