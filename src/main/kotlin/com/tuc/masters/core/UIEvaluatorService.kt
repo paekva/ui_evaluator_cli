@@ -16,7 +16,7 @@ class UIEvaluatorService {
             ?: EvaluatorConfig(testsPath = "./tests", testFilePostfix = "")
     }
 
-    fun getFiles(path: String, matchFileName: Regex, excludeNames: List<String>): List<File>? {
+    fun getFiles(path: String, matchFileName: Regex, excludeNames: List<String>): List<File> {
         val files = mutableListOf<File>()
         val repoDir = File(path)
         repoDir.listFiles()?.forEach { file ->

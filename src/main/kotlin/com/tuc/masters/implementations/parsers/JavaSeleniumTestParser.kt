@@ -62,7 +62,26 @@ class JavaSeleniumTestParser : TestParser {
     }
 
     private fun parseActions(sourceCode: String): List<InterfaceAction> {
-        return sourceCode.split(Regex(";[\\s\n]*"))
-            .map { InterfaceAction(wholeLine = it, type = ActionType.OTHER, args = mutableMapOf() ) }
+        val actions = mutableListOf<InterfaceAction>()
+        val snippets = sourceCode.split(Regex(";[\\s\n]*"))
+
+        snippets.forEach { snippet ->
+            if (asserts.any { snippet.contains(it) }) {
+                actions.add(InterfaceAction(wholeLine = snippet, type = ActionType.ASSERT, args = mutableMapOf()))
+            } else if (snippet.contains("wait")) {
+                actions.add(InterfaceAction(wholeLine = snippet, type = ActionType.WAIT, args = mutableMapOf()))
+            } else {
+                actions.add(InterfaceAction(wholeLine = snippet, type = ActionType.OTHER, args = mutableMapOf()))
+            }
+        }
+
+        return actions
     }
+
+    private val asserts: List<String> = listOf(
+        "assertTrue", "assertFalse", "assertEquals", "assertNotEqual",
+        "assertGreaterThan", "assertStringDoesNotContain", "assertStringContains", "assertNotMatches",
+        "assertMatches", "assertContains", "assertNotNull", "assertNull", "assertLessThanEqualTo", "assertLessThan",
+        "assertGreaterThanEqualTo",
+    )
 }

@@ -45,7 +45,7 @@ class UIEvaluatorController(
             config.exclude ?: listOf(),
         ) ?: listOf()
         val logsPath = projectPath + config.logsPath
-        val logsFileRegex = Regex("[a-zA-Z0-9]*\\." + config.logExtension + "$")
+        val logsFileRegex = Regex("[a-zA-Z0-9_]*\\." + config.logExtension + "$")
         val logs = service.getFiles(
             logsPath,
             logsFileRegex,
@@ -90,7 +90,7 @@ class UIEvaluatorController(
         // visualise
         results.entries.forEach {
             println("\n\n-----------------------------------------------------")
-            println("for test ${it.key.testName} (log are${if(it.key.logs.isEmpty()) "not " else " "}available)")
+            println("for test ${it.key.testName} (log are${if(it.key.logs.isEmpty()) " not " else " "}available)")
             println("-----------------------------------------------------")
             it.value.forEach { m ->
                 println("${m.metric.name}: ${m.value}")
