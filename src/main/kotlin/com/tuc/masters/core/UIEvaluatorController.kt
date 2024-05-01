@@ -43,14 +43,14 @@ class UIEvaluatorController(
             testsPath,
             testFileRegex,
             config.exclude ?: listOf(),
-        ) ?: listOf()
+        )
         val logsPath = projectPath + config.logsPath
         val logsFileRegex = Regex("[a-zA-Z0-9_]*\\." + config.logExtension + "$")
         val logs = service.getFiles(
             logsPath,
             logsFileRegex,
             listOf()
-        ) ?: listOf()
+        )
 
         if(tests.isEmpty() && logs.isEmpty()) {
             log.warning("No test or log files were found in provided folders.\nlogs: $logsPath\ntests: $testsPath")
@@ -58,9 +58,20 @@ class UIEvaluatorController(
         }
 
         val testData = handleParsing(config, logs, tests)
-        println("logs are available for ${testData.count { it.logs.isNotEmpty() }}/${testData.count()} tests")
-
         calculateSingleTestMetrics(testData, config)
+    }
+
+    private fun devMissingLogsFinder(testData: List<TestData>) {
+        val tmp = File("./progress_zimbra.txt") // NAME
+        if(!tmp.exists()) tmp.createNewFile()
+
+        var res = ""
+        testData.forEach {
+            res += "${it.testName}: ${it.logs.isNotEmpty()}\n"
+        }
+
+        tmp.writeText(res)
+        println("logs are available for ${testData.count { it.logs.isNotEmpty() }}/${testData.count()} tests")
     }
 
     private fun handleParsing(configFile: EvaluatorConfig, logs: List<File>, tests: List<File>): List<TestData> {
