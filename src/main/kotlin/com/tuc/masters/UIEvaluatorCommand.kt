@@ -11,7 +11,6 @@ import java.util.logging.Logger
 class UIEvaluatorCommand(
     @Autowired private val controller: UIEvaluatorController,
 ) {
-    private var log: Logger = Logger.getLogger(UIEvaluatorCommand::class.java.getName())
 
     @ShellMethod(value = "Validates provided config")
     fun validate(
@@ -24,7 +23,7 @@ class UIEvaluatorCommand(
     }
 
     @ShellMethod(value = "Evaluates application based on provided UI tests and config")
-    fun evaluate(@ShellOption(defaultValue = "./config.yaml") path: String) {
+    fun evaluate(@ShellOption(defaultValue = "./") path: String) {
         controller.evaluate(path)
     }
 }

@@ -19,7 +19,7 @@ class InputSwitchCountMetric: ComplexityMetric {
     override fun calculateSingleTestMetric(actions: List<InterfaceAction>): Double {
         var count = 0
         val inputActions = actions.filter { it.type in inputActions }
-        var isKeyboard = inputActions.first().type == ActionType.SEND_KEYS
+        var isKeyboard = inputActions.firstOrNull()?.type == ActionType.SEND_KEYS
         for (a in inputActions) {
             if(isKeyboard && a.type != ActionType.SEND_KEYS || !isKeyboard && a.type == ActionType.SEND_KEYS) {
                 count++

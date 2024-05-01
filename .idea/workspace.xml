@@ -4,18 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="Add empty implementation of test parser">
-      <change afterPath="$PROJECT_DIR$/config.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/EvaluatorConfig.kt" afterDir="false" />
+    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="Add config file and some test parsing">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/ParsedData.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.yaml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/UIEvaluatorCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/UIEvaluatorCommand.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/ComplexityMetric.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/ComplexityMetric.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/LogParser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/LogParser.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/TestParser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/TestParser.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorController.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/EvaluatorConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/EvaluatorConfig.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/MetricResult.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/MetricResult.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/TestData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/TestData.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/InputSwitchCountMetric.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/InputSwitchCountMetric.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/JavaSeleniumTestParser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/JavaSeleniumTestParser.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/SeleniumChromeLogParser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/SeleniumChromeLogParser.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,8 +83,8 @@
       <recent name="com.tuc.masters.metrics.models" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
-      <recent name="com.tuc.masters.implementations.parsers" />
       <recent name="com.tuc.masters.core.models" />
+      <recent name="com.tuc.masters.implementations.parsers" />
       <recent name="com.tuc.masters.core" />
       <recent name="" />
     </key>
@@ -100,7 +103,7 @@
     </configuration>
     <configuration name="evlauate with path" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true">
       <module name="ui_evaluator_cli" />
-      <option name="PROGRAM_PARAMETERS" value="evaluate" />
+      <option name="PROGRAM_PARAMETERS" value="evaluate  --path $PROJECT_DIR$/../masters_materials/OpenOLAT" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.tuc.masters.SpringShellMain" />
       <extension name="coverage">
         <pattern>
@@ -130,7 +133,8 @@
       <workItem from="1713863120988" duration="7684000" />
       <workItem from="1713876888621" duration="4749000" />
       <workItem from="1713887161266" duration="2266000" />
-      <workItem from="1714492342328" duration="8534000" />
+      <workItem from="1714492342328" duration="8599000" />
+      <workItem from="1714559959900" duration="5779000" />
     </task>
     <task id="LOCAL-00001" summary="Init console app for ui evaluator">
       <option name="closed" value="true" />
@@ -236,7 +240,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713888350354</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Add config file and some test parsing">
+      <option name="closed" value="true" />
+      <created>1714501438302</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1714501438302</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,7 +275,8 @@
     <MESSAGE value="Add separate controller and service for the business logic" />
     <MESSAGE value="Full parsing flow for log files" />
     <MESSAGE value="Add empty implementation of test parser" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add empty implementation of test parser" />
+    <MESSAGE value="Add config file and some test parsing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add config file and some test parsing" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

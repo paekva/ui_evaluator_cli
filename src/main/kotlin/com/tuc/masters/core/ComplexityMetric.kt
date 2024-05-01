@@ -10,12 +10,12 @@ interface ComplexityMetric {
     fun calculateGroupTestMetric(results: List<MetricResult>): Double {
         return results.sumOf { it.value } / results.count()
     }
-    fun getSingleTestMetric(testData: TestData): MetricResult {
+
+    fun getSingleTestMetric(parsedData: List<InterfaceAction>): MetricResult {
         return MetricResult(
             this.metricsDescription,
-            calculateSingleTestMetric(testData.actions),
+            calculateSingleTestMetric(parsedData),
             MetricLevel.SINGLE_TEST,
-            listOf(testData)
         )
     }
 
@@ -24,7 +24,6 @@ interface ComplexityMetric {
             metricsDescription,
             calculateGroupTestMetric(result),
             MetricLevel.GROUP,
-            result.map { it.tests[0] }.toList()
         )
     }
 }

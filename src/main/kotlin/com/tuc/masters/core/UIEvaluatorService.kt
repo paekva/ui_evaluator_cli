@@ -3,10 +3,7 @@ package com.tuc.masters.core
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
-import com.tuc.masters.core.models.ActionType
-import com.tuc.masters.core.models.EvaluatorConfig
-import com.tuc.masters.core.models.MetricResult
-import com.tuc.masters.core.models.TestData
+import com.tuc.masters.core.models.*
 import org.springframework.stereotype.Component
 import java.io.File
 
@@ -19,9 +16,35 @@ class UIEvaluatorService {
             ?: EvaluatorConfig(testsPath = "./tests", testFilePostfix = "")
     }
 
-    fun getFilesByExtension(dir: File, extension: String): List<File> {
-        val files = dir.listFiles()
-        return files?.filter { it.isFile && it.extension.contains(extension) } ?: listOf()
+    fun getFiles(path: String, matchFileName: Regex, excludeNames: List<String>): List<File>? {
+        val files = mutableListOf<File>()
+        val repoDir = File(path)
+        repoDir.listFiles()?.forEach { file ->
+            files.addAll(getFilesFromDirectory(file))
+        }
+
+        return files.filter { matchFileName.matches(it.name) && !excludeNames.contains(it.name) }
+    }
+
+    private fun getFilesFromDirectory(file: File): List<File> {
+        if (file.isFile) {
+            return listOf(file)
+        } else if (file.isDirectory) {
+            return file.listFiles()?.map { getFilesFromDirectory(it) }?.flatten() ?: listOf()
+        }
+        return listOf()
+    }
+
+
+    fun getTestData(logs: List<ParsedData>, tests: List<ParsedData>): List<TestData> {
+        val testData = mutableListOf<TestData>()
+
+        tests.forEach { test ->
+            val log = logs.find { it.testName == test.testName }
+            testData.add(TestData(test.testName, test.actions, log?.actions ?: listOf()))
+        }
+
+        return testData
     }
 
     fun findLogParser(config: EvaluatorConfig, parsers: List<LogParser>): LogParser {
@@ -32,35 +55,31 @@ class UIEvaluatorService {
         return parsers[0]
     }
 
-    fun parseLogs(files: List<File>, config: EvaluatorConfig, parser: LogParser): List<TestData> {
-        val testData = mutableListOf<TestData>()
+    fun parseLogs(files: List<File>, config: EvaluatorConfig, parser: LogParser): List<ParsedData> {
+        val parsedData = mutableListOf<ParsedData>()
         files.forEach { log ->
             val result = parser.parseFile(log, config)
-            testData.add(TestData(log.name, result))
+            parsedData.add(ParsedData(log.name.split(".log")[0], result))
         }
 
-        return testData
+        return parsedData
     }
 
-    fun parseTests(files: List<File>, config: EvaluatorConfig, parser: TestParser): List<TestData> {
-        val testData = mutableListOf<TestData>()
+    fun parseTests(files: List<File>, config: EvaluatorConfig, parser: TestParser): List<ParsedData> {
+        val parsedData = mutableListOf<ParsedData>()
 
         files.forEach { test ->
             val result = parser.parseFile(test, config)
-            testData.addAll(result)
+            parsedData.addAll(result)
         }
 
-        return testData
+        return parsedData
     }
 
     fun calculateMetrics(
-        parsedData: List<TestData>,
+        parsedData: List<InterfaceAction>,
         metrics: List<ComplexityMetric>
-    ): Map<TestData, List<MetricResult>> {
-        val results = mutableMapOf<TestData, List<MetricResult>>()
-        parsedData.forEach { data ->
-            results[data] = metrics.map { metric -> metric.getSingleTestMetric(data) }.toList()
-        }
-        return results
+    ): List<MetricResult> {
+        return metrics.map { metric -> metric.getSingleTestMetric(parsedData) }.toList()
     }
 }

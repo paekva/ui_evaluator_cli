@@ -4,7 +4,7 @@ import com.tuc.masters.core.TestParser
 import com.tuc.masters.core.models.ActionType
 import com.tuc.masters.core.models.EvaluatorConfig
 import com.tuc.masters.core.models.InterfaceAction
-import com.tuc.masters.core.models.TestData
+import com.tuc.masters.core.models.ParsedData
 import org.springframework.stereotype.Component
 import java.io.File
 
@@ -16,8 +16,8 @@ class JavaSeleniumTestParser : TestParser {
     override val supportedFrameworks: List<String>
         get() = listOf("Selenium")
 
-    override fun parseFile(file: File, config: EvaluatorConfig): List<TestData> {
-        val testData = mutableListOf<TestData>()
+    override fun parseFile(file: File, config: EvaluatorConfig): List<ParsedData> {
+        val parsedData = mutableListOf<ParsedData>()
 
         // remove commented parts
         val lines = file.readLines()
@@ -39,14 +39,14 @@ class JavaSeleniumTestParser : TestParser {
 
             tests.forEach {
                 val result = getTest(it)
-                if (result != null) testData.add(result)
+                if (result != null) parsedData.add(result)
             }
         }
 
-        return testData
+        return parsedData
     }
 
-    private fun getTest(testCode: String): TestData? {
+    private fun getTest(testCode: String): ParsedData? {
         // tmp assuming tests are public and void
         val signature = Regex("public void (?<name>[a-zA-Z0-9_]+)\\([a-zA-Z0-9_,\\S]*\\)[\\S\\s]*\\{")
         val end = Regex("\\}\\s+")
@@ -58,7 +58,7 @@ class JavaSeleniumTestParser : TestParser {
 
         val code = testCode.split(match)[1].split(end)[0].trim()
 
-        return TestData(testName = methodName ?: "unknown", actions = parseActions(code))
+        return ParsedData(testName = methodName ?: "unknown", actions = parseActions(code))
     }
 
     private fun parseActions(sourceCode: String): List<InterfaceAction> {

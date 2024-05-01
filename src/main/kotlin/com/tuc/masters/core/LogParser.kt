@@ -2,7 +2,6 @@ package com.tuc.masters.core
 
 import com.tuc.masters.core.models.EvaluatorConfig
 import com.tuc.masters.core.models.InterfaceAction
-import com.tuc.masters.core.models.TestData
 import java.io.File
 
 interface LogParser {
