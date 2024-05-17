@@ -16,6 +16,7 @@ class UIEvaluatorController(
     @Autowired private val service: UIEvaluatorService,
     @Autowired private val logParsers: List<LogParser>,
     @Autowired private val testParsers: List<TestParser>,
+    @Autowired private val visualisers: List<Visualiser>,
     @Autowired private val metrics: List<ComplexityMetric>,
 ) {
     private var log: Logger = Logger.getLogger(UIEvaluatorCommand::class.java.getName())
@@ -58,7 +59,11 @@ class UIEvaluatorController(
         }
 
         val testData = handleParsing(config, logs, tests)
-        calculateSingleTestMetrics(testData, config)
+        val results = calculateSingleTestMetrics(testData, config)
+
+        for (v in visualisers) {
+            v.visualize(results)
+        }
     }
 
     private fun devMissingLogsFinder(testData: List<TestData>) {
@@ -86,7 +91,7 @@ class UIEvaluatorController(
         return service.getTestData(parsedLogsData, parsedTestData)
     }
 
-    private fun calculateSingleTestMetrics(testData: List<TestData>, configFile: EvaluatorConfig) {
+    private fun calculateSingleTestMetrics(testData: List<TestData>, configFile: EvaluatorConfig): Map<TestData, List<MetricResult>> {
         // calculate
         val logMetrics = metrics.filter { it.metricsDescription.artifactTypes.contains(ArtifactType.LOG_FILE) }
         val testMetrics = metrics.filter { it.metricsDescription.artifactTypes.contains(ArtifactType.TEST_SOURCE_CODE) }
@@ -98,14 +103,7 @@ class UIEvaluatorController(
             results[it] = logResults + testResults
         }
 
-        // visualise
-        results.entries.forEach {
-            println("\n\n-----------------------------------------------------")
-            println("for test ${it.key.testName} (log are${if(it.key.logs.isEmpty()) " not " else " "}available)")
-            println("-----------------------------------------------------")
-            it.value.forEach { m ->
-                println("${m.metric.name}: ${m.value}")
-            }
-        }
+        return results
+
     }
 }

@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="small fixes after a different project was analysed">
+    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="some dev funcs">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/Visualiser.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/CSVVisualiser.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/ConsoleVisualiser.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorController.kt" afterDir="false" />
     </list>
@@ -71,9 +74,10 @@
       <recent name="com.tuc.masters.metrics.models" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.tuc.masters.implementations" />
+      <recent name="com.tuc.masters.core" />
       <recent name="com.tuc.masters.core.models" />
       <recent name="com.tuc.masters.implementations.parsers" />
-      <recent name="com.tuc.masters.core" />
       <recent name="" />
     </key>
   </component>
@@ -141,6 +145,7 @@
       <workItem from="1713887161266" duration="2266000" />
       <workItem from="1714492342328" duration="8599000" />
       <workItem from="1714559959900" duration="7704000" />
+      <workItem from="1715938485213" duration="2129000" />
     </task>
     <task id="LOCAL-00001" summary="Init console app for ui evaluator">
       <option name="closed" value="true" />
@@ -270,7 +275,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714566606726</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="some dev funcs">
+      <option name="closed" value="true" />
+      <created>1714568507989</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1714568507989</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -300,7 +313,8 @@
     <MESSAGE value="Add config file and some test parsing" />
     <MESSAGE value="merged parse results of logs and tests" />
     <MESSAGE value="small fixes after a different project was analysed" />
-    <option name="LAST_COMMIT_MESSAGE" value="small fixes after a different project was analysed" />
+    <MESSAGE value="some dev funcs" />
+    <option name="LAST_COMMIT_MESSAGE" value="some dev funcs" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
