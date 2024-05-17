@@ -22,41 +22,10 @@ class UIEvaluatorController(
     private var log: Logger = Logger.getLogger(UIEvaluatorCommand::class.java.getName())
 
     fun evaluate(projectPath: String) {
-        // get config file in project root
-        val configFile = File("$projectPath/config.yaml")
-        if(!configFile.exists()) {
-            log.warning("No configuration file was found in the root of the project.\nproject path: $projectPath")
-            return
-        }
-        val config: EvaluatorConfig?
+        val config = retrieveConfig(projectPath) ?: return
 
-        try {
-            config = service.parseConfig(configFile)
-        } catch (e: Exception) {
-            log.warning("Config is malformed")
-            return
-        }
-
-        // find all test and log files
-        val testsPath = projectPath + config.testsPath
-        val testFileRegex = Regex("[a-zA-Z0-9]*" + config.testFilePostfix + "." + config.testExtension + "$")
-        val tests = service.getFiles(
-            testsPath,
-            testFileRegex,
-            config.exclude ?: listOf(),
-        )
-        val logsPath = projectPath + config.logsPath
-        val logsFileRegex = Regex("[a-zA-Z0-9_]*\\." + config.logExtension + "$")
-        val logs = service.getFiles(
-            logsPath,
-            logsFileRegex,
-            listOf()
-        )
-
-        if(tests.isEmpty() && logs.isEmpty()) {
-            log.warning("No test or log files were found in provided folders.\nlogs: $logsPath\ntests: $testsPath")
-            return
-        }
+        val tests = findTestFiles(projectPath, config) ?: return
+        val logs = findLogFiles(projectPath, config) ?: return
 
         val testData = handleParsing(config, logs, tests)
         val results = calculateSingleTestMetrics(testData, config)
@@ -66,9 +35,62 @@ class UIEvaluatorController(
         }
     }
 
+    private fun findTestFiles(projectPath: String, config: EvaluatorConfig): List<File>? {
+        val testsPath = projectPath + config.testsPath
+        val testFileRegex = Regex("[a-zA-Z0-9]*" + config.testFilePostfix + "." + config.testExtension + "$")
+        val tests = service.getFiles(
+            testsPath,
+            testFileRegex,
+            config.exclude ?: listOf(),
+        )
+
+        if (tests.isEmpty()) {
+            log.warning("No test files were found in provided folder.\ntests: $testsPath")
+            return null
+        }
+
+        return tests
+    }
+
+    private fun findLogFiles(projectPath: String, config: EvaluatorConfig): List<File>? {
+        val logsPath = projectPath + config.logsPath
+        val logsFileRegex = Regex("[a-zA-Z0-9_]*\\." + config.logExtension + "$")
+        val logs = service.getFiles(
+            logsPath,
+            logsFileRegex,
+            listOf()
+        )
+
+        if (logs.isEmpty()) {
+            log.warning("No log files were found in provided folder.\nlogs: $logsPath")
+            return null
+        }
+
+        return logs
+    }
+
+    private fun retrieveConfig(projectPath: String): EvaluatorConfig? {
+        // get config file in project root
+        val configFile = File("$projectPath/config.yaml")
+        if (!configFile.exists()) {
+            log.warning("No configuration file was found in the root of the project.\nproject path: $projectPath")
+            return null
+        }
+        val config: EvaluatorConfig?
+
+        try {
+            config = service.parseConfig(configFile)
+        } catch (e: Exception) {
+            log.warning("Config is malformed")
+            return null
+        }
+
+        return config
+    }
+
     private fun devMissingLogsFinder(testData: List<TestData>) {
         val tmp = File("./progress_zimbra.txt") // NAME
-        if(!tmp.exists()) tmp.createNewFile()
+        if (!tmp.exists()) tmp.createNewFile()
 
         var res = ""
         testData.forEach {
@@ -91,7 +113,10 @@ class UIEvaluatorController(
         return service.getTestData(parsedLogsData, parsedTestData)
     }
 
-    private fun calculateSingleTestMetrics(testData: List<TestData>, configFile: EvaluatorConfig): Map<TestData, List<MetricResult>> {
+    private fun calculateSingleTestMetrics(
+        testData: List<TestData>,
+        configFile: EvaluatorConfig
+    ): Map<TestData, List<MetricResult>> {
         // calculate
         val logMetrics = metrics.filter { it.metricsDescription.artifactTypes.contains(ArtifactType.LOG_FILE) }
         val testMetrics = metrics.filter { it.metricsDescription.artifactTypes.contains(ArtifactType.TEST_SOURCE_CODE) }
