@@ -28,11 +28,33 @@ class UIEvaluatorController(
         val logs = findLogFiles(projectPath, config) ?: return
 
         val testData = handleParsing(config, logs, tests)
-        val results = calculateSingleTestMetrics(testData, config)
+        val singleMetricsResults = calculateSingleTestMetrics(testData, config)
+        val groupMetricsResults = calculateGroupMetrics(singleMetricsResults, config)
 
-        for (v in visualisers) {
-            v.visualize(results)
+//        for (v in visualisers) {
+//            v.visualize(singleMetricsResults)
+//            v.visualize(groupMetricsResults)
+//        }
+    }
+
+    private fun calculateGroupMetrics(
+        results: Map<TestData, List<MetricResult>>,
+        config: EvaluatorConfig
+    ): Map<TestData, List<MetricResult>> {
+        val groupResults = mutableMapOf<TestData, List<MetricResult>>()
+        for (g in config.groups?.toList() ?: listOf()) {
+            val gR = mutableListOf<MetricResult>()
+            val data = results.entries.filter { g.second.contains(it.key.testName) }.map { it.value }
+            // we need to remap, currently it is list of tests with list of metrics
+            // we need list of metrics with a list of tests
+            for (m in metrics) {
+                val tests = data.map { it.filter { tm -> tm.metric.name == m.metricsDescription.name } }
+                    .reduce { acc, metricResults -> acc + metricResults }
+                gR.add(m.getGroupTestMetric(tests))
+            }
+            groupResults[TestData(testName = g.first, sourceCode = listOf(), logs = listOf())] = gR
         }
+        return groupResults
     }
 
     private fun findTestFiles(projectPath: String, config: EvaluatorConfig): List<File>? {

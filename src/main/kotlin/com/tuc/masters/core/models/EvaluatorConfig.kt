@@ -7,5 +7,6 @@ data class EvaluatorConfig(
     val testExtension: String? = null,
     val logExtension: String = "log",
     val exclude: List<String>? = listOf(),
-    val testAnnotation: String? = null
+    val testAnnotation: String? = null,
+    val groups: Map<String, List<String>>? = null
 )
