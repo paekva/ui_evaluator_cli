@@ -1,10 +1,7 @@
 package com.tuc.masters.core
 
 import com.tuc.masters.UIEvaluatorCommand
-import com.tuc.masters.core.models.ArtifactType
-import com.tuc.masters.core.models.EvaluatorConfig
-import com.tuc.masters.core.models.MetricResult
-import com.tuc.masters.core.models.TestData
+import com.tuc.masters.core.models.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import java.io.File
@@ -30,29 +27,27 @@ class UIEvaluatorController(
         val testData = handleParsing(config, logs, tests)
         val singleMetricsResults = calculateSingleTestMetrics(testData, config)
         val groupMetricsResults = calculateGroupMetrics(singleMetricsResults, config)
-
-//        for (v in visualisers) {
-//            v.visualize(singleMetricsResults)
-//            v.visualize(groupMetricsResults)
-//        }
+        for (v in visualisers) {
+            v.visualizeSingleMetrics(singleMetricsResults)
+            v.visualizeGroupMetrics(groupMetricsResults)
+        }
     }
 
     private fun calculateGroupMetrics(
         results: Map<TestData, List<MetricResult>>,
         config: EvaluatorConfig
-    ): Map<TestData, List<MetricResult>> {
-        val groupResults = mutableMapOf<TestData, List<MetricResult>>()
+    ): Map<GroupData, List<MetricResult>> {
+        val groupResults = mutableMapOf<GroupData, List<MetricResult>>()
         for (g in config.groups?.toList() ?: listOf()) {
             val gR = mutableListOf<MetricResult>()
-            val data = results.entries.filter { g.second.contains(it.key.testName) }.map { it.value }
-            // we need to remap, currently it is list of tests with list of metrics
-            // we need list of metrics with a list of tests
+            val testData = results.entries.filter { g.second.contains(it.key.testName) }
+            val data = testData.map { it.value }
             for (m in metrics) {
                 val tests = data.map { it.filter { tm -> tm.metric.name == m.metricsDescription.name } }
                     .reduce { acc, metricResults -> acc + metricResults }
                 gR.add(m.getGroupTestMetric(tests))
             }
-            groupResults[TestData(testName = g.first, sourceCode = listOf(), logs = listOf())] = gR
+            groupResults[GroupData(groupName = g.first, tests = testData.map { it.key }.toList())] = gR
         }
         return groupResults
     }
