@@ -70,6 +70,8 @@ class UIEvaluatorController(
     }
 
     private fun findLogFiles(projectPath: String, config: EvaluatorConfig): List<File>? {
+        if (config.logsPath == null) return listOf()
+
         val logsPath = projectPath + config.logsPath
         val logsFileRegex = Regex("[a-zA-Z0-9_]*\\." + config.logExtension + "$")
         val logs = service.getFiles(

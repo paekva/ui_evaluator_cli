@@ -6,6 +6,7 @@ import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.tuc.masters.core.models.*
 import org.springframework.stereotype.Component
 import java.io.File
+import java.util.*
 
 @Component
 class UIEvaluatorService {
@@ -52,7 +53,9 @@ class UIEvaluatorService {
     }
 
     fun findTestParser(config: EvaluatorConfig, parsers: List<TestParser>): TestParser {
-        return parsers[0]
+        val lan = config.testExtension.toString().lowercase(Locale.getDefault())
+        return parsers.find { it.supportedLanguages.map { l -> l.lowercase(Locale.getDefault()) }.contains(lan) }
+            ?: parsers[0]
     }
 
     fun parseLogs(files: List<File>, config: EvaluatorConfig, parser: LogParser): List<ParsedData> {
