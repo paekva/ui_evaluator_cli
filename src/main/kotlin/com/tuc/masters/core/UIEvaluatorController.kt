@@ -28,8 +28,8 @@ class UIEvaluatorController(
         val singleMetricsResults = calculateSingleTestMetrics(testData, config)
         val groupMetricsResults = calculateGroupMetrics(singleMetricsResults, config)
         for (v in visualisers) {
-            v.visualizeSingleMetrics(singleMetricsResults)
-            v.visualizeGroupMetrics(groupMetricsResults)
+            v.visualizeSingleMetrics(config, singleMetricsResults)
+            v.visualizeGroupMetrics(config, groupMetricsResults)
         }
     }
 
@@ -98,7 +98,7 @@ class UIEvaluatorController(
         val config: EvaluatorConfig?
 
         try {
-            config = service.parseConfig(configFile)
+            config = service.parseConfig(configFile, projectPath)
         } catch (e: Exception) {
             log.warning("Config is malformed")
             return null

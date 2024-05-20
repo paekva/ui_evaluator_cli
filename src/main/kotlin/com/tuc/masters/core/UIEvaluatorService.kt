@@ -11,10 +11,12 @@ import java.util.*
 @Component
 class UIEvaluatorService {
 
-    fun parseConfig(file: File): EvaluatorConfig {
+    fun parseConfig(file: File, projectPath: String): EvaluatorConfig {
         val jackson = ObjectMapper(YAMLFactory()).registerKotlinModule()
-        return jackson.readValue(file.bufferedReader(), EvaluatorConfig::class.java)
+        val tmp = jackson.readValue(file.bufferedReader(), EvaluatorConfig::class.java)
             ?: EvaluatorConfig(testsPath = "./tests", testFilePostfix = "")
+
+        return tmp.copy(projectPath = projectPath)
     }
 
     fun getFiles(path: String, matchFileName: Regex, excludeNames: List<String>): List<File> {

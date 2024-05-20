@@ -1,11 +1,12 @@
 package com.tuc.masters.core
 
+import com.tuc.masters.core.models.EvaluatorConfig
 import com.tuc.masters.core.models.GroupData
 import com.tuc.masters.core.models.MetricResult
 import com.tuc.masters.core.models.TestData
 
 
 interface Visualiser {
-    fun visualizeSingleMetrics(data: Map<TestData, List<MetricResult>>)
-    fun visualizeGroupMetrics(data: Map<GroupData, List<MetricResult>>)
+    fun visualizeSingleMetrics(config: EvaluatorConfig, data: Map<TestData, List<MetricResult>>)
+    fun visualizeGroupMetrics(config: EvaluatorConfig, data: Map<GroupData, List<MetricResult>>)
 }

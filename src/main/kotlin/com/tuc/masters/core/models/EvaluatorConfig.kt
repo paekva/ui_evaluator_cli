@@ -1,6 +1,7 @@
 package com.tuc.masters.core.models
 
 data class EvaluatorConfig(
+    val projectPath: String? = null,
     val testsPath: String? = "/tests",
     val logsPath: String? = null,
     val testFilePostfix: String?,
