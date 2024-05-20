@@ -9,9 +9,10 @@ import java.io.File
 
 
 @Component
-class SeleniumChromeLogParser: LogParser {
+class SeleniumChromeLogParser : LogParser {
     override val supportedBrowsers: List<String>
         get() = listOf("GoogleChrome")
+
     override fun parseFile(file: File, config: EvaluatorConfig): List<InterfaceAction> {
         val interactions = mutableListOf<InterfaceAction>()
 
@@ -22,43 +23,37 @@ class SeleniumChromeLogParser: LogParser {
         val results = mutableListOf<Pair<String, String>>()
 
         keys.forEachIndexed { index, matchResult ->
-            results.add(Pair(matchResult, values[index]))
+            if (values[index].contains("COMMAND") || values[index].contains("RESPONSE")) {
+                results.add(Pair(matchResult, values[index]))
+            }
         }
+        val tmp = results.zipWithNext().filter { it.first.second.contains("COMMAND") }
 
-        results.forEach{
+        tmp.forEach {
             val r2 = Regex("\\[[0-9|.]+\\]")
-            val timestamp = r2.find(it.first)?.value?.drop(1)?.dropLast(1)
-            val type = getActionType(it.second)
-//            val args = if (type != ActionType.OTHER) getArguments(it.second) else mapOf()
-            interactions.add(InterfaceAction(
-                wholeLine = "${it.first} ${it.second}",
-                type = type,
-                timestamp = timestamp,
-                args = mapOf()
-            ))
+            val timestamp = r2.find(it.first.first)?.value?.drop(1)?.dropLast(1)
+            val type = getActionType(it.first.second)
+            val args = if (type != ActionType.OTHER) getArguments(it.first.second, it.second.second) else null
+            interactions.add(
+                InterfaceAction(
+                    wholeLine = "${it.first} ${it.second}",
+                    type = type,
+                    timestamp = timestamp,
+                    args = args
+                )
+            )
         }
 
         return interactions
 
     }
 
-    private fun getArguments(value: String): Map<String, String> {
-        val args = mutableMapOf<String, String>()
-        val r1 = Regex("\\{(?<args>(.|\n)*)\\}")
-        val argsString = r1.find(value)?.groups?.get(1)?.value ?: ""
-
-        val tmp = argsString.split("\n   \"").drop(1)
-        tmp.forEach{
-            // TODO(me): doesn't work for multiple args
-            val r2 = Regex("(?<key>[a-z]+)\": (?<value>(.|\n|\\s)+)\n")
-            val matches = r2.find(it)
-            val g = matches?.groups
-            val key = g?.get(1)?.value ?: ""
-            args[key] = g?.get(2)?.value ?: ""
-            println("${key}: ${args[key]}")
-        }
-
-        return args
+    private fun getArguments(command: String, response: String): Any {
+        var commandSplit = command.trim().split("\n")
+        commandSplit = if (commandSplit.size < 2) listOf() else commandSplit.slice(1..<commandSplit.size - 1)
+        var responseSplit = response.trim().split("\n")
+        responseSplit = if (responseSplit.size < 2) listOf() else responseSplit.slice(1..<responseSplit.size - 1)
+        return (commandSplit + responseSplit).joinToString("\n") { it.trim() }
     }
 
     private fun getActionType(value: String): ActionType {

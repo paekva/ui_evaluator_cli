@@ -92,11 +92,11 @@ class PhpSeleniumTestParser : TestParser {
         val actions = mutableListOf<InterfaceAction>()
         snippets.forEach { snippet ->
             if (asserts.any { snippet.contains(it) }) {
-                actions.add(InterfaceAction(wholeLine = snippet, type = ActionType.ASSERT, args = mutableMapOf()))
+                actions.add(InterfaceAction(wholeLine = snippet, type = ActionType.ASSERT, args = null))
             } else if (snippet.contains("wait")) {
-                actions.add(InterfaceAction(wholeLine = snippet, type = ActionType.WAIT, args = mutableMapOf()))
+                actions.add(InterfaceAction(wholeLine = snippet, type = ActionType.WAIT, args = null))
             } else {
-                actions.add(InterfaceAction(wholeLine = snippet, type = ActionType.OTHER, args = mutableMapOf()))
+                actions.add(InterfaceAction(wholeLine = snippet, type = ActionType.OTHER, args = null))
             }
         }
 
