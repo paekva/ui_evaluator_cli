@@ -14,7 +14,7 @@ class NumberOfElementsMetric : ComplexityMetric {
             listOf(MetricLevel.GROUP, MetricLevel.SINGLE_TEST),
             listOf(ArtifactType.LOG_FILE),
         )
-        set(value) {}
+        set(_) {}
 
     override fun calculateSingleTestMetric(actions: List<InterfaceAction>): Double {
         val rgx = Regex("\"id\": \"(?<name>\\S+)\"")

@@ -14,7 +14,7 @@ class WeightedInteractionCountMetric: ComplexityMetric {
             listOf(MetricLevel.GROUP, MetricLevel.SINGLE_TEST),
             listOf(ArtifactType.LOG_FILE),
         )
-        set(value) {}
+        set(_) {}
 
     override fun calculateSingleTestMetric(actions: List<InterfaceAction>): Double {
         return actions.sumOf {interactionToWeightMap[it.type] ?: 0}.toDouble()

@@ -14,7 +14,7 @@ class NumberOfWaitsMetric : ComplexityMetric {
             listOf(MetricLevel.GROUP, MetricLevel.SINGLE_TEST),
             listOf(ArtifactType.TEST_SOURCE_CODE),
         )
-        set(value) {}
+        set(_) {}
 
     override fun calculateSingleTestMetric(actions: List<InterfaceAction>): Double {
         return actions.count { it.type == ActionType.WAIT }.toDouble()

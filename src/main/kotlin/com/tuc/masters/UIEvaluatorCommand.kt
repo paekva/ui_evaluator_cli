@@ -12,15 +12,16 @@ class UIEvaluatorCommand(
     @Autowired private val controller: UIEvaluatorController,
 ) {
 
-    @ShellMethod(value = "Validates provided config")
-    fun validate(
-        @ShellOption(defaultValue = "./ui_evaluator.config.yaml") configPath: String?,
-    ) {
-        // here check if config is available
-        // if paths there are available
-        // if we have support for mentioned language, UI framework and Browser
-        // if we have support for selected visualisation
-    }
+//    TODO(me): finish
+//    @ShellMethod(value = "Validates provided config")
+//    fun validate(
+//        @ShellOption(defaultValue = "./ui_evaluator.config.yaml") configPath: String?,
+//    ) {
+//        // here check if config is available
+//        // if paths there are available
+//        // if we have support for mentioned language, UI framework and Browser
+//        // if we have support for selected visualisation
+//    }
 
     @ShellMethod(value = "Evaluates application based on provided UI tests and config")
     fun evaluate(@ShellOption(defaultValue = "./") path: String) {

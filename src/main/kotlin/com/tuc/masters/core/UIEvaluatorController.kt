@@ -25,7 +25,7 @@ class UIEvaluatorController(
         val logs = findLogFiles(projectPath, config) ?: return
 
         val testData = handleParsing(config, logs, tests)
-        val singleMetricsResults = calculateSingleTestMetrics(testData, config)
+        val singleMetricsResults = calculateSingleTestMetrics(testData)
         val groupMetricsResults = calculateGroupMetrics(singleMetricsResults, config)
         for (v in visualisers) {
             v.visualizeSingleMetrics(config, singleMetricsResults)
@@ -122,7 +122,7 @@ class UIEvaluatorController(
 
     private fun handleParsing(configFile: EvaluatorConfig, logs: List<File>, tests: List<File>): List<TestData> {
         // parse logs
-        val logParser = service.findLogParser(configFile, logParsers)
+        val logParser = service.findLogParser(logParsers)
         val parsedLogsData = service.parseLogs(logs, configFile, logParser)
 
         // parse tests
@@ -132,10 +132,7 @@ class UIEvaluatorController(
         return service.getTestData(parsedLogsData, parsedTestData)
     }
 
-    private fun calculateSingleTestMetrics(
-        testData: List<TestData>,
-        configFile: EvaluatorConfig
-    ): Map<TestData, List<MetricResult>> {
+    private fun calculateSingleTestMetrics(testData: List<TestData>): Map<TestData, List<MetricResult>> {
         // calculate
         val logMetrics = metrics.filter { it.metricsDescription.artifactTypes.contains(ArtifactType.LOG_FILE) }
         val testMetrics = metrics.filter { it.metricsDescription.artifactTypes.contains(ArtifactType.TEST_SOURCE_CODE) }

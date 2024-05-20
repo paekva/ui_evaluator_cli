@@ -15,7 +15,7 @@ class NavigationGraphComplexityMetric: ComplexityMetric {
             listOf(MetricLevel.GROUP, MetricLevel.SINGLE_TEST),
             listOf(ArtifactType.LOG_FILE),
         )
-        set(value) {}
+        set(_) {}
 
     override fun calculateSingleTestMetric(actions: List<InterfaceAction>): Double {
         val links = actions.filter { it.type == ActionType.SCROLL || it.type== ActionType.LINK }

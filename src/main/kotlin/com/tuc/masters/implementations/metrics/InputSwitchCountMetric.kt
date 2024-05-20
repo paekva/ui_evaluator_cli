@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component
 
 
 @Component
-class InputSwitchCountMetric: ComplexityMetric {
+class InputSwitchCountMetric : ComplexityMetric {
     override var metricsDescription: MetricDescription
         get() = MetricDescription(
             "Input switch count",
@@ -14,14 +14,14 @@ class InputSwitchCountMetric: ComplexityMetric {
             listOf(MetricLevel.GROUP, MetricLevel.SINGLE_TEST),
             listOf(ArtifactType.LOG_FILE),
         )
-        set(value) {}
+        set(_) {}
 
     override fun calculateSingleTestMetric(actions: List<InterfaceAction>): Double {
         var count = 0
         val inputActions = actions.filter { it.type in inputActions }
         var isKeyboard = inputActions.firstOrNull()?.type == ActionType.SEND_KEYS
         for (a in inputActions) {
-            if(isKeyboard && a.type != ActionType.SEND_KEYS || !isKeyboard && a.type == ActionType.SEND_KEYS) {
+            if (isKeyboard && a.type != ActionType.SEND_KEYS || !isKeyboard && a.type == ActionType.SEND_KEYS) {
                 count++
                 isKeyboard = !isKeyboard
             }

@@ -17,7 +17,7 @@ class NumberOfInteractionOptionsMetric: ComplexityMetric {
             listOf(MetricLevel.GROUP, MetricLevel.SINGLE_TEST),
             listOf(ArtifactType.LOG_FILE),
         )
-        set(value) {}
+        set(_) {}
 
     override fun calculateSingleTestMetric(actions: List<InterfaceAction>): Double {
         // TODO(me): 1. need to find a way to identify complex elements, e.g. radio btns, selectors, button groups (xpath)

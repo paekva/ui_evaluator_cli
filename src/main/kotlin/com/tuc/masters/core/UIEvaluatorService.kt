@@ -50,8 +50,8 @@ class UIEvaluatorService {
         return testData
     }
 
-    fun findLogParser(config: EvaluatorConfig, parsers: List<LogParser>): LogParser {
-        return parsers[0]
+    fun findLogParser(parsers: List<LogParser>): LogParser {
+        return parsers[0] // TODO(me): finish with choosing the correct parser for framework and browser, etc
     }
 
     fun findTestParser(config: EvaluatorConfig, parsers: List<TestParser>): TestParser {

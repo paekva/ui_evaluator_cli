@@ -18,23 +18,12 @@ class JavaSeleniumTestParser : TestParser {
 
     override fun parseFile(file: File, config: EvaluatorConfig): List<ParsedData> {
         val parsedData = mutableListOf<ParsedData>()
-
-        // remove commented parts
         val lines = file.readLines()
-        val oneLine = Regex("\\s*//[\\S\\s]*")
-        val multilineStart = Regex("\\s*/\\*\\*")
-        val multilineEnd = Regex("\\s*\\*/")
-        val filtered = mutableListOf<String>()
-        var isLongComment = false
-        lines.forEach {
-            if (multilineStart.matches(it)) isLongComment = true
-            if (!oneLine.matches(it) && !isLongComment && it.isNotBlank()) filtered.add(it)
-            if (multilineEnd.matches(it)) isLongComment = false
-        }
+        val filtered = removeCommentParts(lines)
+        val content = filtered.joinToString("\n")
 
         // first implemented option - splitting by annotation
         if (config.testAnnotation != null) {
-            val content = filtered.joinToString("\n")
             val tests = content.split(config.testAnnotation)
 
             tests.forEach {
@@ -44,6 +33,20 @@ class JavaSeleniumTestParser : TestParser {
         }
 
         return parsedData
+    }
+    private fun removeCommentParts(data: List<String>): List<String> {
+        val singleLine = Regex("\\s*//[\\S\\s]*")
+        val multilineStart = Regex("\\s*/\\*\\*")
+        val multilineEnd = Regex("\\s*\\*/")
+        val filtered = mutableListOf<String>()
+        var isLongComment = false
+        data.forEach {
+            if (multilineStart.matches(it)) isLongComment = true
+            if (!singleLine.matches(it) && !isLongComment && it.isNotBlank()) filtered.add(it)
+            if (multilineEnd.matches(it)) isLongComment = false
+        }
+
+        return filtered
     }
 
     private fun getTest(testCode: String): ParsedData? {

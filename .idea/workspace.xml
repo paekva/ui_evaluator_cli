@@ -9,16 +9,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="Small update + missing metric implementation">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/ui_evaluator_cli_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
+    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="Add config access to visualiser">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/UIEvaluatorCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/UIEvaluatorCommand.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorController.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/Visualiser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/Visualiser.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/EvaluatorConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/EvaluatorConfig.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/CSVVisualiser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/CSVVisualiser.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/ConsoleVisualiser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/ConsoleVisualiser.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/InputSwitchCountMetric.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/InputSwitchCountMetric.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NavigationGraphComplexityMetric.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NavigationGraphComplexityMetric.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfAssertsMetric.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfAssertsMetric.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfCodeLinesMetric.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfCodeLinesMetric.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfElementsMetric.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfElementsMetric.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfInteractionOptionsMetric.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfInteractionOptionsMetric.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfInteractionsMetric.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfInteractionsMetric.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfScrollsMetric.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfScrollsMetric.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfWaitsMetric.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfWaitsMetric.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/TestExecutionTimeMetric.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/TestExecutionTimeMetric.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/WeightedInteractionCountMetric.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/WeightedInteractionCountMetric.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/JavaSeleniumTestParser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/JavaSeleniumTestParser.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,8 +68,8 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.0",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
   }
@@ -169,7 +176,7 @@
       <workItem from="1713887161266" duration="2266000" />
       <workItem from="1714492342328" duration="8599000" />
       <workItem from="1714559959900" duration="7704000" />
-      <workItem from="1715938485213" duration="23212000" />
+      <workItem from="1715938485213" duration="24706000" />
     </task>
     <task id="LOCAL-00001" summary="Init console app for ui evaluator">
       <option name="closed" value="true" />
@@ -379,7 +386,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716206408330</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Add config access to visualiser">
+      <option name="closed" value="true" />
+      <created>1716207966890</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1716207966890</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -419,7 +434,8 @@
     <MESSAGE value="Add number of elements implementation" />
     <MESSAGE value="Add proper scroll and isDisplayed script parsing" />
     <MESSAGE value="Small update + missing metric implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Small update + missing metric implementation" />
+    <MESSAGE value="Add config access to visualiser" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add config access to visualiser" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
