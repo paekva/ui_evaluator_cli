@@ -17,13 +17,8 @@ class NumberOfElementsMetric : ComplexityMetric {
         set(value) {}
 
     override fun calculateSingleTestMetric(actions: List<InterfaceAction>): Double {
-        val rgx = Regex("\"value\": \"(?<name>\\S+)\"")
-        val clicks = actions.filter {
-            listOf(
-                ActionType.CLICK,
-                ActionType.SEND_KEYS,
-            ).contains(it.type)
-        }
+        val rgx = Regex("\"id\": \"(?<name>\\S+)\"")
+        val rgx2 = Regex("\"element[0-9a-z-]+\": \"(?<name>\\S+)\"")
         val tmp = actions.filter {
             listOf(
                 ActionType.CLICK,
@@ -35,14 +30,14 @@ class NumberOfElementsMetric : ComplexityMetric {
 
         val elements = mutableListOf<String>()
         tmp.forEach {
-            val k = rgx.find(it.args.toString())
-            val g = k?.groups?.get(1)?.value ?: ""
-            println("${it.type} - $g")
-            elements.add(g)
+            val regex = if (it.type == ActionType.FIND || it.type == ActionType.FIND_ALL) rgx2 else rgx
+            val k = regex.find(it.args.toString())
+            val res = k?.groups?.get(1)?.value ?: ""
+            elements.add(res)
         }
-        val uniqueEl = elements.toSet()
+        val uniqueEl = elements.toSet().toList().filter { it.isNotBlank() }
+        return uniqueEl.size.toDouble()
         // TODO(me): need to introduce Element field for some type of actions, e.g. Click, SendKeys, isDisplayed
         //  this way we can extract them all and check their ids, xpaths, etc. and calculate the uniques number
-        return 0.0
     }
 }
