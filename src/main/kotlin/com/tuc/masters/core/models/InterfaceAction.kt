@@ -4,6 +4,6 @@ class InterfaceAction (
     var wholeLine: String,
     var type: ActionType,
     var timestamp: String? = null,
-    var args: Any?
+    var args: String?
 )
 

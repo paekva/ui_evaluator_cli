@@ -22,22 +22,22 @@ class NumberOfElementsMetric : ComplexityMetric {
         val tmp = actions.filter {
             listOf(
                 ActionType.CLICK,
-                ActionType.FIND,
                 ActionType.SEND_KEYS,
-                ActionType.FIND_ALL
+                ActionType.SCROLL,
+                ActionType.FIND,
+                ActionType.FIND_ALL,
+                ActionType.IS_DISPLAYED
             ).contains(it.type)
         }
 
         val elements = mutableListOf<String>()
         tmp.forEach {
-            val regex = if (it.type == ActionType.FIND || it.type == ActionType.FIND_ALL) rgx2 else rgx
+            val regex = if (it.type == ActionType.CLICK || it.type == ActionType.SEND_KEYS) rgx else rgx2
             val k = regex.find(it.args.toString())
             val res = k?.groups?.get(1)?.value ?: ""
             elements.add(res)
         }
         val uniqueEl = elements.toSet().toList().filter { it.isNotBlank() }
         return uniqueEl.size.toDouble()
-        // TODO(me): need to introduce Element field for some type of actions, e.g. Click, SendKeys, isDisplayed
-        //  this way we can extract them all and check their ids, xpaths, etc. and calculate the uniques number
     }
 }

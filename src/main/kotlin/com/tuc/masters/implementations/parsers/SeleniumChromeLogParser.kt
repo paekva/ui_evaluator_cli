@@ -32,11 +32,17 @@ class SeleniumChromeLogParser : LogParser {
         tmp.forEach {
             val r2 = Regex("\\[[0-9|.]+\\]")
             val timestamp = r2.find(it.first.first)?.value?.drop(1)?.dropLast(1)
-            val type = getActionType(it.first.second)
+            var type = getActionType(it.first.second)
             val args = if (type != ActionType.OTHER) getArguments(it.first.second, it.second.second) else null
+
+            if (type == ActionType.SCRIPT) {
+                if (args?.contains("isDisplayed") == true) type = ActionType.IS_DISPLAYED
+                if (args?.contains("scrollIntoView") == true) type = ActionType.SCROLL
+            }
+
             interactions.add(
                 InterfaceAction(
-                    wholeLine = "${it.first} ${it.second}",
+                    wholeLine = "${it.first.first} ${it.first.second}",
                     type = type,
                     timestamp = timestamp,
                     args = args
@@ -45,10 +51,9 @@ class SeleniumChromeLogParser : LogParser {
         }
 
         return interactions
-
     }
 
-    private fun getArguments(command: String, response: String): Any {
+    private fun getArguments(command: String, response: String): String {
         var commandSplit = command.trim().split("\n")
         commandSplit = if (commandSplit.size < 2) listOf() else commandSplit.slice(1..<commandSplit.size - 1)
         var responseSplit = response.trim().split("\n")
