@@ -23,6 +23,12 @@ class CSVVisualiser : Visualiser {
     }
 
     override fun visualizeGroupMetrics(data: Map<GroupData, List<MetricResult>>) {
+        val resultsFile = File("$projectPath/results_groups.csv")
+        if (data.keys.isEmpty()) {
+            resultsFile.writeText("")
+            return
+        }
+
         val m = data.values.toMutableList()[0].sortedBy { it.metric.name }
         val results = mutableListOf<String>()
         results.add("group_name,${m.joinToString { it.metric.name }}")
@@ -30,7 +36,6 @@ class CSVVisualiser : Visualiser {
         for (r in data) {
             results.add(metricToCSVRow(r.key.groupName, r.value))
         }
-        val resultsFile = File("$projectPath/results_groups.csv")
         resultsFile.writeText(results.joinToString(separator = "\n"))
     }
 

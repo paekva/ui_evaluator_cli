@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="Add number of elements implementation">
+    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="Add proper scroll and isDisplayed script parsing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/ActionType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/ActionType.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/InterfaceAction.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/InterfaceAction.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfElementsMetric.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfElementsMetric.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/SeleniumChromeLogParser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/SeleniumChromeLogParser.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/CSVVisualiser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/CSVVisualiser.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NavigationGraphComplexityMetric.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NavigationGraphComplexityMetric.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +158,7 @@
       <workItem from="1713887161266" duration="2266000" />
       <workItem from="1714492342328" duration="8599000" />
       <workItem from="1714559959900" duration="7704000" />
-      <workItem from="1715938485213" duration="19988000" />
+      <workItem from="1715938485213" duration="21653000" />
     </task>
     <task id="LOCAL-00001" summary="Init console app for ui evaluator">
       <option name="closed" value="true" />
@@ -354,7 +352,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716203332698</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Add proper scroll and isDisplayed script parsing">
+      <option name="closed" value="true" />
+      <created>1716204562315</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1716204562315</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -392,23 +398,10 @@
     <MESSAGE value="basic PHP parser" />
     <MESSAGE value="Add response args to action data for logs" />
     <MESSAGE value="Add number of elements implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add number of elements implementation" />
+    <MESSAGE value="Add proper scroll and isDisplayed script parsing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add proper scroll and isDisplayed script parsing" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorController.kt</url>
-          <line>26</line>
-          <option name="timeStamp" value="70" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfElementsMetric.kt</url>
-          <line>40</line>
-          <option name="timeStamp" value="94" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="com.tuc.masters.core.models.GroupData" memberName="tests" />
