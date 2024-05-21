@@ -50,14 +50,28 @@ class UIEvaluatorService {
         return testData
     }
 
-    fun findLogParser(parsers: List<LogParser>): LogParser {
-        return parsers[0] // TODO(me): finish with choosing the correct parser for framework and browser, etc
+    fun findLogParser(config: EvaluatorConfig, parsers: List<LogParser>): LogParser {
+        val browser = config.testExtension.toString()
+        return parsers.find { containedInListCaseInsensitive(browser, it.supportedBrowsers) }
+            ?: parsers[0]
     }
 
     fun findTestParser(config: EvaluatorConfig, parsers: List<TestParser>): TestParser {
-        val lan = config.testExtension.toString().lowercase(Locale.getDefault())
-        return parsers.find { it.supportedLanguages.map { l -> l.lowercase(Locale.getDefault()) }.contains(lan) }
+        val lan = config.testLanguage.toString()
+        val framework = config.testFramework.toString()
+        return parsers.find {
+            containedInListCaseInsensitive(
+                lan,
+                it.supportedLanguages
+            ) && containedInListCaseInsensitive(framework, it.supportedFrameworks)
+        }
             ?: parsers[0]
+    }
+
+    private fun containedInListCaseInsensitive(item: String, list: List<String>): Boolean {
+        val el = item.lowercase(Locale.getDefault())
+        val elements = list.map { l -> l.lowercase(Locale.getDefault()) }
+        return elements.contains(el)
     }
 
     fun parseLogs(files: List<File>, config: EvaluatorConfig, parser: LogParser): List<ParsedData> {

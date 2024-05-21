@@ -27,6 +27,3 @@ interface ComplexityMetric {
         )
     }
 }
-
-// TODO(me): mb we need a custom exception that can be thrown by the method to indicate
-//  that there is not enough data to calculate metric?? is this needed?

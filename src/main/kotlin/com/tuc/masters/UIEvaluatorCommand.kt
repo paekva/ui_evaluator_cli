@@ -8,23 +8,15 @@ import org.springframework.shell.standard.ShellOption
 import java.util.logging.Logger
 
 @ShellComponent
-class UIEvaluatorCommand(
-    @Autowired private val controller: UIEvaluatorController,
-) {
-
-//    TODO(me): finish
-//    @ShellMethod(value = "Validates provided config")
-//    fun validate(
-//        @ShellOption(defaultValue = "./ui_evaluator.config.yaml") configPath: String?,
-//    ) {
-//        // here check if config is available
-//        // if paths there are available
-//        // if we have support for mentioned language, UI framework and Browser
-//        // if we have support for selected visualisation
-//    }
+class UIEvaluatorCommand(@Autowired private val controller: UIEvaluatorController) {
+    private var log: Logger = Logger.getLogger(UIEvaluatorCommand::class.java.getName())
 
     @ShellMethod(value = "Evaluates application based on provided UI tests and config")
     fun evaluate(@ShellOption(defaultValue = "./") path: String) {
-        controller.evaluate(path)
+        try {
+            controller.evaluate(path)
+        } catch (e: Exception) {
+            log.severe("Something went wrong during the process: $e")
+        }
     }
 }

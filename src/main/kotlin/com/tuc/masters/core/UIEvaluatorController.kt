@@ -90,9 +90,12 @@ class UIEvaluatorController(
 
     private fun retrieveConfig(projectPath: String): EvaluatorConfig? {
         // get config file in project root
-        val configFile = File("$projectPath/config.yaml")
+        val configFile = File("$projectPath/ui_evaluator_config.yaml")
         if (!configFile.exists()) {
-            log.warning("No configuration file was found in the root of the project.\nproject path: $projectPath")
+            log.warning(
+                "No configuration file ui_evaluator_config.yaml was found in the root of the project." +
+                        "\nProject path: $projectPath"
+            )
             return null
         }
         val config: EvaluatorConfig?
@@ -122,7 +125,7 @@ class UIEvaluatorController(
 
     private fun handleParsing(configFile: EvaluatorConfig, logs: List<File>, tests: List<File>): List<TestData> {
         // parse logs
-        val logParser = service.findLogParser(logParsers)
+        val logParser = service.findLogParser(configFile, logParsers)
         val parsedLogsData = service.parseLogs(logs, configFile, logParser)
 
         // parse tests

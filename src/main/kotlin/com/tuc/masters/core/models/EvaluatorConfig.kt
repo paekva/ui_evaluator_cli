@@ -1,6 +1,9 @@
 package com.tuc.masters.core.models
 
 data class EvaluatorConfig(
+    val testLanguage: String? = "Java",
+    val testBrowser: String? = "GoogleChrome",
+    val testFramework: String? = "Selenium",
     val projectPath: String? = null,
     val testsPath: String? = "/tests",
     val logsPath: String? = null,

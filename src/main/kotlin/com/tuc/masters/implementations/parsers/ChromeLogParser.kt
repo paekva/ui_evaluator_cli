@@ -9,7 +9,7 @@ import java.io.File
 
 
 @Component
-class SeleniumChromeLogParser : LogParser {
+class ChromeLogParser : LogParser {
     override val supportedBrowsers: List<String>
         get() = listOf("GoogleChrome")
 

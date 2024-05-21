@@ -20,8 +20,6 @@ class WeightedInteractionCountMetric: ComplexityMetric {
         return actions.sumOf {interactionToWeightMap[it.type] ?: 0}.toDouble()
     }
 
-    // Right now it is random
-    // TODO(me): do it based on smth
     private val interactionToWeightMap: Map<ActionType, Int> = mapOf(
         ActionType.CLICK to 1,
         ActionType.SEND_KEYS to 2,
