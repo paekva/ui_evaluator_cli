@@ -44,7 +44,7 @@ class UIEvaluatorService {
 
         tests.forEach { test ->
             val log = logs.find { it.testName == test.testName }
-            testData.add(TestData(test.testName, test.actions, log?.actions ?: listOf()))
+            testData.add(TestData(test.testName, test.fileName, test.actions, log?.actions ?: listOf()))
         }
 
         return testData
@@ -78,7 +78,7 @@ class UIEvaluatorService {
         val parsedData = mutableListOf<ParsedData>()
         files.forEach { log ->
             val result = parser.parseFile(log, config)
-            parsedData.add(ParsedData(log.name.split(".log")[0], result))
+            parsedData.add(ParsedData(log.name.split(".log")[0], null, result))
         }
 
         return parsedData

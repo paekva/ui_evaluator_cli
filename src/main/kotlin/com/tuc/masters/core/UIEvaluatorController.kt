@@ -40,7 +40,8 @@ class UIEvaluatorController(
         val groupResults = mutableMapOf<GroupData, List<MetricResult>>()
         for (g in config.groups?.toList() ?: listOf()) {
             val gR = mutableListOf<MetricResult>()
-            val testData = results.entries.filter { g.second.contains(it.key.testName) }
+            val testData =
+                results.entries.filter { g.second.contains(it.key.testName) || g.second.contains(it.key.fileName) }
             val data = testData.map { it.value }
             for (m in metrics) {
                 val tests = data.map { it.filter { tm -> tm.metric.name == m.metricsDescription.name } }

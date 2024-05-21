@@ -24,7 +24,7 @@ class PhpSeleniumTestParser : TestParser {
         val tests = getAllTestCodes(content)
 
         tests.forEach {
-            val result = getTest(it)
+            val result = getTest(file.name, it)
             if (result != null) parsedData.add(result)
         }
 
@@ -74,7 +74,7 @@ class PhpSeleniumTestParser : TestParser {
         return filtered
     }
 
-    private fun getTest(testCode: String): ParsedData? {
+    private fun getTest(fileName: String, testCode: String): ParsedData? {
         val tmp = testCode.trim().split("\n")
         val signature = Regex("function (?<name>[a-zA-Z0-9_]+)\\([a-zA-Z0-9_,\\S]*\\)[: void]?[\\S\\s]*")
         val result = signature.find(tmp[0]) ?: return null
@@ -82,6 +82,7 @@ class PhpSeleniumTestParser : TestParser {
 
         return ParsedData(
             testName = methodName ?: "unknown",
+            fileName = fileName,
             actions = parseActions(tmp.subList(2, tmp.count() - 2).joinToString("\n"))
         )
     }
