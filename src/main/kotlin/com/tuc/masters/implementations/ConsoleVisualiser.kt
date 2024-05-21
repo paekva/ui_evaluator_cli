@@ -5,30 +5,44 @@ import com.tuc.masters.core.models.EvaluatorConfig
 import com.tuc.masters.core.models.GroupData
 import com.tuc.masters.core.models.MetricResult
 import com.tuc.masters.core.models.TestData
+import de.m3y.kformat.Table
+import de.m3y.kformat.table
 import org.springframework.stereotype.Component
 
-// TODO(me): tmp disabled to have less output
-//@Component
+@Component
 class ConsoleVisualiser : Visualiser {
     override fun visualizeSingleMetrics(config: EvaluatorConfig, data: Map<TestData, List<MetricResult>>) {
-        data.entries.forEach {
-            println("\n\n-----------------------------------------------------")
-            println("for test ${it.key.testName} (log are${if (it.key.logs.isEmpty()) " not " else " "}available)")
-            println("-----------------------------------------------------")
-            it.value.forEach { m ->
-                println("${m.metric.name}: ${m.value}")
-            }
-        }
+        val header = arrayListOf("test name")
+        header.addAll(data.entries.toList()[0].value.map { it.metric.name })
+
+        drawTable(header, data.entries.associate { (key, value) ->
+            key.testName to value
+        })
     }
 
     override fun visualizeGroupMetrics(config: EvaluatorConfig, data: Map<GroupData, List<MetricResult>>) {
-        data.entries.forEach {
-            println("\n\n-----------------------------------------------------")
-            println("for group ${it.key.groupName} (${it.key.tests.joinToString { t -> t.testName }})")
-            println("-----------------------------------------------------")
-            it.value.forEach { m ->
-                println("${m.metric.name}: ${m.value}")
+        val header = arrayListOf("group name")
+        header.addAll(data.entries.toList()[0].value.map { it.metric.name })
+
+        drawTable(header, data.entries.associate { (key, value) ->
+            key.groupName to value
+        })
+    }
+
+    private fun drawTable(headers: List<String>, data: Map<String, List<MetricResult>>) {
+        table {
+            header(headers)
+            data.forEach { e ->
+                val values = arrayListOf(e.key)
+                values.addAll(e.value.map { it.value.toString() })
+                header(values)
             }
-        }
+            row()
+
+            hints {
+
+                borderStyle = Table.BorderStyle.SINGLE_LINE // or NONE
+            }
+        }.print()
     }
 }
