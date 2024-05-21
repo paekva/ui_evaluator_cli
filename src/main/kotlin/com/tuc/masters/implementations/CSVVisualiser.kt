@@ -13,10 +13,10 @@ class CSVVisualiser : Visualiser {
     override fun visualizeSingleMetrics(config: EvaluatorConfig, data: Map<TestData, List<MetricResult>>) {
         val m = data.values.toMutableList()[0].sortedBy { it.metric.name }
         val results = mutableListOf<String>()
-        results.add("test_name,${m.joinToString { it.metric.name }}")
+        results.add("test_name,test_file,${m.joinToString { it.metric.name }}")
 
         for (r in data) {
-            results.add(metricToCSVRow(r.key.testName, r.value))
+            results.add(metricToCSVRow("${r.key.testName},${r.key.fileName}", r.value))
         }
         val resultsFile = File("${config.projectPath}/results_single.csv")
         resultsFile.writeText(results.joinToString(separator = "\n"))
@@ -31,10 +31,11 @@ class CSVVisualiser : Visualiser {
 
         val m = data.values.toMutableList()[0].sortedBy { it.metric.name }
         val results = mutableListOf<String>()
-        results.add("group_name,${m.joinToString { it.metric.name }}")
+        results.add("group_name,tests,${m.joinToString { it.metric.name }}")
 
         for (r in data) {
-            results.add(metricToCSVRow(r.key.groupName, r.value))
+            val joined = r.key.tests.joinToString(separator = "; ") { it.testName }
+            results.add(metricToCSVRow("${r.key.groupName},$joined,", r.value))
         }
         resultsFile.writeText(results.joinToString(separator = "\n"))
     }

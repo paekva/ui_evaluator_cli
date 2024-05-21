@@ -89,7 +89,7 @@ class JavaSeleniumTestParser : TestParser {
         val result = signature.find(testCode) ?: return null
         val code = testCode.substring(result.range.last + 1).split(end)[0].trim()
 
-        val methodName = result.groups[0]?.value
+        val methodName = result.groups[1]?.value
         return ParsedData(testName = methodName ?: "unknown", fileName = fileName, actions = parseActions(code))
     }
 

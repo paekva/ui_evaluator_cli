@@ -34,21 +34,26 @@ class UIEvaluatorController(
     }
 
     private fun calculateGroupMetrics(
-        results: Map<TestData, List<MetricResult>>,
+        singleResults: Map<TestData, List<MetricResult>>,
         config: EvaluatorConfig
     ): Map<GroupData, List<MetricResult>> {
+        if (config.groups.isNullOrEmpty()) return mapOf()
+
         val groupResults = mutableMapOf<GroupData, List<MetricResult>>()
-        for (g in config.groups?.toList() ?: listOf()) {
-            val gR = mutableListOf<MetricResult>()
+        for (g in config.groups.toList()) {
+            val groupMetrics = mutableListOf<MetricResult>()
+
             val testData =
-                results.entries.filter { g.second.contains(it.key.testName) || g.second.contains(it.key.fileName) }
+                singleResults.entries.filter { g.second.contains(it.key.testName) || g.second.contains(it.key.fileName) }
             val data = testData.map { it.value }
             for (m in metrics) {
                 val tests = data.map { it.filter { tm -> tm.metric.name == m.metricsDescription.name } }
-                    .reduce { acc, metricResults -> acc + metricResults }
-                gR.add(m.getGroupTestMetric(tests))
+                if (tests.isNotEmpty()) {
+                    val tmp = tests.reduce { acc, metricResults -> acc + metricResults }
+                    groupMetrics.add(m.getGroupTestMetric(tmp))
+                }
             }
-            groupResults[GroupData(groupName = g.first, tests = testData.map { it.key }.toList())] = gR
+            groupResults[GroupData(groupName = g.first, tests = testData.map { it.key }.toList())] = groupMetrics
         }
         return groupResults
     }

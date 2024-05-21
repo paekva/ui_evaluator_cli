@@ -7,7 +7,8 @@ import com.tuc.masters.core.models.MetricResult
 import com.tuc.masters.core.models.TestData
 import org.springframework.stereotype.Component
 
-@Component
+// TODO(me): tmp disabled to have less output
+//@Component
 class ConsoleVisualiser : Visualiser {
     override fun visualizeSingleMetrics(config: EvaluatorConfig, data: Map<TestData, List<MetricResult>>) {
         data.entries.forEach {
