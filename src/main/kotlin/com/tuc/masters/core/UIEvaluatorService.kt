@@ -19,14 +19,14 @@ class UIEvaluatorService {
         return tmp.copy(projectPath = projectPath)
     }
 
-    fun getFiles(path: String, matchFileName: Regex, excludeNames: List<String>): List<File> {
+    fun getFiles(path: String, matchFileName: Regex): List<File> {
         val files = mutableListOf<File>()
         val repoDir = File(path)
         repoDir.listFiles()?.forEach { file ->
             files.addAll(getFilesFromDirectory(file))
         }
 
-        return files.filter { matchFileName.matches(it.name) && !excludeNames.contains(it.name) }
+        return files.filter { matchFileName.matches(it.name) }
     }
 
     private fun getFilesFromDirectory(file: File): List<File> {

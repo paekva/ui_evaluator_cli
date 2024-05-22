@@ -25,6 +25,12 @@ class UIEvaluatorController(
         val logs = findLogFiles(projectPath, config) ?: return
 
         var testData = handleParsing(config, logs, tests)
+
+        if(!config.exclude.isNullOrEmpty()) {
+            config.exclude.forEach {
+                testData = testData.filter { t -> !(t.testName.contains(it) || (t.filePath ?: "").contains(it)) }
+            }
+        }
         showMissingLogs(projectPath, config, testData)
 
         if (config.skipTestsWithoutLogs) {
@@ -72,11 +78,7 @@ class UIEvaluatorController(
     private fun findTestFiles(projectPath: String, config: EvaluatorConfig): List<File>? {
         val testsPath = projectPath + config.testsPath
         val testFileRegex = Regex("[a-zA-Z0-9]*" + config.testFilePostfix + "." + config.testExtension + "$")
-        val tests = service.getFiles(
-            testsPath,
-            testFileRegex,
-            config.exclude ?: listOf(),
-        )
+        val tests = service.getFiles(testsPath, testFileRegex)
 
         if (tests.isEmpty()) {
             log.warning("No test files were found in provided folder.\ntests: $testsPath")
@@ -91,11 +93,7 @@ class UIEvaluatorController(
 
         val logsPath = projectPath + config.logsPath
         val logsFileRegex = Regex("[a-zA-Z0-9_]*\\." + config.logExtension + "$")
-        val logs = service.getFiles(
-            logsPath,
-            logsFileRegex,
-            listOf()
-        )
+        val logs = service.getFiles(logsPath, logsFileRegex)
 
         if (logs.isEmpty()) {
             log.warning("No log files were found in provided folder.\nlogs: $logsPath")
