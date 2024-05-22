@@ -12,5 +12,6 @@ data class EvaluatorConfig(
     val logExtension: String = "log",
     val exclude: List<String>? = listOf(),
     val testAnnotation: String? = null,
+    val skipTestsWithoutLogs: Boolean = false,
     val groups: Map<String, List<String>>? = null
 )
