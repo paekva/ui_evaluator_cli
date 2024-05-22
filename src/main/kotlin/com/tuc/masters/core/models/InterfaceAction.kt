@@ -4,6 +4,7 @@ class InterfaceAction (
     var wholeLine: String,
     var type: ActionType,
     var timestamp: String? = null,
-    var args: String?
+    var args: String?,
+    var hasError: Boolean = false
 )
 

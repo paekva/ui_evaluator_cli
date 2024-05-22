@@ -33,6 +33,7 @@ class ChromeLogParser : LogParser {
             val r2 = Regex("\\[[0-9|.]+\\]")
             val timestamp = r2.find(it.first.first)?.value?.drop(1)?.dropLast(1)
             var type = getActionType(it.first.second)
+            val responseType = getActionType(it.second.second)
             val args = if (type != ActionType.OTHER) getArguments(it.first.second, it.second.second) else null
 
             if (type == ActionType.SCRIPT) {
@@ -45,7 +46,8 @@ class ChromeLogParser : LogParser {
                     wholeLine = "${it.first.first} ${it.first.second}",
                     type = type,
                     timestamp = timestamp,
-                    args = args
+                    args = args,
+                    hasError = responseType == ActionType.ERROR
                 )
             )
         }
@@ -62,13 +64,15 @@ class ChromeLogParser : LogParser {
     }
 
     private fun getActionType(value: String): ActionType {
+        val errorRgx = Regex("\\[[(0-9|a-z)]+\\] (COMMAND|RESPONSE) (?<action>[(a-z|A-Z)]+) ERROR")
+        val errorResult = errorRgx.find(value)
+        if (errorResult != null) return ActionType.ERROR
+
         val r1 = Regex("\\[[(0-9|a-z)]+\\] (COMMAND|RESPONSE) (?<action>[(a-z|A-Z)]+)")
         val result = r1.find(value)
-        val type = result?.groups?.get(1)?.value ?: ""
         val action = result?.groups?.get(2)?.value ?: ""
-        val actionType = mapStringToActionType[action]
 
-        return if (type == "COMMAND" && actionType != null) actionType else ActionType.OTHER
+        return mapStringToActionType[action] ?: ActionType.OTHER
     }
 
     private val mapStringToActionType = mapOf(

@@ -25,7 +25,7 @@ class UIEvaluatorController(
         val logs = findLogFiles(projectPath, config) ?: return
 
         var testData = handleParsing(config, logs, tests)
-        if(config.skipTestsWithoutLogs) {
+        if (config.skipTestsWithoutLogs) {
             testData = testData.filter { it.logs.isNotEmpty() }
         }
         val singleMetricsResults = calculateSingleTestMetrics(testData)
