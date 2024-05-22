@@ -25,6 +25,8 @@ class UIEvaluatorController(
         val logs = findLogFiles(projectPath, config) ?: return
 
         var testData = handleParsing(config, logs, tests)
+        showMissingLogs(projectPath, config, testData)
+
         if (config.skipTestsWithoutLogs) {
             testData = testData.filter { it.logs.isNotEmpty() }
         }
@@ -125,17 +127,24 @@ class UIEvaluatorController(
         return config
     }
 
-    private fun devMissingLogsFinder(testData: List<TestData>) {
-        val tmp = File("./progress_zimbra.txt") // NAME
+    private fun showMissingLogs(projectPath: String, config: EvaluatorConfig, testData: List<TestData>) {
+        var res = ""
+        val tmp = File("$projectPath/progress.csv") // NAME
         if (!tmp.exists()) tmp.createNewFile()
 
-        var res = ""
-        testData.forEach {
-            res += "${it.testName}: ${it.logs.isNotEmpty()}\n"
+        for (g in (config.groups?.toList() ?: listOf())) {
+            res += "${g.first}\n"
+            g.second.forEach {
+                val suited = testData.filter { e ->
+                    e.testName.contains(it) || (e.filePath?.contains(it) ?: false)
+                }
+                suited.forEach {
+                    res += "${it.testName},${it.logs.isNotEmpty()},${it.filePath}\n"
+                }
+            }
         }
 
         tmp.writeText(res)
-        println("logs are available for ${testData.count { it.logs.isNotEmpty() }}/${testData.count()} tests")
     }
 
     private fun handleParsing(configFile: EvaluatorConfig, logs: List<File>, tests: List<File>): List<TestData> {
