@@ -22,7 +22,7 @@ class UIEvaluatorController(
         val config = retrieveConfig(projectPath) ?: return
 
         val tests = findTestFiles(projectPath, config) ?: return
-        val logs = findLogFiles(projectPath, config) ?: return
+        val logs = arrayListOf<File>() // findLogFiles(projectPath, config) ?: return
 
         var testData = handleParsing(config, logs, tests)
 

@@ -13,10 +13,10 @@ class UIEvaluatorCommand(@Autowired private val controller: UIEvaluatorControlle
 
     @ShellMethod(value = "Evaluates application based on provided UI tests and config")
     fun evaluate(@ShellOption(defaultValue = "./") path: String) {
-        try {
+//        try {
             controller.evaluate(path)
-        } catch (e: Exception) {
-            log.severe("Something went wrong during the process: $e")
-        }
+//        } catch (e: Exception) {
+//            log.severe("Something went wrong during the process: $e")
+//        }
     }
 }

@@ -21,9 +21,9 @@ class PhpSeleniumTestParser : TestParser {
         val lines = file.readLines()
         val filtered = removeCommentParts(lines)
         val content = filtered.joinToString("\n")
+        val filePathParts = file.path.split(config.projectPath ?: "")[1]
         val tests = getAllTestCodes(content)
 
-        val filePathParts = file.path.split(config.projectPath ?: "")[1]
         tests.forEach {
             val result = getTest(filePathParts, it)
             if (result != null) parsedData.add(result)
@@ -84,7 +84,9 @@ class PhpSeleniumTestParser : TestParser {
         return ParsedData(
             testName = methodName ?: "unknown",
             filePath = filePath,
-            actions = parseActions(tmp.subList(2, tmp.count() - 2).joinToString("\n"))
+            actions = if (tmp.count() < 4) listOf() else parseActions(
+                tmp.subList(2, tmp.count() - 2).joinToString("\n")
+            )
         )
     }
 

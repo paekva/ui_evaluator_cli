@@ -8,8 +8,6 @@ import com.tuc.masters.core.models.ParsedData
 import org.springframework.stereotype.Component
 import java.io.File
 
-//    val signature = Regex("\\s*public[\\sa-z]*(?<name>[0-9a-zA-Z_]*)\\([a-zA-Z0-9_,\\S]*\\)")
-
 @Component
 class JavaSeleniumTestParser : TestParser {
     override val supportedLanguages: List<String>
@@ -18,6 +16,7 @@ class JavaSeleniumTestParser : TestParser {
         get() = listOf("Selenium")
 
     override fun parseFile(file: File, config: EvaluatorConfig): List<ParsedData> {
+        val filePathParts = file.path.split(config.projectPath ?: "")[1]
         val parsedData = mutableListOf<ParsedData>()
         val lines = file.readLines()
         val filtered = removeCommentParts(lines)
@@ -25,17 +24,9 @@ class JavaSeleniumTestParser : TestParser {
 
         // first implemented option - splitting by annotation
         if (config.testAnnotation != null) {
-            val testRgx = Regex(config.testAnnotation)
-            val testsR = findAllEntries(content, testRgx)
-            testsR.add(Pair("End", IntRange(content.length, content.length)))
-
-            testsR.drop(1).zipWithNext().forEach {
-                val start = it.first.second.first
-                val end = it.second.second.first - 1
-
-                val filePathParts = file.path.split(config.projectPath ?: "")[1]
-                val testCode = content.substring(start, end)
-                val result = getTest(filePathParts, testCode)
+            val li = findAllEntries(content, config.testAnnotation)
+            li.forEach {
+                val result = getTest(filePathParts, it)
                 if (result != null) parsedData.add(result)
             }
         }
@@ -43,34 +34,34 @@ class JavaSeleniumTestParser : TestParser {
         return parsedData
     }
 
-    private fun findAllEntries(content: String, regex: Regex): ArrayList<Pair<String, IntRange>> {
-        var current = content
-        val availableF = arrayListOf(Pair("Start", IntRange(0, 0)))
-        while (current.isNotEmpty()) {
-            val ind = getFirstEntry(current, regex)
-            if (ind.first == null || ind.second == null) break
-            val lastE = availableF.last()
-            availableF.add(
-                Pair(
-                    ind.first!!,
-                    IntRange(ind.second!!.first + lastE.second.first, ind.second!!.last + lastE.second.last)
-                )
-            )
-            current = current.substring(ind.second?.last ?: 0)
+    private fun findAllEntries(content: String, key: String): List<String> {
+        val indexes = arrayListOf<Int>()
+        var cc = content
+        while (cc.isNotEmpty()) {
+            val res = cc.indexOf(key)
+            if (res != -1) {
+                indexes.add(res)
+                cc = cc.substring(res + 1)
+            } else break
         }
-        return availableF
-    }
+        if(indexes.isEmpty()) return listOf()
 
-    private fun getFirstEntry(content: String, regex: Regex): Pair<String?, IntRange?> {
-        val result = regex.find(content)
-        val i = if ((result?.groups?.size ?: 0) > 1) 1 else 0
-        val methodName = result?.groups?.get(i)?.value
-        return Pair(methodName, result?.range)
+        val newI = arrayListOf(indexes.first())
+        indexes.drop(1).forEach { newI.add(newI.last()+it+1) }
+
+        val parts = arrayListOf<String>()
+        var counter = 0
+        while (counter < newI.size) {
+            val newV = if(counter + 1 < newI.size) newI[counter+1] else (content.length - 1)
+            parts.add(content.substring(newI[counter], newV))
+            counter++
+        }
+        return parts
     }
 
     private fun removeCommentParts(data: List<String>): List<String> {
         val singleLine = Regex("\\s*//[\\S\\s]*")
-        val multilineStart = Regex("\\s*/\\*")
+        val multilineStart = Regex("\\s*/[*]+")
         val multilineEnd = Regex("\\s*\\*/")
         val filtered = mutableListOf<String>()
         var isLongComment = false
@@ -84,7 +75,7 @@ class JavaSeleniumTestParser : TestParser {
     }
 
     private fun getTest(filePath: String, testCode: String): ParsedData? {
-        val signature = Regex("public void (?<name>[a-zA-Z0-9_]+)\\([a-zA-Z0-9_,\\s]*\\)[a-zA-Z\\s]*\\{")
+        val signature = Regex("public void (?<name>[a-zA-Z0-9_]+)\\([a-zA-Z0-9_,\\s]*\\)[a-zA-Z\\s,]*\\{")
         val end = Regex("\\}\\s+")
 
         val result = signature.find(testCode) ?: return null
