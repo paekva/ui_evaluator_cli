@@ -44,7 +44,7 @@ class UIEvaluatorService {
 
         tests.forEach { test ->
             val log = logs.find { it.testName == test.testName }
-            testData.add(TestData(test.testName, test.fileName, test.actions, log?.actions ?: listOf()))
+            testData.add(TestData(test.testName, test.filePath, test.actions, log?.actions ?: listOf()))
         }
 
         return testData

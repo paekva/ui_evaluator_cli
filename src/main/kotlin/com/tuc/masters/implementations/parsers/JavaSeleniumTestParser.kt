@@ -33,8 +33,9 @@ class JavaSeleniumTestParser : TestParser {
                 val start = it.first.second.first
                 val end = it.second.second.first - 1
 
+                val filePathParts = file.path.split(config.projectPath ?: "")[1]
                 val testCode = content.substring(start, end)
-                val result = getTest(file.name, testCode)
+                val result = getTest(filePathParts, testCode)
                 if (result != null) parsedData.add(result)
             }
         }
@@ -82,7 +83,7 @@ class JavaSeleniumTestParser : TestParser {
         return filtered
     }
 
-    private fun getTest(fileName: String, testCode: String): ParsedData? {
+    private fun getTest(filePath: String, testCode: String): ParsedData? {
         val signature = Regex("public void (?<name>[a-zA-Z0-9_]+)\\([a-zA-Z0-9_,\\s]*\\)[a-zA-Z\\s]*\\{")
         val end = Regex("\\}\\s+")
 
@@ -90,7 +91,7 @@ class JavaSeleniumTestParser : TestParser {
         val code = testCode.substring(result.range.last + 1).split(end)[0].trim()
 
         val methodName = result.groups[1]?.value
-        return ParsedData(testName = methodName ?: "unknown", fileName = fileName, actions = parseActions(code))
+        return ParsedData(testName = methodName ?: "unknown", filePath = filePath, actions = parseActions(code))
     }
 
     private fun parseActions(sourceCode: String): List<InterfaceAction> {

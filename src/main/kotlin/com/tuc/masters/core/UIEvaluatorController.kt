@@ -42,18 +42,24 @@ class UIEvaluatorController(
         val groupResults = mutableMapOf<GroupData, List<MetricResult>>()
         for (g in config.groups.toList()) {
             val groupMetrics = mutableListOf<MetricResult>()
+            val selected = arrayListOf<List<MetricResult>>()
+            val selectedTests = arrayListOf<TestData>()
+            g.second.forEach {
+                val suited = singleResults.entries.filter { e ->
+                    e.key.testName.contains(it) || (e.key.filePath?.contains(it) ?: false)
+                }
+                selectedTests.addAll(suited.map { it.key })
+                selected.addAll(suited.map { it.value })
+            }
 
-            val testData =
-                singleResults.entries.filter { g.second.contains(it.key.testName) || g.second.contains(it.key.fileName) }
-            val data = testData.map { it.value }
             for (m in metrics) {
-                val tests = data.map { it.filter { tm -> tm.metric.name == m.metricsDescription.name } }
+                val tests = selected.map { it.filter { tm -> tm.metric.name == m.metricsDescription.name } }
                 if (tests.isNotEmpty()) {
                     val tmp = tests.reduce { acc, metricResults -> acc + metricResults }
                     groupMetrics.add(m.getGroupTestMetric(tmp))
                 }
             }
-            groupResults[GroupData(groupName = g.first, tests = testData.map { it.key }.toList())] = groupMetrics
+            groupResults[GroupData(groupName = g.first, tests = selectedTests)] = groupMetrics
         }
         return groupResults
     }

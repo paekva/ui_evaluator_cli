@@ -16,7 +16,7 @@ class CSVVisualiser : Visualiser {
         results.add("test_name,test_file,${m.joinToString { it.metric.name }}")
 
         for (r in data) {
-            results.add(metricToCSVRow("${r.key.testName},${r.key.fileName}", r.value))
+            results.add(metricToCSVRow("${r.key.testName},${r.key.filePath}", r.value))
         }
         val resultsFile = File("${config.projectPath}/results_single.csv")
         resultsFile.writeText(results.joinToString(separator = "\n"))

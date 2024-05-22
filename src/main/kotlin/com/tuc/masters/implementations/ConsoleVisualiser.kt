@@ -40,7 +40,6 @@ class ConsoleVisualiser : Visualiser {
             row()
 
             hints {
-
                 borderStyle = Table.BorderStyle.SINGLE_LINE // or NONE
             }
         }.print()
