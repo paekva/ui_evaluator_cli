@@ -1,12 +1,12 @@
 package com.tuc.masters.implementations.metrics
 
-import com.tuc.masters.core.ComplexityMetric
+import com.tuc.masters.core.MetricCalculator
 import com.tuc.masters.core.models.*
 import org.springframework.stereotype.Component
 
 
 @Component
-class InputSwitchCountMetric : ComplexityMetric {
+class InputSwitchCountMetricCalculator : MetricCalculator {
     override var metricsDescription: MetricDescription
         get() = MetricDescription(
             "Input switch count",

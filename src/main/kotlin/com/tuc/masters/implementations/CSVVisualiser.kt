@@ -7,10 +7,15 @@ import com.tuc.masters.core.models.MetricResult
 import com.tuc.masters.core.models.TestData
 import org.springframework.stereotype.Component
 import java.io.File
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 @Component
 class CSVVisualiser : Visualiser {
     override fun visualizeSingleMetrics(config: EvaluatorConfig, data: Map<TestData, List<MetricResult>>) {
+        if(data.values.isEmpty()) {
+            return
+        }
         val m = data.values.toMutableList()[0].sortedBy { it.metric.name }
         val results = mutableListOf<String>()
         results.add("test_name,test_file,has_errors,${m.joinToString { it.metric.name }}")
@@ -34,8 +39,7 @@ class CSVVisualiser : Visualiser {
         results.add("group_name,tests,${m.joinToString { it.metric.name }}")
 
         for (r in data) {
-            val joined = r.key.tests.joinToString(separator = "; ") { it.testName }
-            results.add(metricToCSVRow("${r.key.groupName},$joined,", r.value))
+            results.add(metricToCSVRow("${r.key.groupName},${r.key.tests.size}", r.value))
         }
         resultsFile.writeText(results.joinToString(separator = "\n"))
     }
@@ -43,6 +47,6 @@ class CSVVisualiser : Visualiser {
 
     private fun metricToCSVRow(name: String, metrics: List<MetricResult>): String {
         val m = metrics.sortedBy { it.metric.name }
-        return "${name}, ${m.joinToString { it.value.toString() }}"
+        return "${name}, ${m.joinToString { BigDecimal(it.value).setScale(4, RoundingMode.HALF_EVEN).toString() }}"
     }
 }

@@ -2,7 +2,7 @@ package com.tuc.masters.core
 
 import com.tuc.masters.core.models.*
 
-interface ComplexityMetric {
+interface MetricCalculator {
     var metricsDescription: MetricDescription
     fun calculateSingleTestMetric(actions: List<InterfaceAction>): Double
 

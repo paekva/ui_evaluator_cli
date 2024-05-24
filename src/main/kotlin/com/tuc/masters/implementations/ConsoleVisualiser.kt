@@ -8,6 +8,8 @@ import com.tuc.masters.core.models.TestData
 import de.m3y.kformat.Table
 import de.m3y.kformat.table
 import org.springframework.stereotype.Component
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 @Component
 class ConsoleVisualiser : Visualiser {
@@ -34,7 +36,7 @@ class ConsoleVisualiser : Visualiser {
             header(headers)
             data.forEach { e ->
                 val values = arrayListOf(e.key)
-                values.addAll(e.value.map { it.value.toString() })
+                values.addAll(e.value.map { BigDecimal(it.value).setScale(4, RoundingMode.HALF_EVEN).toString() })
                 header(values)
             }
             row()

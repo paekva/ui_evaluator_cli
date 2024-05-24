@@ -1,13 +1,13 @@
 package com.tuc.masters.implementations.metrics
 
-import com.tuc.masters.core.ComplexityMetric
+import com.tuc.masters.core.MetricCalculator
 import com.tuc.masters.core.models.*
 
 import org.springframework.stereotype.Component
 
 
 @Component
-class NavigationGraphComplexityMetric: ComplexityMetric {
+class NavigationGraphMetricCalculator: MetricCalculator {
     override var metricsDescription: MetricDescription
         get() = MetricDescription(
             "Navigation graph complexity",

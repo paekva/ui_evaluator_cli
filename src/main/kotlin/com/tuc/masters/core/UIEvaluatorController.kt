@@ -14,7 +14,7 @@ class UIEvaluatorController(
     @Autowired private val logParsers: List<LogParser>,
     @Autowired private val testParsers: List<TestParser>,
     @Autowired private val visualisers: List<Visualiser>,
-    @Autowired private val metrics: List<ComplexityMetric>,
+    @Autowired private val metrics: List<MetricCalculator>,
 ) {
     private var log: Logger = Logger.getLogger(UIEvaluatorCommand::class.java.getName())
 
@@ -22,7 +22,7 @@ class UIEvaluatorController(
         val config = retrieveConfig(projectPath) ?: return
 
         val tests = findTestFiles(projectPath, config) ?: return
-        val logs = arrayListOf<File>() // findLogFiles(projectPath, config) ?: return
+        val logs = findLogFiles(projectPath, config) ?: return
 
         var testData = handleParsing(config, logs, tests)
 

@@ -97,7 +97,7 @@ class UIEvaluatorService {
 
     fun calculateMetrics(
         parsedData: List<InterfaceAction>,
-        metrics: List<ComplexityMetric>
+        metrics: List<MetricCalculator>
     ): List<MetricResult> {
         return metrics.map { metric -> metric.getSingleTestMetric(parsedData) }.toList()
     }
