@@ -43,11 +43,26 @@ class UIEvaluatorService {
         val testData = mutableListOf<TestData>()
 
         tests.forEach { test ->
-            val log = logs.find { it.testName == test.testName }
+            val log = findLogByTest(test, logs)
             testData.add(TestData(test.testName, test.filePath, test.actions, log?.actions ?: listOf()))
         }
 
         return testData
+    }
+
+    private fun findLogByTest(test: ParsedData, logs: List<ParsedData>): ParsedData? {
+        val fullTestPath = (test.filePath ?: "tests").split("tests")[1].split("/")
+            .filter { k -> k.isNotEmpty() }
+        val testPath = fullTestPath.dropLast(1).joinToString("/")
+        val testFileName = fullTestPath.last().split(".").first()
+
+        val log = logs.find {
+            val lPath = (it.filePath ?: "logs").split("logs")[1].split("/")
+                .filter { k -> k.isNotEmpty() }.dropLast(1).joinToString("/")
+            it.testName == test.testName && (lPath == testPath || lPath == "${testPath}/${testFileName}")
+        }
+
+        return log
     }
 
     fun findLogParser(config: EvaluatorConfig, parsers: List<LogParser>): LogParser {
@@ -78,7 +93,7 @@ class UIEvaluatorService {
         val parsedData = mutableListOf<ParsedData>()
         files.forEach { log ->
             val result = parser.parseFile(log, config)
-            parsedData.add(ParsedData(log.name.split(".log")[0], null, result))
+            parsedData.add(ParsedData(log.name.split(".log")[0], log.path, result))
         }
 
         return parsedData

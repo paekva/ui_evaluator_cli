@@ -26,11 +26,6 @@ class UIEvaluatorController(
 
         var testData = handleParsing(config, logs, tests)
 
-        if(!config.exclude.isNullOrEmpty()) {
-            config.exclude.forEach {
-                testData = testData.filter { t -> !(t.testName.contains(it) || (t.filePath ?: "").contains(it)) }
-            }
-        }
         showMissingLogs(projectPath, config, testData)
 
         if (config.skipTestsWithoutLogs) {
@@ -145,14 +140,25 @@ class UIEvaluatorController(
         tmp.writeText(res)
     }
 
-    private fun handleParsing(configFile: EvaluatorConfig, logs: List<File>, tests: List<File>): List<TestData> {
+    private fun handleParsing(config: EvaluatorConfig, logs: List<File>, tests: List<File>): List<TestData> {
         // parse logs
-        val logParser = service.findLogParser(configFile, logParsers)
-        val parsedLogsData = service.parseLogs(logs, configFile, logParser)
+        val logParser = service.findLogParser(config, logParsers)
+        val parsedLogsData = service.parseLogs(logs, config, logParser)
 
         // parse tests
-        val testParser = service.findTestParser(configFile, testParsers)
-        val parsedTestData = service.parseTests(tests, configFile, testParser)
+        val testParser = service.findTestParser(config, testParsers)
+        var parsedTestData = service.parseTests(tests, config, testParser)
+
+        if (!config.exclude.isNullOrEmpty()) {
+            config.exclude.forEach {
+                parsedTestData =
+                    parsedTestData.filter { t -> !(t.testName.contains(it) || (t.filePath ?: "").contains(it)) }
+            }
+            parsedTestData =
+                parsedTestData.filter { t ->
+                    (config.groups?.values?.flatten()?.any { (t.filePath ?: "").contains(it) }) ?: false
+                }
+        }
 
         return service.getTestData(parsedLogsData, parsedTestData)
     }
