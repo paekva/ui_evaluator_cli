@@ -9,10 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="Renamings">
+    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="Improve on log to test mapping">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/EvaluatorConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/EvaluatorConfig.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/JavaSeleniumTestParser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/JavaSeleniumTestParser.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +88,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.evlauate with path zimbra">
+  <component name="RunManager" selected="Spring Boot.evlauate with path limesurvey">
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -95,6 +96,20 @@
     </configuration>
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="evlauate with path alfio" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="ui_evaluator_cli" />
+      <option name="PROGRAM_PARAMETERS" value="evaluate  --path $PROJECT_DIR$/../masters_materials/alf.io" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.tuc.masters.SpringShellMain" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.tuc.masters.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -143,6 +158,7 @@
     </configuration>
     <list>
       <item itemvalue="Spring Boot.evlauate with path zimbra" />
+      <item itemvalue="Spring Boot.evlauate with path alfio" />
       <item itemvalue="Spring Boot.evlauate with path limesurvey" />
       <item itemvalue="Spring Boot.evlauate with path openolat" />
     </list>
@@ -170,7 +186,7 @@
       <workItem from="1716374381069" duration="16476000" />
       <workItem from="1716442201793" duration="665000" />
       <workItem from="1716457226657" duration="7220000" />
-      <workItem from="1716544861757" duration="10617000" />
+      <workItem from="1716544861757" duration="12932000" />
     </task>
     <task id="LOCAL-00001" summary="Init console app for ui evaluator">
       <option name="closed" value="true" />
@@ -484,7 +500,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716563758776</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Improve on log to test mapping">
+      <option name="closed" value="true" />
+      <created>1716573414794</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1716573414794</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -502,7 +526,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add config file and some test parsing" />
     <MESSAGE value="merged parse results of logs and tests" />
     <MESSAGE value="small fixes after a different project was analysed" />
     <MESSAGE value="some dev funcs" />
@@ -527,9 +550,32 @@
     <MESSAGE value="add test exclusion" />
     <MESSAGE value="fixing parsers" />
     <MESSAGE value="Renamings" />
-    <option name="LAST_COMMIT_MESSAGE" value="Renamings" />
+    <MESSAGE value="Improve on log to test mapping" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improve on log to test mapping" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/JavaSeleniumTestParser.kt</url>
+          <line>58</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorController.kt</url>
+          <line>164</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorService.kt</url>
+          <line>58</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="java.util.LinkedHashMap$Entry" memberName="value" />

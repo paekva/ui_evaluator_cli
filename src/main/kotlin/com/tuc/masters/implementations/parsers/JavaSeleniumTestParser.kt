@@ -23,18 +23,18 @@ class JavaSeleniumTestParser : TestParser {
         val content = filtered.joinToString("\n")
 
         // first implemented option - splitting by annotation
-        if (config.testAnnotation != null) {
-            val li = findAllEntries(content, config.testAnnotation)
-            li.forEach {
-                val result = getTest(filePathParts, it)
-                if (result != null) parsedData.add(result)
-            }
+        val li = findAllEntries(content, config.testAnnotation ?: config.testPrefix)
+        li.forEach {
+            val result = getTest(filePathParts, it)
+            if (result != null) parsedData.add(result)
         }
 
         return parsedData
     }
 
-    private fun findAllEntries(content: String, key: String): List<String> {
+    private fun findAllEntries(content: String, key: String?): List<String> {
+        if (key == null) return listOf()
+
         val indexes = arrayListOf<Int>()
         var cc = content
         while (cc.isNotEmpty()) {
@@ -44,15 +44,15 @@ class JavaSeleniumTestParser : TestParser {
                 cc = cc.substring(res + 1)
             } else break
         }
-        if(indexes.isEmpty()) return listOf()
+        if (indexes.isEmpty()) return listOf()
 
         val newI = arrayListOf(indexes.first())
-        indexes.drop(1).forEach { newI.add(newI.last()+it+1) }
+        indexes.drop(1).forEach { newI.add(newI.last() + it + 1) }
 
         val parts = arrayListOf<String>()
         var counter = 0
         while (counter < newI.size) {
-            val newV = if(counter + 1 < newI.size) newI[counter+1] else (content.length - 1)
+            val newV = if (counter + 1 < newI.size) newI[counter + 1] else (content.length - 1)
             parts.add(content.substring(newI[counter], newV))
             counter++
         }

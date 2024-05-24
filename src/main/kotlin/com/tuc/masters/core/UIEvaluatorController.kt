@@ -154,9 +154,11 @@ class UIEvaluatorController(
                 parsedTestData =
                     parsedTestData.filter { t -> !(t.testName.contains(it) || (t.filePath ?: "").contains(it)) }
             }
+        }
+        if (!config.groups.isNullOrEmpty()) {
             parsedTestData =
                 parsedTestData.filter { t ->
-                    (config.groups?.values?.flatten()?.any { (t.filePath ?: "").contains(it) }) ?: false
+                    config.groups.values.flatten().any { t.testName == it || (t.filePath ?: "").contains(it) }
                 }
         }
 
