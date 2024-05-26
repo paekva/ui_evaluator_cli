@@ -10,7 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="Fix test execution times">
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/TestExecutionTimeMetricCalculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/TestExecutionTimeMetricCalculator.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfCodeStatementsMetricCalculator.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/utils.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/LogParser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/LogParser.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/ParsedData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/ParsedData.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/ChromeLogParser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/ChromeLogParser.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/JavaSeleniumTestParser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/JavaSeleniumTestParser.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/PhpSeleniumTestParser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/PhpSeleniumTestParser.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +29,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Class" />
+        <option value="Kotlin File" />
       </list>
     </option>
   </component>
@@ -78,14 +87,14 @@
       <recent name="com.tuc.masters.metrics.models" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.tuc.masters.implementations.metrics" />
       <recent name="com.tuc.masters.core.models" />
       <recent name="com.tuc.masters.implementations.parsers" />
       <recent name="com.tuc.masters.implementations" />
       <recent name="com.tuc.masters.core" />
-      <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.evlauate with path zimbra">
+  <component name="RunManager" selected="Spring Boot.evlauate with path limesurvey">
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -99,7 +108,7 @@
     </configuration>
     <configuration name="evlauate with path alfio" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="ui_evaluator_cli" />
-      <option name="PROGRAM_PARAMETERS" value="evaluate  --path $PROJECT_DIR$/../masters_materials/alf.io" />
+      <option name="PROGRAM_PARAMETERS" value="evaluate  --path $PROJECT_DIR$/../masters_materials/projects/alf.io" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.tuc.masters.SpringShellMain" />
       <extension name="coverage">
         <pattern>
@@ -113,7 +122,7 @@
     </configuration>
     <configuration name="evlauate with path limesurvey" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="ui_evaluator_cli" />
-      <option name="PROGRAM_PARAMETERS" value="evaluate  --path $PROJECT_DIR$/../masters_materials/LimeSurvey" />
+      <option name="PROGRAM_PARAMETERS" value="evaluate  --path $PROJECT_DIR$/../masters_materials/projects/LimeSurvey" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.tuc.masters.SpringShellMain" />
       <extension name="coverage">
         <pattern>
@@ -127,7 +136,7 @@
     </configuration>
     <configuration name="evlauate with path openolat" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true">
       <module name="ui_evaluator_cli" />
-      <option name="PROGRAM_PARAMETERS" value="evaluate  --path $PROJECT_DIR$/../masters_materials/OpenOLAT" />
+      <option name="PROGRAM_PARAMETERS" value="evaluate  --path $PROJECT_DIR$/../masters_materials/projects/OpenOLAT" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.tuc.masters.SpringShellMain" />
       <extension name="coverage">
         <pattern>
@@ -141,7 +150,7 @@
     </configuration>
     <configuration name="evlauate with path zimbra" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="ui_evaluator_cli" />
-      <option name="PROGRAM_PARAMETERS" value="evaluate  --path $PROJECT_DIR$/../masters_materials/tmp/zm-selenium" />
+      <option name="PROGRAM_PARAMETERS" value="evaluate  --path $PROJECT_DIR$/../masters_materials/projects/zm-selenium" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.tuc.masters.SpringShellMain" />
       <extension name="coverage">
         <pattern>
@@ -183,7 +192,8 @@
       <workItem from="1716374381069" duration="16476000" />
       <workItem from="1716442201793" duration="665000" />
       <workItem from="1716457226657" duration="7220000" />
-      <workItem from="1716544861757" duration="28225000" />
+      <workItem from="1716544861757" duration="28715000" />
+      <workItem from="1716736147601" duration="3750000" />
     </task>
     <task id="LOCAL-00001" summary="Init console app for ui evaluator">
       <option name="closed" value="true" />
@@ -553,7 +563,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716723053737</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Fix test execution times">
+      <option name="closed" value="true" />
+      <created>1716723105312</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1716723105312</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

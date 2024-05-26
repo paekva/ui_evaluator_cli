@@ -1,9 +1,7 @@
 package com.tuc.masters.implementations.parsers
 
 import com.tuc.masters.core.TestParser
-import com.tuc.masters.core.models.ActionType
 import com.tuc.masters.core.models.EvaluatorConfig
-import com.tuc.masters.core.models.InterfaceAction
 import com.tuc.masters.core.models.ParsedData
 import org.springframework.stereotype.Component
 import java.io.File
@@ -24,8 +22,10 @@ class JavaSeleniumTestParser : TestParser {
 
         // first implemented option - splitting by annotation
         val li = findAllEntries(content, config.testAnnotation ?: config.testPrefix)
+        val signature = Regex("void (?<name>[a-zA-Z0-9_]+)\\([a-zA-Z0-9_,\\s]*\\)[a-zA-Z\\s,]*\\{")
+
         li.forEach {
-            val result = getTest(filePathParts, it)
+            val result = getTest(filePathParts, it, signature)
             if (result != null) parsedData.add(result)
         }
 
@@ -73,117 +73,4 @@ class JavaSeleniumTestParser : TestParser {
 
         return filtered
     }
-
-    private fun getTest(filePath: String, testCode: String): ParsedData? {
-        val signature = Regex("void (?<name>[a-zA-Z0-9_]+)\\([a-zA-Z0-9_,\\s]*\\)[a-zA-Z\\s,]*\\{")
-
-        val result = signature.find(testCode) ?: return null
-        val start = result.range.last + 1
-        val end = start + findTestEnd(testCode.substring(start))
-        val code = testCode.substring(start, end - 1)
-
-        val methodName = result.groups[1]?.value
-        return ParsedData(testName = methodName ?: "unknown", filePath = filePath, actions = parseActions(code))
-    }
-
-
-    private fun findTestEnd(content: String): Int {
-        var openBracketCount = 1
-        var index = 0
-        val tmp = content.toCharArray()
-        while (openBracketCount > 0) {
-            val it = tmp[index]
-            if (it == '{') {
-                openBracketCount++
-            } else if (it == '}') {
-                openBracketCount--
-            }
-            index++
-        }
-        return index
-    }
-
-    private fun parseActions(sourceCode: String): List<InterfaceAction> {
-        val actions = mutableListOf<InterfaceAction>()
-        val snippets = arrayListOf<String>()
-        sourceCode.trim().split(";\n").map { it.replace("\t", "") }
-            .forEach { s ->
-                if (s.count { it == '{' } != s.count { it == '}' }) {
-                    val kk = clean(s)
-                    snippets.addAll(kk)
-                } else snippets.add(s)
-            }
-
-        snippets.filter { it.isNotEmpty() }.forEach { snippet ->
-            if (asserts.any { snippet.contains(it) }) {
-                actions.add(InterfaceAction(wholeLine = snippet, type = ActionType.ASSERT, args = null))
-            } else if (snippet.contains("wait")) {
-                actions.add(InterfaceAction(wholeLine = snippet, type = ActionType.WAIT, args = null))
-            } else {
-                actions.add(InterfaceAction(wholeLine = snippet, type = ActionType.OTHER, args = null))
-            }
-        }
-
-        return actions
-    }
-
-    private fun clean(str: String): List<String> {
-        val l = str.replace("\n", "")
-        if (l.count { it == '{' } < l.count { it == '}' }) {
-            return if (l.trim().count() == 1 && l.trim() == "}") arrayListOf("")
-            else {
-                var count = 0
-                var r = ""
-                l.toCharArray().forEach {
-                    if (it == '}') {
-                        if (count > 0) count--
-                        else r += ""
-                    } else {
-                        if (it == '{') count++
-                        r += it
-                    }
-                }
-                arrayListOf(r)
-            }
-        }
-
-        val fR = Regex("^\\s*for\\s*\\([^{}()]*\\)\\s\\{")
-        if (fR.find(l) != null) {
-            val tmp = fR.find(l)?.range?.last ?: -1
-            return checkRest(tmp + 1, l)
-        }
-
-        val wR = Regex("^\\s*while\\s*\\([^{}()]*\\)\\s\\{")
-        if (wR.find(l) != null) {
-            val tmp = wR.find(l)?.range?.last ?: -1
-            return checkRest(tmp + 1, l)
-        }
-
-        val ifR = Regex("^\\s*if\\s*(?<name>\\([\\S\\s]*\\))\\s\\{")
-        if (ifR.find(l) != null) {
-            val tmp = ifR.find(l)
-            val inner = tmp?.groups?.get(1)?.value?.trim()?.drop(1)?.dropLast(1) ?: ""
-            return arrayListOf(inner) + checkRest((tmp?.range?.last ?: -1) + 1, l)
-        }
-
-        val eR = Regex("else\\s*\\{")
-        if (eR.find(l) != null) {
-            val tmp = eR.find(l)?.range?.last ?: -1
-            return checkRest(tmp + 1, l)
-        }
-
-        return arrayListOf(l)
-    }
-
-    private fun checkRest(index: Int, content: String): List<String> {
-        val rest = content.substring(index).trim().replace("\t", "")
-        return clean(rest)
-    }
-
-    private val asserts: List<String> = listOf(
-        "assertTrue", "assertFalse", "assertEquals", "assertNotEqual",
-        "assertGreaterThan", "assertStringDoesNotContain", "assertStringContains", "assertNotMatches",
-        "assertMatches", "assertContains", "assertNotNull", "assertNull", "assertLessThanEqualTo", "assertLessThan",
-        "assertGreaterThanEqualTo",
-    )
 }

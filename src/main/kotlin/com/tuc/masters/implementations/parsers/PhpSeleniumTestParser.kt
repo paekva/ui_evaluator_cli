@@ -1,9 +1,7 @@
 package com.tuc.masters.implementations.parsers
 
 import com.tuc.masters.core.TestParser
-import com.tuc.masters.core.models.ActionType
 import com.tuc.masters.core.models.EvaluatorConfig
-import com.tuc.masters.core.models.InterfaceAction
 import com.tuc.masters.core.models.ParsedData
 import org.springframework.stereotype.Component
 import java.io.File
@@ -24,8 +22,9 @@ class PhpSeleniumTestParser : TestParser {
         val filePathParts = file.path.split(config.projectPath ?: "")[1]
         val tests = getAllTestCodes(content)
 
+        val signature = Regex("function (?<name>[a-zA-Z0-9_]+)\\([a-zA-Z0-9_,\\S]*\\)[: void]?[^{]*\\{")
         tests.forEach {
-            val result = getTest(filePathParts, it)
+            val result = getTest(filePathParts, it, signature)
             if (result != null) parsedData.add(result)
         }
 
@@ -74,43 +73,4 @@ class PhpSeleniumTestParser : TestParser {
 
         return filtered
     }
-
-    private fun getTest(filePath: String, testCode: String): ParsedData? {
-        val tmp = testCode.trim().split("\n")
-        val signature = Regex("function (?<name>[a-zA-Z0-9_]+)\\([a-zA-Z0-9_,\\S]*\\)[: void]?[\\S\\s]*")
-        val result = signature.find(tmp[0]) ?: return null
-        val methodName = result.groups[1]?.value
-
-        return ParsedData(
-            testName = methodName ?: "unknown",
-            filePath = filePath,
-            actions = if (tmp.count() < 4) listOf() else parseActions(
-                tmp.subList(2, tmp.count() - 2).joinToString("\n")
-            )
-        )
-    }
-
-    private fun parseActions(sourceCode: String): List<InterfaceAction> {
-        val snippets = sourceCode.split(Regex(";[\\s\n]*"))
-
-        val actions = mutableListOf<InterfaceAction>()
-        snippets.forEach { snippet ->
-            if (asserts.any { snippet.contains(it) }) {
-                actions.add(InterfaceAction(wholeLine = snippet, type = ActionType.ASSERT, args = null))
-            } else if (snippet.contains("wait")) {
-                actions.add(InterfaceAction(wholeLine = snippet, type = ActionType.WAIT, args = null))
-            } else {
-                actions.add(InterfaceAction(wholeLine = snippet, type = ActionType.OTHER, args = null))
-            }
-        }
-
-        return actions
-    }
-
-    private val asserts: List<String> = listOf(
-        "assertTrue", "assertFalse", "assertEquals", "assertNotEqual",
-        "assertGreaterThan", "assertStringDoesNotContain", "assertStringContains", "assertNotMatches",
-        "assertMatches", "assertContains", "assertNotNull", "assertNull", "assertLessThanEqualTo", "assertLessThan",
-        "assertGreaterThanEqualTo",
-    )
 }

@@ -4,6 +4,7 @@ import com.tuc.masters.core.LogParser
 import com.tuc.masters.core.models.ActionType
 import com.tuc.masters.core.models.EvaluatorConfig
 import com.tuc.masters.core.models.InterfaceAction
+import com.tuc.masters.core.models.ParsedData
 import org.springframework.stereotype.Component
 import java.io.File
 
@@ -13,7 +14,7 @@ class ChromeLogParser : LogParser {
     override val supportedBrowsers: List<String>
         get() = listOf("GoogleChrome")
 
-    override fun parseFile(file: File, config: EvaluatorConfig): List<InterfaceAction> {
+    override fun parseFile(file: File, config: EvaluatorConfig): ParsedData {
         val interactions = mutableListOf<InterfaceAction>()
 
         val content = file.readText().trim()
@@ -52,7 +53,7 @@ class ChromeLogParser : LogParser {
             )
         }
 
-        return interactions
+        return ParsedData(file.name.split(".log")[0], file.path, interactions, content)
     }
 
     private fun getArguments(command: String, response: String): String {

@@ -93,7 +93,7 @@ class UIEvaluatorService {
         val parsedData = mutableListOf<ParsedData>()
         files.forEach { log ->
             val result = parser.parseFile(log, config)
-            parsedData.add(ParsedData(log.name.split(".log")[0], log.path, result))
+            parsedData.add(result)
         }
 
         return parsedData
