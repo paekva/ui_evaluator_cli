@@ -20,6 +20,10 @@ class TestExecutionTimeMetricCalculator : MetricCalculator {
         val start = actions.firstOrNull { it.type == ActionType.START }?.timestamp?.toDouble() ?: 0.0
         val stop = actions.firstOrNull { it.type == ActionType.STOP }?.timestamp?.toDouble() ?: 0.0
 
-        return stop - start
+        return if(stop == 0.0 || start == 0.0) 0.0 else stop - start
+    }
+
+    override fun calculateGroupTestMetric(results: List<MetricResult>): Double {
+        return super.calculateGroupTestMetric(results.filter { it.value != 0.0 })
     }
 }
