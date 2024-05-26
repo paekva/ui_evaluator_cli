@@ -16,9 +16,9 @@ class InputSwitchCountMetricCalculator : MetricCalculator {
         )
         set(_) {}
 
-    override fun calculateSingleTestMetric(actions: List<InterfaceAction>): Double {
+    override fun calculateSingleTestMetric(parsedData: ParsedData): Double {
         var count = 0
-        val inputActions = actions.filter { it.type in inputActions }
+        val inputActions = parsedData.actions.filter { it.type in inputActions }
         var isKeyboard = inputActions.firstOrNull()?.type == ActionType.SEND_KEYS
         for (a in inputActions) {
             if (isKeyboard && a.type != ActionType.SEND_KEYS || !isKeyboard && a.type == ActionType.SEND_KEYS) {

@@ -16,9 +16,9 @@ class TestExecutionTimeMetricCalculator : MetricCalculator {
         )
         set(_) {}
 
-    override fun calculateSingleTestMetric(actions: List<InterfaceAction>): Double {
-        val start = actions.firstOrNull { it.type == ActionType.START }?.timestamp?.toDouble() ?: 0.0
-        val stop = actions.firstOrNull { it.type == ActionType.STOP }?.timestamp?.toDouble() ?: 0.0
+    override fun calculateSingleTestMetric(parsedData: ParsedData): Double {
+        val start = parsedData.actions.firstOrNull { it.type == ActionType.START }?.timestamp?.toDouble() ?: 0.0
+        val stop = parsedData.actions.firstOrNull { it.type == ActionType.STOP }?.timestamp?.toDouble() ?: 0.0
 
         return if(stop == 0.0 || start == 0.0) 0.0 else stop - start
     }

@@ -1,10 +1,7 @@
 package com.tuc.masters.implementations.metrics
 
 import com.tuc.masters.core.MetricCalculator
-import com.tuc.masters.core.models.ArtifactType
-import com.tuc.masters.core.models.InterfaceAction
-import com.tuc.masters.core.models.MetricDescription
-import com.tuc.masters.core.models.MetricLevel
+import com.tuc.masters.core.models.*
 import org.springframework.stereotype.Component
 
 
@@ -19,7 +16,7 @@ class NumberOfInteractionOptionsMetricCalculator: MetricCalculator {
         )
         set(_) {}
 
-    override fun calculateSingleTestMetric(actions: List<InterfaceAction>): Double {
+    override fun calculateSingleTestMetric(parsedData: ParsedData): Double {
         // TODO(me): 1. need to find a way to identify complex elements, e.g. radio btns, selectors, button groups (xpath)
         //  2. calculate approx number of options per element
         //  3. do the average for a test (do not forget, that 1 option for interaction is counted as 1)

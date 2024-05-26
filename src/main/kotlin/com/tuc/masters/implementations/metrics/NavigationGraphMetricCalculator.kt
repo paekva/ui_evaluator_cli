@@ -17,9 +17,9 @@ class NavigationGraphMetricCalculator: MetricCalculator {
         )
         set(_) {}
 
-    override fun calculateSingleTestMetric(actions: List<InterfaceAction>): Double {
-        val links = actions.filter { it.type == ActionType.SCROLL || it.type== ActionType.LINK }
-        val scrolls = actions.filter { it.type == ActionType.SCROLL || it.type== ActionType.LINK }
+    override fun calculateSingleTestMetric(parsedData: ParsedData): Double {
+        val links = parsedData.actions.filter { it.type == ActionType.SCROLL || it.type== ActionType.LINK }
+        val scrolls = parsedData.actions.filter { it.type == ActionType.SCROLL || it.type== ActionType.LINK }
         return (links.size * 2 + scrolls.size).toDouble()
     }
 

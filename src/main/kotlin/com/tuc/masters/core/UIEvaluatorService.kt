@@ -44,7 +44,7 @@ class UIEvaluatorService {
 
         tests.forEach { test ->
             val log = findLogByTest(test, logs)
-            testData.add(TestData(test.testName, test.filePath, test.actions, log?.actions ?: listOf()))
+            testData.add(TestData(test.testName, test.filePath, test, log))
         }
 
         return testData
@@ -111,7 +111,7 @@ class UIEvaluatorService {
     }
 
     fun calculateMetrics(
-        parsedData: List<InterfaceAction>,
+        parsedData: ParsedData,
         metrics: List<MetricCalculator>
     ): List<MetricResult> {
         return metrics.map { metric -> metric.getSingleTestMetric(parsedData) }.toList()

@@ -16,10 +16,10 @@ class NumberOfElementsMetricCalculator : MetricCalculator {
         )
         set(_) {}
 
-    override fun calculateSingleTestMetric(actions: List<InterfaceAction>): Double {
+    override fun calculateSingleTestMetric(parsedData: ParsedData): Double {
         val rgx = Regex("\"id\": \"(?<name>\\S+)\"")
         val rgx2 = Regex("\"element[0-9a-z-]+\": \"(?<name>\\S+)\"")
-        val tmp = actions.filter {
+        val tmp = parsedData.actions.filter {
             listOf(
                 ActionType.CLICK,
                 ActionType.SEND_KEYS,

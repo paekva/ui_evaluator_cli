@@ -16,7 +16,7 @@ class NumberOfInteractionsMetricCalculator: MetricCalculator {
         )
         set(_) {}
 
-    override fun calculateSingleTestMetric(actions: List<InterfaceAction>): Double {
-        return actions.count { it.type in listOf(ActionType.SCROLL, ActionType.CLICK, ActionType.SEND_KEYS) }.toDouble()
+    override fun calculateSingleTestMetric(parsedData: ParsedData): Double {
+        return parsedData.actions.count { it.type in listOf(ActionType.SCROLL, ActionType.CLICK, ActionType.SEND_KEYS) }.toDouble()
     }
 }

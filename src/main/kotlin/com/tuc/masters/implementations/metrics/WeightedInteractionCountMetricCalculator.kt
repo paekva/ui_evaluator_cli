@@ -16,8 +16,8 @@ class WeightedInteractionCountMetricCalculator: MetricCalculator {
         )
         set(_) {}
 
-    override fun calculateSingleTestMetric(actions: List<InterfaceAction>): Double {
-        return actions.sumOf {interactionToWeightMap[it.type] ?: 0}.toDouble()
+    override fun calculateSingleTestMetric(parsedData: ParsedData): Double {
+        return parsedData.actions.sumOf {interactionToWeightMap[it.type] ?: 0}.toDouble()
     }
 
     private val interactionToWeightMap: Map<ActionType, Int> = mapOf(

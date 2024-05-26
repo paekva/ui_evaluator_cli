@@ -29,7 +29,7 @@ class UIEvaluatorController(
         showMissingLogs(projectPath, config, testData)
 
         if (config.skipTestsWithoutLogs) {
-            testData = testData.filter { it.logs.isNotEmpty() }
+            testData = testData.filter { it.logs != null }
         }
         val singleMetricsResults = calculateSingleTestMetrics(testData)
         val groupMetricsResults = calculateGroupMetrics(singleMetricsResults, config)
@@ -132,7 +132,7 @@ class UIEvaluatorController(
                     e.testName.contains(it) || (e.filePath?.contains(it) ?: false)
                 }
                 suited.forEach {
-                    res += "${it.testName},${it.logs.isNotEmpty()},${it.filePath}\n"
+                    res += "${it.testName},${it.logs != null},${it.filePath}\n"
                 }
             }
         }
@@ -172,7 +172,7 @@ class UIEvaluatorController(
 
         val results = mutableMapOf<TestData, List<MetricResult>>()
         testData.forEach {
-            val logResults = service.calculateMetrics(it.logs, logMetrics)
+            val logResults = if (it.logs != null) service.calculateMetrics(it.logs!!, logMetrics) else listOf()
             val testResults = service.calculateMetrics(it.sourceCode, testMetrics)
             results[it] = logResults + testResults
         }

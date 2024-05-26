@@ -1,10 +1,7 @@
 package com.tuc.masters.implementations.metrics
 
 import com.tuc.masters.core.MetricCalculator
-import com.tuc.masters.core.models.ArtifactType
-import com.tuc.masters.core.models.InterfaceAction
-import com.tuc.masters.core.models.MetricDescription
-import com.tuc.masters.core.models.MetricLevel
+import com.tuc.masters.core.models.*
 import org.springframework.stereotype.Component
 
 @Component
@@ -18,7 +15,7 @@ class NumberOfCodeStatementsMetricCalculator : MetricCalculator {
         )
         set(_) {}
 
-    override fun calculateSingleTestMetric(actions: List<InterfaceAction>): Double {
-        return actions.count().toDouble()
+    override fun calculateSingleTestMetric(parsedData: ParsedData): Double {
+        return parsedData.actions.count().toDouble()
     }
 }

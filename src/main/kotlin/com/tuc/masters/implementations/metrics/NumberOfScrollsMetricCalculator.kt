@@ -16,7 +16,7 @@ class NumberOfScrollsMetricCalculator : MetricCalculator {
         )
         set(_) {}
 
-    override fun calculateSingleTestMetric(actions: List<InterfaceAction>): Double {
-        return actions.count { it.type == ActionType.SCROLL }.toDouble()
+    override fun calculateSingleTestMetric(parsedData: ParsedData): Double {
+        return parsedData.actions.count { it.type == ActionType.SCROLL }.toDouble()
     }
 }

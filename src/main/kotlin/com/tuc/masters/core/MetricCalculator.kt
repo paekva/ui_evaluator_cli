@@ -4,14 +4,14 @@ import com.tuc.masters.core.models.*
 
 interface MetricCalculator {
     var metricsDescription: MetricDescription
-    fun calculateSingleTestMetric(actions: List<InterfaceAction>): Double
+    fun calculateSingleTestMetric(parsedData: ParsedData): Double
 
     // Basic group test metric is an average of calculated values
     fun calculateGroupTestMetric(results: List<MetricResult>): Double {
         return results.sumOf { it.value } / results.count()
     }
 
-    fun getSingleTestMetric(parsedData: List<InterfaceAction>): MetricResult {
+    fun getSingleTestMetric(parsedData: ParsedData): MetricResult {
         return MetricResult(
             this.metricsDescription,
             calculateSingleTestMetric(parsedData),
