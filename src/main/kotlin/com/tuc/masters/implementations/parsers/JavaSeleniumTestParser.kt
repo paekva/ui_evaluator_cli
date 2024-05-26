@@ -75,16 +75,33 @@ class JavaSeleniumTestParser : TestParser {
     }
 
     private fun getTest(filePath: String, testCode: String): ParsedData? {
-        val signature = Regex("public void (?<name>[a-zA-Z0-9_]+)\\([a-zA-Z0-9_,\\s]*\\)[a-zA-Z\\s,]*\\{")
-        val end = Regex("\\}\\s+")
+        val signature = Regex("void (?<name>[a-zA-Z0-9_]+)\\([a-zA-Z0-9_,\\s]*\\)[a-zA-Z\\s,]*\\{")
 
         val result = signature.find(testCode) ?: return null
-        val code = testCode.substring(result.range.last + 1).split(end)[0].trim()
+        val start = result.range.last + 1
+        val end = start + findTestEnd(testCode.substring(start))
+        val code = testCode.substring(start, end - 1)
 
         val methodName = result.groups[1]?.value
         return ParsedData(testName = methodName ?: "unknown", filePath = filePath, actions = parseActions(code))
     }
 
+
+    private fun findTestEnd(content: String): Int {
+        var openBracketCount = 1
+        var index = 0
+        val tmp = content.toCharArray()
+        while (openBracketCount > 0) {
+            val it = tmp[index]
+            if(it == '{') {
+                openBracketCount++
+            } else if(it == '}') {
+                openBracketCount--
+            }
+            index++
+        }
+        return index
+    }
     private fun parseActions(sourceCode: String): List<InterfaceAction> {
         val actions = mutableListOf<InterfaceAction>()
         val snippets = sourceCode.split("\n")
