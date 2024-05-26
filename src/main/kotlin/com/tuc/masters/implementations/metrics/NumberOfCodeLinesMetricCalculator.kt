@@ -16,6 +16,6 @@ class NumberOfCodeLinesMetricCalculator : MetricCalculator {
         set(_) {}
 
     override fun calculateSingleTestMetric(parsedData: ParsedData): Double {
-        return parsedData.actions.count().toDouble()
+        return parsedData.rawData.split("\n").count().toDouble()
     }
 }
