@@ -93,20 +93,28 @@ class JavaSeleniumTestParser : TestParser {
         val tmp = content.toCharArray()
         while (openBracketCount > 0) {
             val it = tmp[index]
-            if(it == '{') {
+            if (it == '{') {
                 openBracketCount++
-            } else if(it == '}') {
+            } else if (it == '}') {
                 openBracketCount--
             }
             index++
         }
         return index
     }
+
     private fun parseActions(sourceCode: String): List<InterfaceAction> {
         val actions = mutableListOf<InterfaceAction>()
-        val snippets = sourceCode.split("\n")
+        val snippets = arrayListOf<String>()
+        sourceCode.trim().split(";\n").map { it.replace("\t", "") }
+            .forEach { s ->
+                if (s.count { it == '{' } != s.count { it == '}' }) {
+                    val kk = clean(s)
+                    snippets.addAll(kk)
+                } else snippets.add(s)
+            }
 
-        snippets.forEach { snippet ->
+        snippets.filter { it.isNotEmpty() }.forEach { snippet ->
             if (asserts.any { snippet.contains(it) }) {
                 actions.add(InterfaceAction(wholeLine = snippet, type = ActionType.ASSERT, args = null))
             } else if (snippet.contains("wait")) {
@@ -117,6 +125,59 @@ class JavaSeleniumTestParser : TestParser {
         }
 
         return actions
+    }
+
+    private fun clean(str: String): List<String> {
+        val l = str.replace("\n", "")
+        if (l.count { it == '{' } < l.count { it == '}' }) {
+            return if (l.trim().count() == 1 && l.trim() == "}") arrayListOf("")
+            else {
+                var count = 0
+                var r = ""
+                l.toCharArray().forEach {
+                    if (it == '}') {
+                        if (count > 0) count--
+                        else r += ""
+                    } else {
+                        if (it == '{') count++
+                        r += it
+                    }
+                }
+                arrayListOf(r)
+            }
+        }
+
+        val fR = Regex("^\\s*for\\s*\\([^{}()]*\\)\\s\\{")
+        if (fR.find(l) != null) {
+            val tmp = fR.find(l)?.range?.last ?: -1
+            return checkRest(tmp + 1, l)
+        }
+
+        val wR = Regex("^\\s*while\\s*\\([^{}()]*\\)\\s\\{")
+        if (wR.find(l) != null) {
+            val tmp = wR.find(l)?.range?.last ?: -1
+            return checkRest(tmp + 1, l)
+        }
+
+        val ifR = Regex("^\\s*if\\s*(?<name>\\([\\S\\s]*\\))\\s\\{")
+        if (ifR.find(l) != null) {
+            val tmp = ifR.find(l)
+            val inner = tmp?.groups?.get(1)?.value?.trim()?.drop(1)?.dropLast(1) ?: ""
+            return arrayListOf(inner) + checkRest((tmp?.range?.last ?: -1) + 1, l)
+        }
+
+        val eR = Regex("else\\s*\\{")
+        if (eR.find(l) != null) {
+            val tmp = eR.find(l)?.range?.last ?: -1
+            return checkRest(tmp + 1, l)
+        }
+
+        return arrayListOf(l)
+    }
+
+    private fun checkRest(index: Int, content: String): List<String> {
+        val rest = content.substring(index).trim().replace("\t", "")
+        return clean(rest)
     }
 
     private val asserts: List<String> = listOf(

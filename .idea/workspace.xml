@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="Small fixes for php tests">
+    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="Small fixes for controller">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/JavaSeleniumTestParser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/JavaSeleniumTestParser.kt" afterDir="false" />
     </list>
@@ -86,7 +86,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.evlauate with path openolat">
+  <component name="RunManager" selected="Spring Boot.evlauate with path zimbra">
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -184,7 +184,7 @@
       <workItem from="1716374381069" duration="16476000" />
       <workItem from="1716442201793" duration="665000" />
       <workItem from="1716457226657" duration="7220000" />
-      <workItem from="1716544861757" duration="18057000" />
+      <workItem from="1716544861757" duration="27479000" />
     </task>
     <task id="LOCAL-00001" summary="Init console app for ui evaluator">
       <option name="closed" value="true" />
@@ -514,7 +514,23 @@
       <option name="project" value="LOCAL" />
       <updated>1716575929513</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Small fixes for java tests">
+      <option name="closed" value="true" />
+      <created>1716710459461</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1716710459461</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Small fixes for controller">
+      <option name="closed" value="true" />
+      <created>1716710473173</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1716710473173</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -532,8 +548,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="small fixes after a different project was analysed" />
-    <MESSAGE value="some dev funcs" />
     <MESSAGE value="add visualisation layer: interface + 2 base visualisation options, console and csv file" />
     <MESSAGE value="small refactoring" />
     <MESSAGE value="add basic group metrics implementation" />
@@ -557,20 +571,27 @@
     <MESSAGE value="Renamings" />
     <MESSAGE value="Improve on log to test mapping" />
     <MESSAGE value="Small fixes for php tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Small fixes for php tests" />
+    <MESSAGE value="Small fixes for java tests" />
+    <MESSAGE value="Small fixes for controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="Small fixes for controller" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorController.kt</url>
-          <line>35</line>
-          <option name="timeStamp" value="40" />
+          <url>file://$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/JavaSeleniumTestParser.kt</url>
+          <line>112</line>
+          <option name="timeStamp" value="70" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorController.kt</url>
-          <line>164</line>
-          <option name="timeStamp" value="42" />
+          <url>file://$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/JavaSeleniumTestParser.kt</url>
+          <line>151</line>
+          <option name="timeStamp" value="79" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/JavaSeleniumTestParser.kt</url>
+          <line>157</line>
+          <option name="timeStamp" value="80" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
