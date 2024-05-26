@@ -52,7 +52,7 @@ class UIEvaluatorController(
             val selectedTests = arrayListOf<TestData>()
             g.second.forEach {
                 val suited = singleResults.entries.filter { e ->
-                    e.key.testName.contains(it) || (e.key.filePath?.contains(it) ?: false)
+                    (e.key.testName.contains(it) || (e.key.filePath?.contains(it) ?: false)) && !selectedTests.map { it.testName }.contains(e.key.testName)
                 }
                 selectedTests.addAll(suited.map { it.key })
                 selected.addAll(suited.map { it.value })

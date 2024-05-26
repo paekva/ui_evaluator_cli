@@ -26,7 +26,8 @@ class NumberOfElementsMetricCalculator : MetricCalculator {
                 ActionType.SCROLL,
                 ActionType.FIND,
                 ActionType.FIND_ALL,
-                ActionType.IS_DISPLAYED
+                ActionType.IS_DISPLAYED,
+                ActionType.GET_PROPERTY,
             ).contains(it.type)
         }
 
