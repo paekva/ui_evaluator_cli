@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component
 class TestExecutionTimeMetricCalculator : MetricCalculator {
     override var metricsDescription: MetricDescription
         get() = MetricDescription(
-            "Test execution time",
+            "Average test execution time",
             "Time it takes to perform the test based on the log data",
             listOf(MetricLevel.GROUP, MetricLevel.SINGLE_TEST),
             listOf(ArtifactType.LOG_FILE),

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component
 
 
 @Component
-class NavigationGraphMetricCalculator: MetricCalculator {
+class NavigationGraphMetricCalculator : MetricCalculator {
     override var metricsDescription: MetricDescription
         get() = MetricDescription(
             "Navigation graph complexity",
@@ -18,8 +18,8 @@ class NavigationGraphMetricCalculator: MetricCalculator {
         set(_) {}
 
     override fun calculateSingleTestMetric(parsedData: ParsedData): Double {
-        val links = parsedData.actions.filter { it.type == ActionType.SCROLL || it.type== ActionType.LINK }
-        val scrolls = parsedData.actions.filter { it.type == ActionType.SCROLL || it.type== ActionType.LINK }
+        val links = parsedData.actions.filter { it.type == ActionType.LINK }
+        val scrolls = parsedData.actions.filter { it.type == ActionType.SCROLL }
         return (links.size * 2 + scrolls.size).toDouble()
     }
 

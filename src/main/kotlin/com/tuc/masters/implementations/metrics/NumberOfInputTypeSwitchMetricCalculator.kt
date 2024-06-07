@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component
 
 
 @Component
-class InputSwitchCountMetricCalculator : MetricCalculator {
+class NumberOfInputTypeSwitchMetricCalculator : MetricCalculator {
     override var metricsDescription: MetricDescription
         get() = MetricDescription(
-            "Input switch count",
+            "Average number of input type switch per test",
             "How often the input type (mouse vs keyboard) is changed",
             listOf(MetricLevel.GROUP, MetricLevel.SINGLE_TEST),
             listOf(ArtifactType.LOG_FILE),

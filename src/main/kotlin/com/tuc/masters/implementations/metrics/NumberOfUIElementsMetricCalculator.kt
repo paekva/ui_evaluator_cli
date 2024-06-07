@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component
 
 
 @Component
-class NumberOfElementsMetricCalculator : MetricCalculator {
+class NumberOfUIElementsMetricCalculator : MetricCalculator {
     override var metricsDescription: MetricDescription
         get() = MetricDescription(
-            "Number of elements",
+            "Average number of UI elements per test",
             "Calculate number of elements mentioned in the test",
             listOf(MetricLevel.GROUP, MetricLevel.SINGLE_TEST),
             listOf(ArtifactType.LOG_FILE),

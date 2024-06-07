@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component
 class NumberOfScrollsMetricCalculator : MetricCalculator {
     override var metricsDescription: MetricDescription
         get() = MetricDescription(
-            "Number of scrolls",
+            "Average number of scrolls per test",
             "Calculate scrolls",
             listOf(MetricLevel.GROUP, MetricLevel.SINGLE_TEST),
             listOf(ArtifactType.LOG_FILE),

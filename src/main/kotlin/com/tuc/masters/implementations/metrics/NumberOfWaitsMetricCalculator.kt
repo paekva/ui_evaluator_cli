@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component
 class NumberOfWaitsMetricCalculator : MetricCalculator {
     override var metricsDescription: MetricDescription
         get() = MetricDescription(
-            "Number of waits in code",
+            "Average number of waits per test",
             "Calculate number of wait statements",
             listOf(MetricLevel.GROUP, MetricLevel.SINGLE_TEST),
             listOf(ArtifactType.TEST_SOURCE_CODE),

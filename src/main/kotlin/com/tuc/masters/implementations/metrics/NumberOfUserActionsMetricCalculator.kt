@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component
 
 
 @Component
-class NumberOfInteractionsMetricCalculator: MetricCalculator {
+class NumberOfUserActionsMetricCalculator: MetricCalculator {
     override var metricsDescription: MetricDescription
         get() = MetricDescription(
-            "Number of actions",
+            "Average number of user actions per test",
             "Calculate actions, such as clicks, keyboard interaction, scrolls, etc.",
             listOf(MetricLevel.GROUP, MetricLevel.SINGLE_TEST),
             listOf(ArtifactType.LOG_FILE),

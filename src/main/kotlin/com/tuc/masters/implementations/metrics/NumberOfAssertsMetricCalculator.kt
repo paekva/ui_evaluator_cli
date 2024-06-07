@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component
 class NumberOfAssertsMetricCalculator : MetricCalculator {
     override var metricsDescription: MetricDescription
         get() = MetricDescription(
-            "Number of asserts in code",
+            "Average number of asserts per test",
             "Calculate number of assert statements",
             listOf(MetricLevel.GROUP, MetricLevel.SINGLE_TEST),
             listOf(ArtifactType.TEST_SOURCE_CODE),

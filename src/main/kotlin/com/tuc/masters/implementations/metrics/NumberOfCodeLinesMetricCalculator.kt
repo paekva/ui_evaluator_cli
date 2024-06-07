@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component
 class NumberOfCodeLinesMetricCalculator : MetricCalculator {
     override var metricsDescription: MetricDescription
         get() = MetricDescription(
-            "Number of line in test's code",
+            "Average number of code lines per test",
             "Calculate number of code lines",
             listOf(MetricLevel.GROUP, MetricLevel.SINGLE_TEST),
             listOf(ArtifactType.TEST_SOURCE_CODE),
