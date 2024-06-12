@@ -5,11 +5,11 @@ import com.tuc.masters.core.models.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import java.io.File
-import java.lang.Exception
 import java.util.logging.Logger
 
 @Component
 class UIEvaluatorController(
+    @Autowired private val testMapper: TestMapper,
     @Autowired private val service: UIEvaluatorService,
     @Autowired private val logParsers: List<LogParser>,
     @Autowired private val testParsers: List<TestParser>,
@@ -19,7 +19,7 @@ class UIEvaluatorController(
     private var log: Logger = Logger.getLogger(UIEvaluatorCommand::class.java.getName())
 
     fun evaluate(projectPath: String) {
-        val config = retrieveConfig(projectPath) ?: return
+        val config = testMapper.getMappingFromConfig(projectPath) ?: return
 
         val tests = findTestFiles(projectPath, config) ?: return
         val logs = findLogFiles(projectPath, config) ?: return
@@ -31,8 +31,10 @@ class UIEvaluatorController(
         if (config.skipTestsWithoutLogs) {
             testData = testData.filter { it.logs != null }
         }
+
         val singleMetricsResults = calculateSingleTestMetrics(testData)
         val groupMetricsResults = calculateGroupMetrics(singleMetricsResults, config)
+
         for (v in visualisers) {
             v.visualizeSingleMetrics(config, singleMetricsResults)
             v.visualizeGroupMetrics(config, groupMetricsResults)
@@ -52,7 +54,8 @@ class UIEvaluatorController(
             val selectedTests = arrayListOf<TestData>()
             g.second.forEach {
                 val suited = singleResults.entries.filter { e ->
-                    (e.key.testName.contains(it) || (e.key.filePath?.contains(it) ?: false)) && !selectedTests.map { it.testName }.contains(e.key.testName)
+                    (e.key.testName.contains(it) || (e.key.filePath?.contains(it)
+                        ?: false)) && !selectedTests.map { it.testName }.contains(e.key.testName)
                 }
                 selectedTests.addAll(suited.map { it.key })
                 selected.addAll(suited.map { it.value })
@@ -98,32 +101,10 @@ class UIEvaluatorController(
         return logs
     }
 
-    private fun retrieveConfig(projectPath: String): EvaluatorConfig? {
-        // get config file in project root
-        val configFile = File("$projectPath/ui_evaluator_config.yaml")
-        if (!configFile.exists()) {
-            log.warning(
-                "No configuration file ui_evaluator_config.yaml was found in the root of the project." +
-                        "\nProject path: $projectPath"
-            )
-            return null
-        }
-        val config: EvaluatorConfig?
-
-        try {
-            config = service.parseConfig(configFile, projectPath)
-        } catch (e: Exception) {
-            log.warning("Config is malformed")
-            return null
-        }
-
-        return config
-    }
-
     private fun showMissingLogs(projectPath: String, config: EvaluatorConfig, testData: List<TestData>) {
         var res = ""
-        val tmp = File("$projectPath/progress.csv") // NAME
-        if (!tmp.exists()) tmp.createNewFile()
+        val progressFile = File("$projectPath/ui_evaluator_progress.csv")
+        if (!progressFile.exists()) progressFile.createNewFile()
 
         for (g in (config.groups?.toList() ?: listOf())) {
             res += "${g.first}\n"
@@ -137,7 +118,7 @@ class UIEvaluatorController(
             }
         }
 
-        tmp.writeText(res)
+        progressFile.writeText(res)
     }
 
     private fun handleParsing(config: EvaluatorConfig, logs: List<File>, tests: List<File>): List<TestData> {

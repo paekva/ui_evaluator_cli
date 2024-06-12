@@ -1,8 +1,5 @@
 package com.tuc.masters.core
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
-import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.tuc.masters.core.models.*
 import org.springframework.stereotype.Component
 import java.io.File
@@ -10,14 +7,6 @@ import java.util.*
 
 @Component
 class UIEvaluatorService {
-
-    fun parseConfig(file: File, projectPath: String): EvaluatorConfig {
-        val jackson = ObjectMapper(YAMLFactory()).registerKotlinModule()
-        val tmp = jackson.readValue(file.bufferedReader(), EvaluatorConfig::class.java)
-            ?: EvaluatorConfig(testsPath = "./tests", testFilePostfix = "")
-
-        return tmp.copy(projectPath = projectPath)
-    }
 
     fun getFiles(path: String, matchFileName: Regex): List<File> {
         val files = mutableListOf<File>()

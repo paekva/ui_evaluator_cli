@@ -21,11 +21,6 @@ class WeightedUserActionsSumMetricCalculator: MetricCalculator {
     // 0.20s for btn click or keystroke
     // 0.40s homing (changing input device)
     override fun calculateSingleTestMetric(parsedData: ParsedData): Double {
-        /// I think here we need to fo not just sum but take into account sequence, so that we can include homing
-        /// click: pointing + click
-        /// send key: click * input length
-        /// and maybe rename to like KLM time or smth
-
         var sum = 0.0
         var isKeyboard = parsedData.actions.firstOrNull()?.type == ActionType.SEND_KEYS
         for (a in parsedData.actions) {

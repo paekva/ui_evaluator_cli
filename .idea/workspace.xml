@@ -9,20 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="Adding action types">
+    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="Finalisation of v1.0.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/InputSwitchCountMetricCalculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfInputTypeSwitch.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NavigationGraphMetricCalculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NavigationGraphMetricCalculator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfAssertsMetricCalculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfAssertsMetricCalculator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfCodeLinesMetricCalculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfCodeLinesMetricCalculator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfCodeStatementsMetricCalculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfCodeStatementsMetricCalculator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfElementsMetricCalculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfElementsMetricCalculator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfInteractionOptionsMetricCalculator.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfInteractionsMetricCalculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfInteractionsMetricCalculator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfScrollsMetricCalculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfScrollsMetricCalculator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfWaitsMetricCalculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfWaitsMetricCalculator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/TestExecutionTimeMetricCalculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/TestExecutionTimeMetricCalculator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/WeightedInteractionCountMetricCalculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/WeightedInteractionCountMetricCalculator.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorController.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +21,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin Class" />
         <option value="Kotlin File" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -85,6 +74,7 @@
       <recent name="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/metrics" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.tuc.masters.implementations.visualisers" />
       <recent name="com.tuc.masters.implementations.metrics" />
       <recent name="com.tuc.masters.core" />
       <recent name="com.tuc.masters" />
@@ -98,7 +88,7 @@
       <recent name="com.tuc.masters.core" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.evlauate with path openolat">
+  <component name="RunManager" selected="Spring Boot.evlauate with path zimbra">
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -201,23 +191,8 @@
       <workItem from="1716746274402" duration="262000" />
       <workItem from="1717678881269" duration="187000" />
       <workItem from="1717768689395" duration="496000" />
-      <workItem from="1717779527578" duration="35000" />
-    </task>
-    <task id="LOCAL-00004" summary="Moved all existing metrics code to project + autowired it to be foundable components">
-      <option name="closed" value="true" />
-      <created>1713795875253</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1713795875253</updated>
-    </task>
-    <task id="LOCAL-00005" summary="import fixes">
-      <option name="closed" value="true" />
-      <created>1713812859694</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1713812859694</updated>
+      <workItem from="1717779527578" duration="607000" />
+      <workItem from="1718209906105" duration="787000" />
     </task>
     <task id="LOCAL-00006" summary="Refactoring the structure">
       <option name="closed" value="true" />
@@ -595,7 +570,23 @@
       <option name="project" value="LOCAL" />
       <updated>1716746248699</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Naming updates">
+      <option name="closed" value="true" />
+      <created>1717779786273</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1717779786274</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Finalisation of v1.0.0">
+      <option name="closed" value="true" />
+      <created>1718210628951</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1718210628951</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -613,8 +604,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add proper scroll and isDisplayed script parsing" />
-    <MESSAGE value="Small update + missing metric implementation" />
     <MESSAGE value="Add config access to visualiser" />
     <MESSAGE value="Removed todos" />
     <MESSAGE value="small fixes + allow to name whole files to a group" />
@@ -638,7 +627,9 @@
     <MESSAGE value="Updated metric" />
     <MESSAGE value="Fix metric" />
     <MESSAGE value="Adding action types" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding action types" />
+    <MESSAGE value="Naming updates" />
+    <MESSAGE value="Finalisation of v1.0.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finalisation of v1.0.0" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

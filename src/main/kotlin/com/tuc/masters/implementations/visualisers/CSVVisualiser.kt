@@ -1,4 +1,4 @@
-package com.tuc.masters.implementations
+package com.tuc.masters.implementations.visualisers
 
 import com.tuc.masters.core.Visualiser
 import com.tuc.masters.core.models.EvaluatorConfig
