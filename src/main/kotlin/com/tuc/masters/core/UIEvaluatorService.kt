@@ -99,10 +99,12 @@ class UIEvaluatorService {
         return parsedData
     }
 
-    fun calculateMetrics(
-        parsedData: ParsedData,
-        metrics: List<MetricCalculator>
-    ): List<MetricResult> {
-        return metrics.map { metric -> metric.getSingleTestMetric(parsedData) }.toList()
+    fun calculateMetrics(testData: List<TestData>, metrics: List<MetricCalculator>): Map<TestData, List<MetricResult>> {
+        val results = mutableMapOf<TestData, List<MetricResult>>()
+        testData.forEach {
+            results[it] = metrics.map { metric -> metric.getSingleTestMetric(it.sourceCode, it.logs) }.toList()
+        }
+
+        return results
     }
 }

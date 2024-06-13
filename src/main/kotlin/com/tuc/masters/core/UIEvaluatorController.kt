@@ -32,7 +32,7 @@ class UIEvaluatorController(
             testData = testData.filter { it.logs != null }
         }
 
-        val singleMetricsResults = calculateSingleTestMetrics(testData)
+        val singleMetricsResults = service.calculateMetrics(testData, metrics)
         val groupMetricsResults = calculateGroupMetrics(singleMetricsResults, config)
 
         for (v in visualisers) {
@@ -144,21 +144,5 @@ class UIEvaluatorController(
         }
 
         return service.getTestData(parsedLogsData, parsedTestData)
-    }
-
-    private fun calculateSingleTestMetrics(testData: List<TestData>): Map<TestData, List<MetricResult>> {
-        // calculate
-        val logMetrics = metrics.filter { it.metricsDescription.artifactTypes.contains(ArtifactType.LOG_FILE) }
-        val testMetrics = metrics.filter { it.metricsDescription.artifactTypes.contains(ArtifactType.TEST_SOURCE_CODE) }
-
-        val results = mutableMapOf<TestData, List<MetricResult>>()
-        testData.forEach {
-            val logResults = if (it.logs != null) service.calculateMetrics(it.logs!!, logMetrics) else listOf()
-            val testResults = service.calculateMetrics(it.sourceCode, testMetrics)
-            results[it] = logResults + testResults
-        }
-
-        return results
-
     }
 }

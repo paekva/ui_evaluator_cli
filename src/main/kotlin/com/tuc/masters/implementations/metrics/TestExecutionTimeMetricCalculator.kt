@@ -10,20 +10,26 @@ class TestExecutionTimeMetricCalculator : MetricCalculator {
     override var metricsDescription: MetricDescription
         get() = MetricDescription(
             "Average test execution time",
-            "Time it takes to perform the test based on the log data",
+            "Calculate (average) test (tests) execution time" +
+                    "Time it takes to perform the test based on the log data",
             listOf(MetricLevel.GROUP, MetricLevel.SINGLE_TEST),
             listOf(ArtifactType.LOG_FILE),
         )
         set(_) {}
 
-    override fun calculateSingleTestMetric(parsedData: ParsedData): Double {
-        val start = parsedData.actions.firstOrNull { it.type == ActionType.START }?.timestamp?.toDouble() ?: 0.0
-        val stop = parsedData.actions.firstOrNull { it.type == ActionType.STOP }?.timestamp?.toDouble() ?: 0.0
+    override fun getSingleTestMetric(testParsedData: ParsedData, logsParsedData: ParsedData?): MetricResult {
+        val start =
+            (logsParsedData?.actions ?: listOf()).firstOrNull { it.type == ActionType.START }?.timestamp?.toDouble()
+                ?: 0.0
+        val stop =
+            (logsParsedData?.actions ?: listOf()).firstOrNull { it.type == ActionType.STOP }?.timestamp?.toDouble()
+                ?: 0.0
 
-        return if(stop == 0.0 || start == 0.0) 0.0 else stop - start
+        val result = if (stop == 0.0 || start == 0.0) 0.0 else stop - start
+        return wrapResult(result)
     }
 
-    override fun calculateGroupTestMetric(results: List<MetricResult>): Double {
-        return super.calculateGroupTestMetric(results.filter { it.value != 0.0 })
+    override fun getGroupTestMetric(results: List<MetricResult>): MetricResult {
+        return super.getGroupTestMetric(results.filter { it.value != 0.0 })
     }
 }

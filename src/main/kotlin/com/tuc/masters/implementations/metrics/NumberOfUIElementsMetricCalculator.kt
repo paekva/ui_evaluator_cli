@@ -9,17 +9,17 @@ import org.springframework.stereotype.Component
 class NumberOfUIElementsMetricCalculator : MetricCalculator {
     override var metricsDescription: MetricDescription
         get() = MetricDescription(
-            "Average number of UI elements per test",
-            "Calculate number of elements mentioned in the test",
+            "Average number of UI elements",
+            "Calculate (average) number of elements in test (tests)",
             listOf(MetricLevel.GROUP, MetricLevel.SINGLE_TEST),
             listOf(ArtifactType.LOG_FILE),
         )
         set(_) {}
 
-    override fun calculateSingleTestMetric(parsedData: ParsedData): Double {
+    override fun getSingleTestMetric(testParsedData: ParsedData, logsParsedData: ParsedData?): MetricResult {
         val rgx = Regex("\"id\": \"(?<name>\\S+)\"")
         val rgx2 = Regex("\"element[0-9a-z-]+\": \"(?<name>\\S+)\"")
-        val tmp = parsedData.actions.filter {
+        val tmp = (logsParsedData?.actions ?: listOf()).filter {
             listOf(
                 ActionType.CLICK,
                 ActionType.SEND_KEYS,
@@ -39,6 +39,8 @@ class NumberOfUIElementsMetricCalculator : MetricCalculator {
             elements.add(res)
         }
         val uniqueEl = elements.toSet().toList().filter { it.isNotBlank() }
-        return uniqueEl.size.toDouble()
+        val result = uniqueEl.size.toDouble()
+
+        return wrapResult(result)
     }
 }
