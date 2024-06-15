@@ -1,6 +1,6 @@
 package com.tuc.masters.core
 
-import com.tuc.masters.UIEvaluatorCommand
+import com.tuc.masters.commands.UIEvaluatorCommand
 import com.tuc.masters.core.models.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
