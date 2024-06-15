@@ -2,6 +2,7 @@ package com.tuc.masters.core
 
 import com.tuc.masters.commands.UIEvaluatorCommand
 import com.tuc.masters.core.models.*
+import mu.KLogging
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import java.io.File
@@ -16,7 +17,7 @@ class UIEvaluatorController(
     @Autowired private val visualisers: List<Visualiser>,
     @Autowired private val metrics: List<MetricCalculator>,
 ) {
-    private var log: Logger = Logger.getLogger(UIEvaluatorCommand::class.java.getName())
+    companion object : KLogging()
 
     fun evaluate(projectPath: String) {
         val config = testMapper.getMappingFromConfig(projectPath) ?: return
@@ -79,7 +80,7 @@ class UIEvaluatorController(
         val tests = service.getFiles(testsPath, testFileRegex)
 
         if (tests.isEmpty()) {
-            log.warning("No test files were found in provided folder.\ntests: $testsPath")
+            logger.warn {"No test files were found in provided folder.\ntests: $testsPath"}
             return null
         }
 
@@ -94,7 +95,7 @@ class UIEvaluatorController(
         val logs = service.getFiles(logsPath, logsFileRegex)
 
         if (logs.isEmpty()) {
-            log.warning("No log files were found in provided folder.\nlogs: $logsPath")
+            logger.warn {"No log files were found in provided folder.\nlogs: $logsPath"}
             return null
         }
 

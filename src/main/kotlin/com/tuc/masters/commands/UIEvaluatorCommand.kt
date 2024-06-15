@@ -1,6 +1,7 @@
 package com.tuc.masters.commands
 
 import com.tuc.masters.core.UIEvaluatorController
+import mu.KLogging
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.shell.standard.ShellComponent
 import org.springframework.shell.standard.ShellMethod
@@ -9,14 +10,14 @@ import java.util.logging.Logger
 
 @ShellComponent
 class UIEvaluatorCommand(@Autowired private val controller: UIEvaluatorController) {
-    private var log: Logger = Logger.getLogger(UIEvaluatorCommand::class.java.getName())
+    companion object : KLogging()
 
     @ShellMethod(value = "Evaluates application based on provided UI tests and config")
     fun evaluate(@ShellOption(defaultValue = "./") path: String) {
         try {
             controller.evaluate(path)
         } catch (e: Exception) {
-            log.severe("Something went wrong during the process: $e")
+            logger.error(e) { "Something went wrong during the process" }
         }
     }
 }
