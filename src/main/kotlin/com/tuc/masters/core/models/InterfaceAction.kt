@@ -1,5 +1,6 @@
 package com.tuc.masters.core.models
 
+// Information about a single extracted from the test action
 class InterfaceAction (
     var wholeLine: String,
     var type: ActionType,

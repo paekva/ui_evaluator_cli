@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component
 import java.io.File
 
 
+// Implementation of the [LogParser] for GoogleChrome based logs
 @Component
 class ChromeLogParser : LogParser {
     override val supportedBrowsers: List<String>

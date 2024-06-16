@@ -6,7 +6,7 @@ import com.tuc.masters.core.models.ParsedData
 import org.springframework.stereotype.Component
 import java.io.File
 
-
+// Implementation of the [TestParser] for PHP + Selenium based tests
 @Component
 class PhpSeleniumTestParser : TestParser {
     override val supportedLanguages: List<String>

@@ -12,6 +12,7 @@ import java.util.logging.Logger
 class UIEvaluatorCommand(@Autowired private val controller: UIEvaluatorController) {
     companion object : KLogging()
 
+    // CLI command 'evaluate' triggers the calculation of the metrics
     @ShellMethod(value = "Evaluates application based on provided UI tests and config")
     fun evaluate(@ShellOption(defaultValue = "./") path: String) {
         try {

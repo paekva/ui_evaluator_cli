@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component
 import java.math.BigDecimal
 import java.math.RoundingMode
 
+// Implementation of the [Visualiser] for printing to console
 @Component
 class ConsoleVisualiser : Visualiser {
     override fun visualizeSingleMetrics(config: EvaluatorConfig, data: Map<TestData, List<MetricResult>>) {

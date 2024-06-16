@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component
 class WeightedUserActionsSumMetricCalculator : MetricCalculator {
     override var metricsDescription: MetricDescription
         get() = MetricDescription(
-            "Average weighted user actions sum per test",
+            "Average weighted user actions sum",
             "Calculate (average) interactions sum based on their type",
             listOf(MetricLevel.GROUP, MetricLevel.SINGLE_TEST),
             listOf(ArtifactType.LOG_FILE),

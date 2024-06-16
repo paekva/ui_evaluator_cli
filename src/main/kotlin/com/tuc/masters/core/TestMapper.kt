@@ -11,6 +11,7 @@ import java.io.File
 import java.lang.Exception
 import java.util.logging.Logger
 
+// Component that handles the extraction of data from the config
 @Component
 class TestMapper {
     companion object : KLogging()

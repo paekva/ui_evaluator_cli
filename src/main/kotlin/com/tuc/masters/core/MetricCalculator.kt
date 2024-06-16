@@ -2,6 +2,7 @@ package com.tuc.masters.core
 
 import com.tuc.masters.core.models.*
 
+// Describes the functionality that a metric calculation class should have
 interface MetricCalculator {
     var metricsDescription: MetricDescription
 

@@ -1,5 +1,6 @@
 package com.tuc.masters.core.models
 
+// Description of the project for the evaluation process
 data class EvaluatorConfig(
     val testLanguage: String? = "Java",
     val testBrowser: String? = "GoogleChrome",

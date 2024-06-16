@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component
 import java.io.File
 import java.util.*
 
+// Service handles additional logic for managing the calcualtion process
 @Component
 class UIEvaluatorService {
 

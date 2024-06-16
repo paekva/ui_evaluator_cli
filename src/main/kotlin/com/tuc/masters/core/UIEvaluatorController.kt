@@ -1,13 +1,12 @@
 package com.tuc.masters.core
 
-import com.tuc.masters.commands.UIEvaluatorCommand
 import com.tuc.masters.core.models.*
 import mu.KLogging
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import java.io.File
-import java.util.logging.Logger
 
+// The controller handles all logic for the calculation of metrics
 @Component
 class UIEvaluatorController(
     @Autowired private val testMapper: TestMapper,

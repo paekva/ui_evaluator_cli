@@ -10,6 +10,7 @@ import java.io.File
 import java.math.BigDecimal
 import java.math.RoundingMode
 
+// Implementation of the [Visualiser] for saving to CSV files
 @Component
 class CSVVisualiser : Visualiser {
     override fun visualizeSingleMetrics(config: EvaluatorConfig, data: Map<TestData, List<MetricResult>>) {

@@ -6,6 +6,7 @@ import com.tuc.masters.core.models.ParsedData
 import org.springframework.stereotype.Component
 import java.io.File
 
+// Implementation of the [TestParser] for Java + Selenium based tests
 @Component
 class JavaSeleniumTestParser : TestParser {
     override val supportedLanguages: List<String>
