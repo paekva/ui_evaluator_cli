@@ -9,11 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="Updating documentation">
+    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="Update pom for release">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/commands/UIEvaluatorCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/commands/UIEvaluatorCommand.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/visualisers/CSVVisualiser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/visualisers/CSVVisualiser.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/visualisers/ConsoleVisualiser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/visualisers/ConsoleVisualiser.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +96,7 @@
       <recent name="com.tuc.masters.core" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.info">
+  <component name="RunManager" selected="Spring Boot.evlauate with path zimbra (1)">
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -108,7 +110,7 @@
     </configuration>
     <configuration name="evlauate with path alfio" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="ui_evaluator_cli" />
-      <option name="PROGRAM_PARAMETERS" value="evaluate  --path $PROJECT_DIR$/../masters_materials/projects/alf.io" />
+      <option name="PROGRAM_PARAMETERS" value="evaluate  --path $USER_HOME$/Documents/thesis/prep_data/raw_data/projects/alf.io" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.tuc.masters.SpringShellMain" />
       <extension name="coverage">
         <pattern>
@@ -122,7 +124,7 @@
     </configuration>
     <configuration name="evlauate with path limesurvey" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="ui_evaluator_cli" />
-      <option name="PROGRAM_PARAMETERS" value="evaluate  --path $PROJECT_DIR$/../masters_materials/projects/LimeSurvey" />
+      <option name="PROGRAM_PARAMETERS" value="evaluate  --path $USER_HOME$/Documents/thesis/prep_data/raw_data/projects/LimeSurvey" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.tuc.masters.SpringShellMain" />
       <extension name="coverage">
         <pattern>
@@ -136,7 +138,21 @@
     </configuration>
     <configuration name="evlauate with path openolat" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true">
       <module name="ui_evaluator_cli" />
-      <option name="PROGRAM_PARAMETERS" value="evaluate  --path $PROJECT_DIR$/../masters_materials/projects/OpenOLAT" />
+      <option name="PROGRAM_PARAMETERS" value="evaluate  --path $USER_HOME$/Documents/thesis/prep_data/raw_data/projects/OpenOLAT" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.tuc.masters.SpringShellMain" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.tuc.masters.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="evlauate with path zimbra (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="ui_evaluator_cli" />
+      <option name="PROGRAM_PARAMETERS" value="evaluate  --path $PROJECT_DIR$/../masters_materials/projects/zm-selenium --debug true" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.tuc.masters.SpringShellMain" />
       <extension name="coverage">
         <pattern>
@@ -150,21 +166,7 @@
     </configuration>
     <configuration name="evlauate with path zimbra" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="ui_evaluator_cli" />
-      <option name="PROGRAM_PARAMETERS" value="evaluate  --path $PROJECT_DIR$/../masters_materials/projects/zm-selenium" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.tuc.masters.SpringShellMain" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.tuc.masters.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="info" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="ui_evaluator_cli" />
-      <option name="PROGRAM_PARAMETERS" value="info" />
+      <option name="PROGRAM_PARAMETERS" value="evaluate  --path $USER_HOME$/Documents/thesis/prep_data/raw_data/projects/zm-selenium" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.tuc.masters.SpringShellMain" />
       <extension name="coverage">
         <pattern>
@@ -178,9 +180,9 @@
     </configuration>
     <list>
       <item itemvalue="Spring Boot.evlauate with path zimbra" />
+      <item itemvalue="Spring Boot.evlauate with path zimbra (1)" />
       <item itemvalue="Spring Boot.evlauate with path alfio" />
       <item itemvalue="Spring Boot.evlauate with path limesurvey" />
-      <item itemvalue="Spring Boot.info" />
       <item itemvalue="Spring Boot.evlauate with path openolat" />
     </list>
     <recent_temporary>
@@ -214,23 +216,9 @@
       <workItem from="1717768689395" duration="496000" />
       <workItem from="1717779527578" duration="607000" />
       <workItem from="1718209906105" duration="15212000" />
-      <workItem from="1718475839582" duration="6221000" />
-    </task>
-    <task id="LOCAL-00013" summary="Add empty implementation of test parser">
-      <option name="closed" value="true" />
-      <created>1713888350354</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1713888350354</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Add config file and some test parsing">
-      <option name="closed" value="true" />
-      <created>1714501438302</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1714501438302</updated>
+      <workItem from="1718475839582" duration="8270000" />
+      <workItem from="1718633026759" duration="1198000" />
+      <workItem from="1718634294770" duration="1403000" />
     </task>
     <task id="LOCAL-00015" summary="merged parse results of logs and tests">
       <option name="closed" value="true" />
@@ -608,7 +596,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718557556980</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Update readme + add missing info command">
+      <option name="closed" value="true" />
+      <created>1718617041779</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1718617041779</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Update pom for release">
+      <option name="closed" value="true" />
+      <created>1718633057925</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1718633057926</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -626,8 +630,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="improve console display" />
-    <MESSAGE value="support grouping by paths" />
     <MESSAGE value="add filtering config option" />
     <MESSAGE value="add error tracking" />
     <MESSAGE value="add group's test missing logs finder" />
@@ -651,7 +653,9 @@
     <MESSAGE value="Fix jar build" />
     <MESSAGE value="Update logger" />
     <MESSAGE value="Updating documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updating documentation" />
+    <MESSAGE value="Update readme + add missing info command" />
+    <MESSAGE value="Update pom for release" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update pom for release" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

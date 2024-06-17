@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.shell.standard.ShellComponent
 import org.springframework.shell.standard.ShellMethod
 import org.springframework.shell.standard.ShellOption
-import java.util.logging.Logger
 
 @ShellComponent
 class UIEvaluatorCommand(@Autowired private val controller: UIEvaluatorController) {
@@ -14,9 +13,9 @@ class UIEvaluatorCommand(@Autowired private val controller: UIEvaluatorControlle
 
     // CLI command 'evaluate' triggers the calculation of the metrics
     @ShellMethod(value = "Evaluates application based on provided UI tests and config")
-    fun evaluate(@ShellOption(defaultValue = "./") path: String) {
+    fun evaluate(@ShellOption(defaultValue = "./") path: String, @ShellOption(defaultValue = false.toString()) debug: Boolean) {
         try {
-            controller.evaluate(path)
+            controller.evaluate(path, debug)
         } catch (e: Exception) {
             logger.error(e) { "Something went wrong during the process" }
         }

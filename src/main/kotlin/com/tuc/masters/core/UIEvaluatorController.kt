@@ -29,22 +29,55 @@ class UIEvaluatorController(
         logger.info { "" }
     }
 
-    fun evaluate(projectPath: String) {
+    fun evaluate(projectPath: String, debug: Boolean) {
+        if (debug) {
+            logger.info { "Fetching config" }
+        }
         val config = testMapper.getMappingFromConfig(projectPath) ?: return
 
+        if (debug) {
+            logger.info { "Fetching test files" }
+        }
         val tests = findTestFiles(projectPath, config) ?: return
+        if (debug) {
+            logger.info { "Found ${tests.count()} test files" }
+            logger.info { "Fetching log files" }
+        }
         val logs = findLogFiles(projectPath, config) ?: return
+        if (debug) {
+            logger.info { "Found ${logs.count()} log files" }
+            logger.info { "Parsing tests data" }
+        }
 
         var testData = handleParsing(config, logs, tests)
+        if (debug) {
+            logger.info { "Found ${testData.count()} tests" }
+            logger.info { "Looking for missing logs data" }
+        }
 
         showMissingLogs(projectPath, config, testData)
+        if (debug) {
+            logger.info { "Skipping tests without logs if required by config" }
+        }
 
         if (config.skipTestsWithoutLogs) {
             testData = testData.filter { it.logs != null }
         }
+        if (debug) {
+            logger.info { "Remaining tests: ${testData.count()}" }
+            logger.info { "Calculating single metrics result" }
+        }
 
         val singleMetricsResults = service.calculateMetrics(testData, metrics)
+        if (debug) {
+            logger.info { "Metrics calculated for ${singleMetricsResults.keys.count()} tests" }
+            logger.info { "Calculating group metrics result" }
+        }
         val groupMetricsResults = calculateGroupMetrics(singleMetricsResults, config)
+        if (debug) {
+            logger.info { "Metrics calculated for ${groupMetricsResults.keys.count()} groups" }
+            logger.info { "Visualising results" }
+        }
 
         for (v in visualisers) {
             v.visualizeSingleMetrics(config, singleMetricsResults)

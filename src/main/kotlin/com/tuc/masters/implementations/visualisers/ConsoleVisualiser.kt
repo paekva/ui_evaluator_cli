@@ -7,6 +7,7 @@ import com.tuc.masters.core.models.MetricResult
 import com.tuc.masters.core.models.TestData
 import de.m3y.kformat.Table
 import de.m3y.kformat.table
+import mu.KLogging
 import org.springframework.stereotype.Component
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -14,7 +15,13 @@ import java.math.RoundingMode
 // Implementation of the [Visualiser] for printing to console
 @Component
 class ConsoleVisualiser : Visualiser {
+    companion object : KLogging()
     override fun visualizeSingleMetrics(config: EvaluatorConfig, data: Map<TestData, List<MetricResult>>) {
+        if (data.entries.toList().isEmpty()) {
+            logger.warn { "No data found to visualise for single metrics" }
+            return
+        }
+
         val header = arrayListOf("test name")
         header.addAll(data.entries.toList()[0].value.map { it.metric.name })
 
@@ -24,6 +31,11 @@ class ConsoleVisualiser : Visualiser {
     }
 
     override fun visualizeGroupMetrics(config: EvaluatorConfig, data: Map<GroupData, List<MetricResult>>) {
+        if (data.entries.toList().isEmpty()) {
+            logger.warn { "No data found to visualise for group metrics" }
+            return
+        }
+
         val header = arrayListOf("group name")
         header.addAll(data.entries.toList()[0].value.map { it.metric.name })
 
