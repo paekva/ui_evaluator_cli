@@ -39,7 +39,7 @@ class CSVVisualiser : Visualiser {
     }
 
     override fun visualizeGroupMetrics(config: EvaluatorConfig, data: Map<GroupData, List<MetricResult>>) {
-        if (data.entries.toList().isEmpty()) {
+        if (data.entries.toList().isEmpty() || data.values.flatten().isEmpty()) {
             logger.warn { "No data found to visualise for group metrics" }
             return
         }

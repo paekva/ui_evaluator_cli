@@ -49,7 +49,7 @@ class UIEvaluatorController(
             logger.info { "Parsing tests data" }
         }
 
-        var testData = handleParsing(config, logs, tests)
+        var testData = handleParsing(config, logs, tests, debug)
         if (debug) {
             logger.info { "Found ${testData.count()} tests" }
             logger.info { "Looking for missing logs data" }
@@ -165,14 +165,19 @@ class UIEvaluatorController(
         progressFile.writeText(res)
     }
 
-    private fun handleParsing(config: EvaluatorConfig, logs: List<File>, tests: List<File>): List<TestData> {
+    private fun handleParsing(config: EvaluatorConfig, logs: List<File>, tests: List<File>, debug: Boolean): List<TestData> {
         // parse logs
         val logParser = service.findLogParser(config, logParsers)
         val parsedLogsData = service.parseLogs(logs, config, logParser)
-
+        if (debug) {
+            logger.info { "Parsed logs: ${parsedLogsData.count()}" }
+        }
         // parse tests
         val testParser = service.findTestParser(config, testParsers)
         var parsedTestData = service.parseTests(tests, config, testParser)
+        if (debug) {
+            logger.info { "Parsed tests: ${parsedTestData.count()}" }
+        }
 
         if (!config.exclude.isNullOrEmpty()) {
             config.exclude.forEach {
@@ -180,11 +185,17 @@ class UIEvaluatorController(
                     parsedTestData.filter { t -> !(t.testName.contains(it) || (t.filePath ?: "").contains(it)) }
             }
         }
+        if (debug) {
+            logger.info { "After applying config exclusion - ${parsedTestData.count()} tests" }
+        }
         if (!config.groups.isNullOrEmpty()) {
             parsedTestData =
                 parsedTestData.filter { t ->
                     config.groups.values.flatten().any { t.testName == it || (t.filePath ?: "").contains(it) }
                 }
+        }
+        if (debug) {
+            logger.info { "After applying config grouping - ${parsedTestData.count()} tests" }
         }
 
         return service.getTestData(parsedLogsData, parsedTestData)

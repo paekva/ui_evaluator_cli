@@ -9,10 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="Update pom for release">
+    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="Add debug prints">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/commands/UIEvaluatorCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/commands/UIEvaluatorCommand.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorController.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/visualisers/CSVVisualiser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/visualisers/CSVVisualiser.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/visualisers/ConsoleVisualiser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/visualisers/ConsoleVisualiser.kt" afterDir="false" />
@@ -218,15 +216,7 @@
       <workItem from="1718209906105" duration="15212000" />
       <workItem from="1718475839582" duration="8270000" />
       <workItem from="1718633026759" duration="1198000" />
-      <workItem from="1718634294770" duration="1403000" />
-    </task>
-    <task id="LOCAL-00015" summary="merged parse results of logs and tests">
-      <option name="closed" value="true" />
-      <created>1714565845352</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1714565845352</updated>
+      <workItem from="1718634294770" duration="2460000" />
     </task>
     <task id="LOCAL-00016" summary="small fixes after a different project was analysed">
       <option name="closed" value="true" />
@@ -612,7 +602,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718633057926</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="Add debug prints">
+      <option name="closed" value="true" />
+      <created>1718635738119</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1718635738119</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -630,7 +628,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add filtering config option" />
     <MESSAGE value="add error tracking" />
     <MESSAGE value="add group's test missing logs finder" />
     <MESSAGE value="add test exclusion" />
@@ -655,7 +652,8 @@
     <MESSAGE value="Updating documentation" />
     <MESSAGE value="Update readme + add missing info command" />
     <MESSAGE value="Update pom for release" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update pom for release" />
+    <MESSAGE value="Add debug prints" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add debug prints" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
