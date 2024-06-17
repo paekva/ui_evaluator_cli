@@ -8,9 +8,15 @@ The developed application is a proof-of-concept for the solution for calculation
 
 ## Technologies
 In this project the following technologies were used:
-- Spring Boot CLI 
-- Kotlin
-- Maven
+- Kotlin/Java (JDK 17)
+- Maven (v3.9.6)
+- Spring Boot CLI (will be installed by Maven)
+
+## Development setup process
+To run the application in development mode or build it, you need the above-mentioned technologies in place, plus:
+
+`git clone` or download zip to get the code
+`mvn install` to get all the dependencies
 
 ## Build process
 The application can be packaged into .jar for the further use with the help of Maven:
@@ -19,7 +25,7 @@ The application can be packaged into .jar for the further use with the help of M
 
 The resulting jar can be executed as usual:
 
-`java -jar ui_evaluator_cli.jar`
+`java -jar ui_evaluator_cli.jar ...`
 
 ## Use
 To use the tool to analyse existing project, one should:
@@ -28,14 +34,14 @@ To use the tool to analyse existing project, one should:
 3. Observe the results
 
 The tool provides following command:
-- _evaluate_ - get compleixty metrics for the provided application
+- _evaluate_ - get complexity metrics for the provided application
 
-  `java -jar ui_evaluator_cli.jar evaluate ./`
+  `java -jar ui_evaluator_cli.jar evaluate --path ./`
   
 
-- _help_ - get tool description
+- _info_ - get tool description
   
-  `java -jar ui_evaluator_cli.jar help ./`
+  `java -jar ui_evaluator_cli.jar info`
 
 ### Configuration file
 In order for evaluation to work, the project root should have the __ui_evaluator_config.yaml__ available. 

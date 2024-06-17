@@ -18,6 +18,17 @@ class UIEvaluatorController(
 ) {
     companion object : KLogging()
 
+    fun info() {
+        logger.info { "" }
+        logger.info { "------------------------------------------------------------------------------------------------------------------" }
+        logger.info { "This is the UI Tests Evaluator CLI app, that calculates the complexity of the interface by analysing the UI Tests" }
+        logger.info { "Use `evaluate` --path <config_path> command to start the evaluation process" }
+        logger.info { "The example of the config can be found in the repository at https://github.com/paekva/ui_evaluator_cli" }
+        logger.info { "Please, refer to the README.md file to get more information" }
+        logger.info { "------------------------------------------------------------------------------------------------------------------" }
+        logger.info { "" }
+    }
+
     fun evaluate(projectPath: String) {
         val config = testMapper.getMappingFromConfig(projectPath) ?: return
 

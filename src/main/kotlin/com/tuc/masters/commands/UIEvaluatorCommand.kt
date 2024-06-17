@@ -21,4 +21,14 @@ class UIEvaluatorCommand(@Autowired private val controller: UIEvaluatorControlle
             logger.error(e) { "Something went wrong during the process" }
         }
     }
+
+    // CLI command 'evaluate' triggers the calculation of the metrics
+    @ShellMethod(value = "Provides information about the CLI tool")
+    fun info() {
+        try {
+            controller.info()
+        } catch (e: Exception) {
+            logger.error(e) { "Something went wrong during the process" }
+        }
+    }
 }
