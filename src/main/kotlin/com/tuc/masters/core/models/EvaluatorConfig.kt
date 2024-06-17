@@ -15,5 +15,6 @@ data class EvaluatorConfig(
     val testAnnotation: String? = null,
     val testPrefix: String? = "",
     val skipTestsWithoutLogs: Boolean = false,
-    val groups: Map<String, List<String>>? = null
+    val visualiseSingleTestMetrics: Boolean = false,
+    val groups: Map<String, List<String>>? = null,
 )

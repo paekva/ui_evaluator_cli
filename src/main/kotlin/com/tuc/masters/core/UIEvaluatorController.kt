@@ -80,7 +80,7 @@ class UIEvaluatorController(
         }
 
         for (v in visualisers) {
-            v.visualizeSingleMetrics(config, singleMetricsResults)
+            if(config.visualiseSingleTestMetrics) v.visualizeSingleMetrics(config, singleMetricsResults)
             v.visualizeGroupMetrics(config, groupMetricsResults)
         }
     }
@@ -97,12 +97,13 @@ class UIEvaluatorController(
             val selected = arrayListOf<List<MetricResult>>()
             val selectedTests = arrayListOf<TestData>()
             g.second.forEach {
+                val fixed = if (it[0] == '/') it.drop(1) else if (it[it.count() - 1] == '/') it.dropLast(1) else it
                 val suited = singleResults.entries.filter { e ->
-                    (e.key.testName.contains(it) || (e.key.filePath?.contains(it)
+                    (e.key.testName.contains(fixed) || (e.key.filePath?.contains(fixed)
                         ?: false)) && !selectedTests.map { it.testName }.contains(e.key.testName)
                 }
-                selectedTests.addAll(suited.map { it.key })
-                selected.addAll(suited.map { it.value })
+                selectedTests.addAll(suited.map { s -> s.key })
+                selected.addAll(suited.map { s -> s.value })
             }
 
             for (m in metrics) {
@@ -123,7 +124,7 @@ class UIEvaluatorController(
         val tests = service.getFiles(testsPath, testFileRegex)
 
         if (tests.isEmpty()) {
-            logger.warn {"No test files were found in provided folder.\ntests: $testsPath"}
+            logger.warn { "No test files were found in provided folder.\ntests: $testsPath" }
             return null
         }
 
@@ -138,7 +139,7 @@ class UIEvaluatorController(
         val logs = service.getFiles(logsPath, logsFileRegex)
 
         if (logs.isEmpty()) {
-            logger.warn {"No log files were found in provided folder.\nlogs: $logsPath"}
+            logger.warn { "No log files were found in provided folder.\nlogs: $logsPath" }
             return null
         }
 
@@ -153,11 +154,12 @@ class UIEvaluatorController(
         for (g in (config.groups?.toList() ?: listOf())) {
             res += "${g.first}\n"
             g.second.forEach {
+                val fixed = if (it[0] == '/') it.drop(1) else if (it[it.count() - 1] == '/') it.dropLast(1) else it
                 val suited = testData.filter { e ->
-                    e.testName.contains(it) || (e.filePath?.contains(it) ?: false)
+                    e.testName.contains(fixed) || (e.filePath?.contains(fixed) ?: false)
                 }
-                suited.forEach {
-                    res += "${it.testName},${it.logs != null},${it.filePath}\n"
+                suited.forEach { s ->
+                    res += "${s.testName},${s.logs != null},${s.filePath}\n"
                 }
             }
         }
@@ -165,7 +167,12 @@ class UIEvaluatorController(
         progressFile.writeText(res)
     }
 
-    private fun handleParsing(config: EvaluatorConfig, logs: List<File>, tests: List<File>, debug: Boolean): List<TestData> {
+    private fun handleParsing(
+        config: EvaluatorConfig,
+        logs: List<File>,
+        tests: List<File>,
+        debug: Boolean
+    ): List<TestData> {
         // parse logs
         val logParser = service.findLogParser(config, logParsers)
         val parsedLogsData = service.parseLogs(logs, config, logParser)
@@ -181,8 +188,14 @@ class UIEvaluatorController(
 
         if (!config.exclude.isNullOrEmpty()) {
             config.exclude.forEach {
+                val testFromConfig =
+                    if (it[0] == '/') it.drop(1) else if (it[it.count() - 1] == '/') it.dropLast(1) else it
                 parsedTestData =
-                    parsedTestData.filter { t -> !(t.testName.contains(it) || (t.filePath ?: "").contains(it)) }
+                    parsedTestData.filter { t ->
+                        !(t.testName.contains(testFromConfig) || (t.filePath ?: "").contains(
+                            testFromConfig
+                        ))
+                    }
             }
         }
         if (debug) {
@@ -191,7 +204,11 @@ class UIEvaluatorController(
         if (!config.groups.isNullOrEmpty()) {
             parsedTestData =
                 parsedTestData.filter { t ->
-                    config.groups.values.flatten().any { t.testName == it || (t.filePath ?: "").contains(it) }
+                    config.groups.values.flatten().any {
+                        val testFromConfig =
+                            if (it[0] == '/') it.drop(1) else if (it[it.count() - 1] == '/') it.dropLast(1) else it
+                        t.testName == it || (t.filePath ?: "").contains(testFromConfig)
+                    }
                 }
         }
         if (debug) {

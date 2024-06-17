@@ -9,11 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="Add debug prints">
+    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="Add example and fixed some bugs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/visualisers/CSVVisualiser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/visualisers/CSVVisualiser.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/visualisers/ConsoleVisualiser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/visualisers/ConsoleVisualiser.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/EvaluatorConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/EvaluatorConfig.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +55,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/paekva/projects/ui_evaluator_cli/src/main/resources&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/paekva/projects/ui_evaluator_cli&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -71,6 +70,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/files" />
     </key>
@@ -216,23 +216,8 @@
       <workItem from="1718209906105" duration="15212000" />
       <workItem from="1718475839582" duration="8270000" />
       <workItem from="1718633026759" duration="1198000" />
-      <workItem from="1718634294770" duration="2460000" />
-    </task>
-    <task id="LOCAL-00016" summary="small fixes after a different project was analysed">
-      <option name="closed" value="true" />
-      <created>1714566606726</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1714566606726</updated>
-    </task>
-    <task id="LOCAL-00017" summary="some dev funcs">
-      <option name="closed" value="true" />
-      <created>1714568507989</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1714568507989</updated>
+      <workItem from="1718634294770" duration="10053000" />
+      <workItem from="1718655156706" duration="62000" />
     </task>
     <task id="LOCAL-00018" summary="add visualisation layer: interface + 2 base visualisation options, console and csv file">
       <option name="closed" value="true" />
@@ -610,7 +595,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718635738119</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="Add more debug prints">
+      <option name="closed" value="true" />
+      <created>1718636769953</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1718636769953</updated>
+    </task>
+    <task id="LOCAL-00066" summary="Add example and fixed some bugs">
+      <option name="closed" value="true" />
+      <created>1718654015777</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1718654015777</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -628,8 +629,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add error tracking" />
-    <MESSAGE value="add group's test missing logs finder" />
     <MESSAGE value="add test exclusion" />
     <MESSAGE value="fixing parsers" />
     <MESSAGE value="Renamings" />
@@ -653,7 +652,9 @@
     <MESSAGE value="Update readme + add missing info command" />
     <MESSAGE value="Update pom for release" />
     <MESSAGE value="Add debug prints" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add debug prints" />
+    <MESSAGE value="Add more debug prints" />
+    <MESSAGE value="Add example and fixed some bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add example and fixed some bugs" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

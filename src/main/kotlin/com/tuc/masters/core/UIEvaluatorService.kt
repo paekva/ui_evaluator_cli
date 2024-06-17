@@ -8,7 +8,6 @@ import java.util.*
 // Service handles additional logic for managing the calcualtion process
 @Component
 class UIEvaluatorService {
-
     fun getFiles(path: String, matchFileName: Regex): List<File> {
         val files = mutableListOf<File>()
         val repoDir = File(path)
@@ -49,7 +48,9 @@ class UIEvaluatorService {
         val logData = logs.find {
             val lPath = (it.filePath ?: "logs").split("logs")[1].split("/")
                 .filter { k -> k.isNotEmpty() }.dropLast(1).joinToString("/")
-            it.testName == test.testName && (lPath == testPath || lPath == "${testPath}/${testFileName}")
+
+            it.testName == test.testName && (lPath.lowercase() == testPath.lowercase()
+                    || lPath.lowercase() == "${testPath}/${testFileName}".lowercase())
         }
 
         return logData

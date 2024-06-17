@@ -1,0 +1,7 @@
+group_name,tests,Average navigation graph complexity, Average number of UI elements, Average number of assert statements, Average number of code lines, Average number of commands, Average number of homing actions, Average number of scrolls, Average number of user actions, Average number of wait statements, Average test execution time, Average weighted user actions sum
+C_4,75, 12.5067, 15.6133, 2.3467, 27.1467, 18.4267, 4.4267, 0.0000, 7.7867, 0.1333, 47.4413, 57.7520
+C_6,97, 4.3505, 22.0103, 3.3402, 32.9897, 18.0825, 5.2990, 0.0000, 10.7320, 0.0000, 53.3180, 72.5557
+C_7,194, 4.5052, 11.9124, 3.4845, 30.6546, 16.6134, 4.5361, 0.0000, 8.4742, 0.0206, 71.7886, 59.7711
+C_8,371, 4.2183, 19.2345, 4.5040, 42.7062, 24.7008, 6.9973, 0.0027, 12.5364, 0.0027, 78.2462, 92.0951
+C_9,167, 4.3114, 21.8862, 2.1856, 19.1437, 12.8922, 5.5928, 0.0000, 10.0479, 0.0000, 53.7046, 74.2874
+C_10,84, 4.2381, 18.7857, 3.2857, 26.1429, 16.9643, 5.7738, 0.0000, 11.5833, 0.0119, 62.1284, 80.1405

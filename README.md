@@ -16,6 +16,7 @@ In this project the following technologies were used:
 To run the application in development mode or build it, you need the above-mentioned technologies in place, plus:
 
 `git clone` or download zip to get the code
+
 `mvn install` to get all the dependencies
 
 ## Build process
@@ -25,7 +26,9 @@ The application can be packaged into .jar for the further use with the help of M
 
 The resulting jar can be executed as usual:
 
-`java -jar ui_evaluator_cli.jar ...`
+`java -jar ui_evaluator_cli....jar ...`
+
+The version is taken from pom.xml. The version with dependencies included should be used for proper execution.
 
 ## Use
 To use the tool to analyse existing project, one should:
@@ -55,3 +58,6 @@ The names of the log files should be the names of the tests.
 By default, the path of the configuration file is considered the root of the application, however this can be overwritten with the config contents.
 
 The default path to the configuration file is './', however, it can be overwritten with argument after `evaluate` command.
+
+### Output
+By default, the app provides two format of output for the calculated metrics, the CSV file and console. The [example of CSV output file](./results_groups.example.csv) is presented in the repository. The console is a repetition of the CSV table, just in a text format directly to console.
