@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component
 import java.io.File
 import java.util.*
 
-// Service handles additional logic for managing the calcualtion process
+// Service handles additional logic for managing the calculation process
 @Component
 class UIEvaluatorService {
     fun getFiles(path: String, matchFileName: Regex): List<File> {
@@ -108,5 +108,25 @@ class UIEvaluatorService {
         }
 
         return results
+    }
+
+    fun findMissingLogs(config: EvaluatorConfig, testData: List<TestData>) {
+        var res = ""
+        val progressFile = File("${config.projectPath}/ui_evaluator_progress.csv")
+        if (!progressFile.exists()) progressFile.createNewFile()
+        for (g in (config.groups?.toList() ?: listOf())) {
+            res += "${g.first}\n"
+            g.second.forEach {
+                val fixed = if (it[0] == '/') it.drop(1) else if (it[it.count() - 1] == '/') it.dropLast(1) else it
+                val suited = testData.filter { e ->
+                    e.testName.contains(fixed) || (e.filePath?.contains(fixed) ?: false)
+                }
+                suited.forEach { s ->
+                    res += "${s.testName},${s.logs != null},${s.filePath}\n"
+                }
+            }
+        }
+
+        progressFile.writeText(res)
     }
 }

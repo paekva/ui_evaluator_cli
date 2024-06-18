@@ -19,10 +19,6 @@ interface MetricCalculator {
     fun getGroupTestMetric(results: List<MetricResult>): MetricResult {
         val result = results.sumOf { it.value } / results.count()
 
-        return MetricResult(
-            metricsDescription,
-            result,
-            MetricLevel.GROUP,
-        )
+        return wrapResult(result, MetricLevel.GROUP)
     }
 }

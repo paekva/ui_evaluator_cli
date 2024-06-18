@@ -21,7 +21,7 @@ class UIEvaluatorCommand(@Autowired private val controller: UIEvaluatorControlle
         }
     }
 
-    // CLI command 'evaluate' triggers the calculation of the metrics
+    // CLI command 'info' provides basic information about the tool
     @ShellMethod(value = "Provides information about the CLI tool")
     fun info() {
         try {

@@ -9,10 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="Add example and fixed some bugs">
+    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="Small fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/EvaluatorConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/EvaluatorConfig.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorService.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,23 +217,8 @@
       <workItem from="1718475839582" duration="8270000" />
       <workItem from="1718633026759" duration="1198000" />
       <workItem from="1718634294770" duration="10053000" />
-      <workItem from="1718655156706" duration="62000" />
-    </task>
-    <task id="LOCAL-00018" summary="add visualisation layer: interface + 2 base visualisation options, console and csv file">
-      <option name="closed" value="true" />
-      <created>1715944727288</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1715944727288</updated>
-    </task>
-    <task id="LOCAL-00019" summary="small refactoring">
-      <option name="closed" value="true" />
-      <created>1715945387957</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1715945387957</updated>
+      <workItem from="1718655156706" duration="669000" />
+      <workItem from="1718696836661" duration="1656000" />
     </task>
     <task id="LOCAL-00020" summary="add basic group metrics implementation">
       <option name="closed" value="true" />
@@ -611,7 +596,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718654015777</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="Add example and fixed some bugs">
+      <option name="closed" value="true" />
+      <created>1718655221106</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1718655221107</updated>
+    </task>
+    <task id="LOCAL-00068" summary="Small fixes">
+      <option name="closed" value="true" />
+      <created>1718697645586</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1718697645586</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -629,7 +630,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add test exclusion" />
     <MESSAGE value="fixing parsers" />
     <MESSAGE value="Renamings" />
     <MESSAGE value="Improve on log to test mapping" />
@@ -654,7 +654,8 @@
     <MESSAGE value="Add debug prints" />
     <MESSAGE value="Add more debug prints" />
     <MESSAGE value="Add example and fixed some bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add example and fixed some bugs" />
+    <MESSAGE value="Small fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Small fixes" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

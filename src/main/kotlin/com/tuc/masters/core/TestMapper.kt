@@ -16,19 +16,19 @@ import java.util.logging.Logger
 class TestMapper {
     companion object : KLogging()
 
-    fun getMappingFromConfig(projectPath: String): EvaluatorConfig? {
-        val configFile = File("$projectPath/ui_evaluator_config.yaml")
+    fun getMappingFromConfig(path: String): EvaluatorConfig? {
+        val configFile = File("$path/ui_evaluator_config.yaml")
         if (!configFile.exists()) {
             logger.warn {
-                "No configuration file ui_evaluator_config.yaml was found in the root of the project." +
-                        "\nProject path: $projectPath"
+                "No configuration file ui_evaluator_config.yaml was found in the selected path" +
+                        "\nPath: $path"
             }
             return null
         }
         val config: EvaluatorConfig?
 
         try {
-            config = parseConfig(configFile, projectPath)
+            config = parseConfig(configFile, path)
         } catch (e: Exception) {
             logger.warn { "Config is malformed" }
             return null
@@ -42,6 +42,6 @@ class TestMapper {
         val tmp = jackson.readValue(file.bufferedReader(), EvaluatorConfig::class.java)
             ?: EvaluatorConfig(testsPath = "./tests", testFilePostfix = "")
 
-        return tmp.copy(projectPath = projectPath)
+        return tmp.copy(projectPath = tmp.projectPath ?: projectPath)
     }
 }

@@ -29,21 +29,21 @@ class UIEvaluatorController(
         logger.info { "" }
     }
 
-    fun evaluate(projectPath: String, debug: Boolean) {
+    fun evaluate(path: String, debug: Boolean) {
         if (debug) {
             logger.info { "Fetching config" }
         }
-        val config = testMapper.getMappingFromConfig(projectPath) ?: return
+        val config = testMapper.getMappingFromConfig(path) ?: return
 
         if (debug) {
             logger.info { "Fetching test files" }
         }
-        val tests = findTestFiles(projectPath, config) ?: return
+        val tests = findTestFiles(config) ?: return
         if (debug) {
             logger.info { "Found ${tests.count()} test files" }
             logger.info { "Fetching log files" }
         }
-        val logs = findLogFiles(projectPath, config) ?: return
+        val logs = findLogFiles(config) ?: return
         if (debug) {
             logger.info { "Found ${logs.count()} log files" }
             logger.info { "Parsing tests data" }
@@ -55,7 +55,7 @@ class UIEvaluatorController(
             logger.info { "Looking for missing logs data" }
         }
 
-        showMissingLogs(projectPath, config, testData)
+        service.findMissingLogs(config, testData)
         if (debug) {
             logger.info { "Skipping tests without logs if required by config" }
         }
@@ -118,8 +118,8 @@ class UIEvaluatorController(
         return groupResults
     }
 
-    private fun findTestFiles(projectPath: String, config: EvaluatorConfig): List<File>? {
-        val testsPath = projectPath + config.testsPath
+    private fun findTestFiles(config: EvaluatorConfig): List<File>? {
+        val testsPath = config.projectPath + config.testsPath
         val testFileRegex = Regex("[a-zA-Z0-9]*" + config.testFilePostfix + "." + config.testExtension + "$")
         val tests = service.getFiles(testsPath, testFileRegex)
 
@@ -131,10 +131,10 @@ class UIEvaluatorController(
         return tests
     }
 
-    private fun findLogFiles(projectPath: String, config: EvaluatorConfig): List<File>? {
+    private fun findLogFiles(config: EvaluatorConfig): List<File>? {
         if (config.logsPath == null) return listOf()
 
-        val logsPath = projectPath + config.logsPath
+        val logsPath = config.projectPath + config.logsPath
         val logsFileRegex = Regex("[a-zA-Z0-9_]*\\." + config.logExtension + "$")
         val logs = service.getFiles(logsPath, logsFileRegex)
 
@@ -144,27 +144,6 @@ class UIEvaluatorController(
         }
 
         return logs
-    }
-
-    private fun showMissingLogs(projectPath: String, config: EvaluatorConfig, testData: List<TestData>) {
-        var res = ""
-        val progressFile = File("$projectPath/ui_evaluator_progress.csv")
-        if (!progressFile.exists()) progressFile.createNewFile()
-
-        for (g in (config.groups?.toList() ?: listOf())) {
-            res += "${g.first}\n"
-            g.second.forEach {
-                val fixed = if (it[0] == '/') it.drop(1) else if (it[it.count() - 1] == '/') it.dropLast(1) else it
-                val suited = testData.filter { e ->
-                    e.testName.contains(fixed) || (e.filePath?.contains(fixed) ?: false)
-                }
-                suited.forEach { s ->
-                    res += "${s.testName},${s.logs != null},${s.filePath}\n"
-                }
-            }
-        }
-
-        progressFile.writeText(res)
     }
 
     private fun handleParsing(
