@@ -7,14 +7,14 @@ import org.springframework.stereotype.Component
 
 @Component
 class NumberOfUIElementsMetricCalculator : MetricCalculator {
-    override var metricsDescription: MetricDescription
-        get() = MetricDescription(
+    override fun getMetricDescription(): MetricDescription {
+        return MetricDescription(
             "Average number of UI elements",
             "Calculate (average) number of elements in test (tests)",
             listOf(MetricLevel.GROUP, MetricLevel.SINGLE_TEST),
             listOf(ArtifactType.LOG_FILE),
         )
-        set(_) {}
+    }
 
     override fun getSingleTestMetric(testParsedData: ParsedData, logsParsedData: ParsedData?): MetricResult {
         val rgx = Regex("\"id\": \"(?<name>\\S+)\"")

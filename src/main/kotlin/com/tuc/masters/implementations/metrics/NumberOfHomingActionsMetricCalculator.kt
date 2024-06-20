@@ -7,15 +7,15 @@ import org.springframework.stereotype.Component
 
 @Component
 class NumberOfHomingActionsMetricCalculator : MetricCalculator {
-    override var metricsDescription: MetricDescription
-        get() = MetricDescription(
+    override fun getMetricDescription(): MetricDescription {
+        return MetricDescription(
             "Average number of homing actions",
             "Calculate (average) number of homing actions in test (tests)\n" +
                     "Homing: how often the user is required to change between keyboard and mouse",
             listOf(MetricLevel.GROUP, MetricLevel.SINGLE_TEST),
             listOf(ArtifactType.LOG_FILE),
         )
-        set(_) {}
+    }
 
     override fun getSingleTestMetric(testParsedData: ParsedData, logsParsedData: ParsedData?): MetricResult {
         var count = 0

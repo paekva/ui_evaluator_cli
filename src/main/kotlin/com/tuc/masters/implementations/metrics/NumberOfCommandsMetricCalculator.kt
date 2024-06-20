@@ -6,14 +6,14 @@ import org.springframework.stereotype.Component
 
 @Component
 class NumberOfCommandsMetricCalculator : MetricCalculator {
-    override var metricsDescription: MetricDescription
-        get() = MetricDescription(
+    override fun getMetricDescription(): MetricDescription {
+        return MetricDescription(
             "Average number of commands",
             "Calculate (average) number of commands in test (tests)",
             listOf(MetricLevel.GROUP, MetricLevel.SINGLE_TEST),
             listOf(ArtifactType.TEST_SOURCE_CODE),
         )
-        set(_) {}
+    }
 
     override fun getSingleTestMetric(testParsedData: ParsedData, logsParsedData: ParsedData?): MetricResult {
         val result = testParsedData.actions.count().toDouble()

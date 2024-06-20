@@ -80,7 +80,7 @@ class UIEvaluatorController(
         }
 
         for (v in visualisers) {
-            if(config.visualiseSingleTestMetrics) v.visualizeSingleMetrics(config, singleMetricsResults)
+            if (config.visualiseSingleTestMetrics) v.visualizeSingleMetrics(config, singleMetricsResults)
             v.visualizeGroupMetrics(config, groupMetricsResults)
         }
     }
@@ -107,7 +107,7 @@ class UIEvaluatorController(
             }
 
             for (m in metrics) {
-                val tests = selected.map { it.filter { tm -> tm.metric.name == m.metricsDescription.name } }
+                val tests = selected.map { it.filter { tm -> tm.metric.name == m.getMetricDescription().name } }
                 if (tests.isNotEmpty()) {
                     val tmp = tests.reduce { acc, metricResults -> acc + metricResults }
                     groupMetrics.add(m.getGroupTestMetric(tmp))

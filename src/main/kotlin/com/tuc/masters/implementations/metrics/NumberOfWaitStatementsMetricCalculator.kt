@@ -7,14 +7,14 @@ import org.springframework.stereotype.Component
 
 @Component
 class NumberOfWaitStatementsMetricCalculator : MetricCalculator {
-    override var metricsDescription: MetricDescription
-        get() = MetricDescription(
+    override fun getMetricDescription(): MetricDescription {
+        return MetricDescription(
             "Average number of wait statements",
             "Calculate (average) number of wait statements in test (tests)",
             listOf(MetricLevel.GROUP, MetricLevel.SINGLE_TEST),
             listOf(ArtifactType.TEST_SOURCE_CODE),
         )
-        set(_) {}
+    }
 
     override fun getSingleTestMetric(testParsedData: ParsedData, logsParsedData: ParsedData?): MetricResult {
         val result = testParsedData.actions.count { it.type == ActionType.WAIT }.toDouble()

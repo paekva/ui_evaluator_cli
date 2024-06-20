@@ -7,14 +7,14 @@ import org.springframework.stereotype.Component
 
 @Component
 class WeightedUserActionsSumMetricCalculator : MetricCalculator {
-    override var metricsDescription: MetricDescription
-        get() = MetricDescription(
+    override fun getMetricDescription(): MetricDescription {
+        return MetricDescription(
             "Average weighted user actions sum",
             "Calculate (average) interactions sum based on their type",
             listOf(MetricLevel.GROUP, MetricLevel.SINGLE_TEST),
             listOf(ArtifactType.LOG_FILE),
         )
-        set(_) {}
+    }
 
 
     // 1.10 s for pointing
