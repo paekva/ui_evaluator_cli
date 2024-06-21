@@ -9,45 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="Fix MetricCalculator interface">
+    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="Rename package">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/SpringShellMain.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/SpringShellMain.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/commands/UIEvaluatorCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/commands/UIEvaluatorCommand.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/LogParser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/core/LogParser.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/MetricCalculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/core/MetricCalculator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/TestMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/core/TestMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/TestParser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/core/TestParser.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/core/UIEvaluatorController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/UIEvaluatorService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/core/UIEvaluatorService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/Visualiser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/core/Visualiser.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/ActionType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/core/models/ActionType.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/ArtifactType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/core/models/ArtifactType.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/EvaluatorConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/core/models/EvaluatorConfig.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/GroupData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/core/models/GroupData.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/InterfaceAction.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/core/models/InterfaceAction.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/MetricDescription.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/core/models/MetricDescription.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/MetricLevel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/core/models/MetricLevel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/MetricResult.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/core/models/MetricResult.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/ParsedData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/core/models/ParsedData.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/core/models/TestData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/core/models/TestData.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NavigationGraphMetricCalculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/implementations/metrics/NavigationGraphMetricCalculator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfAssertStatementsMetricCalculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/implementations/metrics/NumberOfAssertStatementsMetricCalculator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfCodeLinesMetricCalculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/implementations/metrics/NumberOfCodeLinesMetricCalculator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfCommandsMetricCalculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/implementations/metrics/NumberOfCommandsMetricCalculator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfHomingActionsMetricCalculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/implementations/metrics/NumberOfHomingActionsMetricCalculator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfScrollsMetricCalculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/implementations/metrics/NumberOfScrollsMetricCalculator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfUIElementsMetricCalculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/implementations/metrics/NumberOfUIElementsMetricCalculator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfUserActionsMetricCalculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/implementations/metrics/NumberOfUserActionsMetricCalculator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/NumberOfWaitStatementsMetricCalculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/implementations/metrics/NumberOfWaitStatementsMetricCalculator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/TestExecutionTimeMetricCalculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/implementations/metrics/TestExecutionTimeMetricCalculator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/metrics/WeightedUserActionsSumMetricCalculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/implementations/metrics/WeightedUserActionsSumMetricCalculator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/ChromeLogParser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/implementations/parsers/ChromeLogParser.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/JavaSeleniumTestParser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/implementations/parsers/JavaSeleniumTestParser.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/PhpSeleniumTestParser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/implementations/parsers/PhpSeleniumTestParser.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/parsers/utils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/implementations/parsers/utils.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/visualisers/CSVVisualiser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/implementations/visualisers/CSVVisualiser.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/tuc/masters/implementations/visualisers/ConsoleVisualiser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/implementations/visualisers/ConsoleVisualiser.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,10 +93,10 @@
       <recent name="com.tuc.masters.core" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.evlauate with path zimbra">
+  <component name="RunManager" selected="Spring Boot.evlauate with path alfio">
     <configuration name="evlauate with path alfio" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="ui_evaluator_cli" />
-      <option name="PROGRAM_PARAMETERS" value="evaluate  --path $PROJECT_DIR$/../../../prep_data/raw_data/projects/alf.io" />
+      <option name="PROGRAM_PARAMETERS" value="evaluate  --path $PROJECT_DIR$/../../../prep_data/raw_data/projects/alf.io --debug" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="vsr.tuc.masters.SpringShellMain" />
       <extension name="coverage">
         <pattern>
@@ -248,15 +212,8 @@
       <workItem from="1718822242753" duration="1233000" />
       <workItem from="1718887932316" duration="434000" />
       <workItem from="1718895028119" duration="518000" />
-      <workItem from="1718958187623" duration="215000" />
-    </task>
-    <task id="LOCAL-00023" summary="Add response args to action data for logs">
-      <option name="closed" value="true" />
-      <created>1716202527899</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1716202527900</updated>
+      <workItem from="1718958187623" duration="319000" />
+      <workItem from="1718958798715" duration="31000" />
     </task>
     <task id="LOCAL-00024" summary="Add number of elements implementation">
       <option name="closed" value="true" />
@@ -642,7 +599,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718895342508</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="Rename package">
+      <option name="closed" value="true" />
+      <created>1718958455603</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1718958455604</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -660,7 +625,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Improve on log to test mapping" />
     <MESSAGE value="Small fixes for php tests" />
     <MESSAGE value="Small fixes for java tests" />
     <MESSAGE value="Small fixes for controller" />
@@ -685,7 +649,8 @@
     <MESSAGE value="Small fixes" />
     <MESSAGE value="Update read me" />
     <MESSAGE value="Fix MetricCalculator interface" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix MetricCalculator interface" />
+    <MESSAGE value="Rename package" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rename package" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

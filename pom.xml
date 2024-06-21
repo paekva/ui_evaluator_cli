@@ -86,7 +86,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>com.tuc.masters.SpringShellMain</mainClass>
+                                    <mainClass>vsr.tuc.masters.SpringShellMain</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>
