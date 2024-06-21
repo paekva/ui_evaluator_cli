@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>ui_evaluator_cli</artifactId>
-    <groupId>com.tuc.masters</groupId>
+    <groupId>vsr.tuc.masters</groupId>
     <version>0.1.0</version>
     <packaging>jar</packaging>
 
