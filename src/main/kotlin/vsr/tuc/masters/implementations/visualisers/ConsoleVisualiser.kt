@@ -16,6 +16,7 @@ import java.math.RoundingMode
 @Component
 class ConsoleVisualiser : Visualiser {
     companion object : KLogging()
+
     override fun visualizeSingleMetrics(config: EvaluatorConfig, data: Map<TestData, List<MetricResult>>) {
         if (data.entries.toList().isEmpty()) {
             logger.warn { "No data found to visualise for single metrics" }
@@ -36,12 +37,30 @@ class ConsoleVisualiser : Visualiser {
             return
         }
 
-        val header = arrayListOf("group name")
-        header.addAll(data.entries.toList()[0].value.map { it.metric.name })
+        val size = data.entries.toList()[0].value.size
+        for (i in 0..size step 2) {
+            val end = if (i + 2 < size) i + 2 else i + 1
+            val header = arrayListOf("group name")
 
-        drawTable(header, data.entries.associate { (key, value) ->
-            key.groupName to value
-        })
+            header.addAll(data.entries.toList()[0].value.subList(i, end)
+                .map { replaceEverySecondSpaceWithNewline(it.metric.name) })
+
+            drawTable(header, data.entries.associate { (key, value) ->
+                key.groupName to value.subList(i, end)
+            })
+        }
+    }
+
+    private fun replaceEverySecondSpaceWithNewline(input: String): String {
+        val parts = input.split(' ')
+        var result = ""
+
+        for (i in parts.indices step 2) {
+            val s = " " + if(i+1 < parts.size) parts[i + 1] else ""
+            result += parts[i] + s + "\n"
+        }
+
+        return result
     }
 
     private fun drawTable(headers: List<String>, data: Map<String, List<MetricResult>>) {
