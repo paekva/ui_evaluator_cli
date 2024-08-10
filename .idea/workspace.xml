@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="New table option">
+    <list default="true" id="fa26688b-1b5d-47a8-b08c-9daa9aba4743" name="Changes" comment="improving output #2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/implementations/visualisers/ConsoleVisualiser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/vsr/tuc/masters/implementations/visualisers/ConsoleVisualiser.kt" afterDir="false" />
     </list>
@@ -215,62 +215,6 @@
       <workItem from="1718958187623" duration="319000" />
       <workItem from="1718958798715" duration="118000" />
       <workItem from="1723305576255" duration="869000" />
-    </task>
-    <task id="LOCAL-00027" summary="Add config access to visualiser">
-      <option name="closed" value="true" />
-      <created>1716207966890</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1716207966890</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Removed todos">
-      <option name="closed" value="true" />
-      <created>1716300513496</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1716300513496</updated>
-    </task>
-    <task id="LOCAL-00029" summary="small fixes + allow to name whole files to a group">
-      <option name="closed" value="true" />
-      <created>1716314011710</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1716314011710</updated>
-    </task>
-    <task id="LOCAL-00030" summary="improve csv display">
-      <option name="closed" value="true" />
-      <created>1716315111472</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1716315111472</updated>
-    </task>
-    <task id="LOCAL-00031" summary="improve console display">
-      <option name="closed" value="true" />
-      <created>1716317272451</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1716317272451</updated>
-    </task>
-    <task id="LOCAL-00032" summary="support grouping by paths">
-      <option name="closed" value="true" />
-      <created>1716376506470</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1716376506470</updated>
-    </task>
-    <task id="LOCAL-00033" summary="support grouping by paths">
-      <option name="closed" value="true" />
-      <created>1716377109717</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1716377109717</updated>
     </task>
     <task id="LOCAL-00034" summary="add filtering config option">
       <option name="closed" value="true" />
@@ -608,7 +552,63 @@
       <option name="project" value="LOCAL" />
       <updated>1723309260163</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="improving output">
+      <option name="closed" value="true" />
+      <created>1723309886193</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1723309886193</updated>
+    </task>
+    <task id="LOCAL-00077" summary="improving output #2">
+      <option name="closed" value="true" />
+      <created>1723310143368</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1723310143368</updated>
+    </task>
+    <task id="LOCAL-00078" summary="improving output #2">
+      <option name="closed" value="true" />
+      <created>1723310530110</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1723310530111</updated>
+    </task>
+    <task id="LOCAL-00079" summary="improving output #2">
+      <option name="closed" value="true" />
+      <created>1723310608466</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1723310608466</updated>
+    </task>
+    <task id="LOCAL-00080" summary="improving output #2">
+      <option name="closed" value="true" />
+      <created>1723310838715</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1723310838715</updated>
+    </task>
+    <task id="LOCAL-00081" summary="improving output #2">
+      <option name="closed" value="true" />
+      <created>1723310988280</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1723310988280</updated>
+    </task>
+    <task id="LOCAL-00082" summary="improving output #2">
+      <option name="closed" value="true" />
+      <created>1723311144285</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1723311144285</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -626,8 +626,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Improve test parse for Java" />
-    <MESSAGE value="Fix test execution times" />
     <MESSAGE value="Fixing PHP parser to take into account for, while, etc" />
     <MESSAGE value="Change interface signature and some types" />
     <MESSAGE value="Updated metric" />
@@ -651,7 +649,9 @@
     <MESSAGE value="Fix missed line while package renaming" />
     <MESSAGE value="Improving output for console" />
     <MESSAGE value="New table option" />
-    <option name="LAST_COMMIT_MESSAGE" value="New table option" />
+    <MESSAGE value="improving output" />
+    <MESSAGE value="improving output #2" />
+    <option name="LAST_COMMIT_MESSAGE" value="improving output #2" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

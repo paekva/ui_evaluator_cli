@@ -43,8 +43,8 @@ class ConsoleVisualiser : Visualiser {
         for (i in 0..<size step 4) {
             val res = data.mapValues { it.value.subList(i, if (i + 4 < size) i + 4 else size - 1) }
             drawTableNew(res)
-            println()
-            println()
+            println("\u200B")
+            println("\u200B")
         }
     }
 
@@ -70,15 +70,15 @@ class ConsoleVisualiser : Visualiser {
         header.add(0, "group name")
 
         for (i in header) {
-            print("---------------------")
+            print("_____________________")
         }
-        println()
+        println("")
         printTableHeader(header)
 
         for (i in header) {
             print("---------------------")
         }
-        println()
+        println("")
 
         val formatted = data.entries.map {
             val res = mutableListOf(it.key.groupName)
@@ -88,6 +88,11 @@ class ConsoleVisualiser : Visualiser {
             res.toList()
         }.toMutableList()
         printTableWithFixedWidth(formatted)
+
+        for (i in header) {
+            print("_____________________")
+        }
+        println("")
     }
 
     fun printTableHeader(headers: List<String>) {
