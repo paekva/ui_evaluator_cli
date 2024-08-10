@@ -39,7 +39,13 @@ class ConsoleVisualiser : Visualiser {
             return
         }
 
-        drawTableNew(data)
+        val size = data.values.toList()[0].size
+        for (i in 0..<size step 4) {
+            val res = data.mapValues { it.value.subList(i, if (i + 4 < size) i + 4 else size - 1) }
+            drawTableNew(res)
+            println()
+            println()
+        }
     }
 
     private fun drawTable(headers: List<String>, data: Map<String, List<MetricResult>>) {
@@ -62,6 +68,11 @@ class ConsoleVisualiser : Visualiser {
     private fun drawTableNew(data: Map<GroupData, List<MetricResult>>) {
         val header = data.entries.toList()[0].value.map { it.metric.name }.toMutableList()
         header.add(0, "group name")
+
+        for (i in header) {
+            print("---------------------")
+        }
+        println()
         printTableHeader(header)
 
         for (i in header) {
