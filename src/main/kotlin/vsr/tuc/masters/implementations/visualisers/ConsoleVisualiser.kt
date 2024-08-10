@@ -43,24 +43,12 @@ class ConsoleVisualiser : Visualiser {
             val header = arrayListOf("group name")
 
             header.addAll(data.entries.toList()[0].value.subList(i, end)
-                .map { replaceEverySecondSpaceWithNewline(it.metric.name) })
+                .map { it.metric.name })
 
             drawTable(header, data.entries.associate { (key, value) ->
                 key.groupName to value.subList(i, end)
             })
         }
-    }
-
-    private fun replaceEverySecondSpaceWithNewline(input: String): String {
-        val parts = input.split(' ')
-        var result = ""
-
-        for (i in parts.indices step 2) {
-            val s = " " + if(i+1 < parts.size) parts[i + 1] else ""
-            result += parts[i] + s + "\n"
-        }
-
-        return result
     }
 
     private fun drawTable(headers: List<String>, data: Map<String, List<MetricResult>>) {
