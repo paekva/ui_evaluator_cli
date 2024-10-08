@@ -41,7 +41,7 @@ class ConsoleVisualiser : Visualiser {
 
         val size = data.values.toList()[0].size
         for (i in 0..<size step 4) {
-            val res = data.mapValues { it.value.subList(i, if (i + 4 < size) i + 4 else size - 1) }
+            val res = data.mapValues { it.value.subList(i, if (i + 4 < size) i + 4 else size) }
             drawTableNew(res)
             println("\u200B")
             println("\u200B")
