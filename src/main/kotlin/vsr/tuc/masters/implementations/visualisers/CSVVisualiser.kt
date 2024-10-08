@@ -63,6 +63,13 @@ class CSVVisualiser : Visualiser {
 
     private fun metricToCSVRow(name: String, metrics: List<MetricResult>): String {
         val m = metrics.sortedBy { it.metric.name }
-        return "${name}, ${m.joinToString { BigDecimal(it.value).setScale(4, RoundingMode.HALF_EVEN).toString() }}"
+        return "${name}, ${
+            m.joinToString {
+                BigDecimal(if (it.value.isFinite() && !it.value.isNaN()) it.value else 0.0).setScale(
+                    4,
+                    RoundingMode.HALF_EVEN
+                ).toString()
+            }
+        }"
     }
 }

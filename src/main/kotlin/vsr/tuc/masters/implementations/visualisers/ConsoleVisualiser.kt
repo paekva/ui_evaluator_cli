@@ -82,7 +82,7 @@ class ConsoleVisualiser : Visualiser {
 
         val formatted = data.entries.map {
             val res = mutableListOf(it.key.groupName)
-            res.addAll(it.value.map { m -> BigDecimal(m.value).setScale(4, RoundingMode.HALF_EVEN).toString() }
+            res.addAll(it.value.map { m -> BigDecimal(if(m.value.isFinite() && !m.value.isNaN()) m.value else 0.0).setScale(4, RoundingMode.HALF_EVEN).toString() }
                 .toList())
 
             res.toList()
