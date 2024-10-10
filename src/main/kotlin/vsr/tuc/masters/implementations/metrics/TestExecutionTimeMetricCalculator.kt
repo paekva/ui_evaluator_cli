@@ -23,6 +23,7 @@ class TestExecutionTimeMetricCalculator : MetricCalculator {
                 ?: 0.0
         val stop =
             (logsParsedData?.actions ?: listOf()).firstOrNull { it.type == ActionType.STOP }?.timestamp?.toDouble()
+                ?: logsParsedData?.actions?.last()?.timestamp?.toDouble()
                 ?: 0.0
 
         val result = if (stop == 0.0 || start == 0.0) 0.0 else stop - start
